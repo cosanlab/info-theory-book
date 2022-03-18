@@ -37,13 +37,11 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -444,11 +442,12 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3 0.7]
  [1.  0. ]]
-
-(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
 </pre></div>
 </div>
-<img alt="_images/markov-properties_5_1.png" src="_images/markov-properties_5_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
+</pre></div>
+</div>
+<img alt="_images/markov-properties_5_2.png" src="_images/markov-properties_5_2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -562,11 +561,11 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.284  0.1149 0.601 ]
- [0.2494 0.2279 0.5226]
- [0.4114 0.2458 0.3428]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.2652 0.1717 0.563 ]
+ [0.3294 0.0642 0.6064]
+ [0.1102 0.4537 0.4361]]
 
-(S1, S1): 0.284		(S1, S2): 0.1149		(S1, S3): 0.601		(S2, S1): 0.2494		(S2, S2): 0.2279		(S2, S3): 0.5226		(S3, S1): 0.4114		(S3, S2): 0.2458		(S3, S3): 0.3428		
+(S1, S1): 0.2652		(S1, S2): 0.1717		(S1, S3): 0.563		(S2, S1): 0.3294		(S2, S2): 0.0642		(S2, S3): 0.6064		(S3, S1): 0.1102		(S3, S2): 0.4537		(S3, S3): 0.4361		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_10_1.png" src="_images/markov-properties_10_1.png" />
@@ -602,13 +601,13 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.0903 0.3098 0.0281 0.235  0.3368]
- [0.0747 0.1114 0.2875 0.2589 0.2674]
- [0.1336 0.3207 0.1997 0.2573 0.0887]
- [0.2242 0.139  0.2279 0.2805 0.1283]
- [0.1724 0.2952 0.2583 0.0234 0.2507]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[3.396e-01 3.000e-04 3.525e-01 2.652e-01 4.240e-02]
+ [3.262e-01 2.340e-01 7.900e-02 2.828e-01 7.810e-02]
+ [1.813e-01 2.733e-01 2.893e-01 1.008e-01 1.553e-01]
+ [1.836e-01 1.688e-01 2.551e-01 1.611e-01 2.314e-01]
+ [2.147e-01 4.300e-02 2.373e-01 2.276e-01 2.773e-01]]
 
-(S1, S1): 0.0903		(S1, S2): 0.3098		(S1, S3): 0.0281		(S1, S4): 0.235		(S1, S5): 0.3368		(S2, S1): 0.0747		(S2, S2): 0.1114		(S2, S3): 0.2875		(S2, S4): 0.2589		(S2, S5): 0.2674		(S3, S1): 0.1336		(S3, S2): 0.3207		(S3, S3): 0.1997		(S3, S4): 0.2573		(S3, S5): 0.0887		(S4, S1): 0.2242		(S4, S2): 0.139		(S4, S3): 0.2279		(S4, S4): 0.2805		(S4, S5): 0.1283		(S5, S1): 0.1724		(S5, S2): 0.2952		(S5, S3): 0.2583		(S5, S4): 0.0234		(S5, S5): 0.2507		
+(S1, S1): 0.3396		(S1, S2): 0.0003		(S1, S3): 0.3525		(S1, S4): 0.2652		(S1, S5): 0.0424		(S2, S1): 0.3262		(S2, S2): 0.234		(S2, S3): 0.079		(S2, S4): 0.2828		(S2, S5): 0.0781		(S3, S1): 0.1813		(S3, S2): 0.2733		(S3, S3): 0.2893		(S3, S4): 0.1008		(S3, S5): 0.1553		(S4, S1): 0.1836		(S4, S2): 0.1688		(S4, S3): 0.2551		(S4, S4): 0.1611		(S4, S5): 0.2314		(S5, S1): 0.2147		(S5, S2): 0.043		(S5, S3): 0.2373		(S5, S4): 0.2276		(S5, S5): 0.2773		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_11_1.png" src="_images/markov-properties_11_1.png" />
@@ -650,15 +649,15 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.23   0.6105 0.1595]
- [0.     1.     0.    ]
- [0.1928 0.4215 0.3856]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.4052 0.1809 0.4139]
+ [0.3818 0.1349 0.4833]
+ [0.     0.     1.    ]]
 
-(S1, S1): 0.23		(S1, S2): 0.6105		(S1, S3): 0.1595		(S2, S2): 1.0		(S3, S1): 0.1928		(S3, S2): 0.4215		(S3, S3): 0.3856		
+(S1, S1): 0.4052		(S1, S2): 0.1809		(S1, S3): 0.4139		(S2, S1): 0.3818		(S2, S2): 0.1349		(S2, S3): 0.4833		(S3, S3): 1.0		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_14_1.png" src="_images/markov-properties_14_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S2 is the Absorbing State.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S3 is the Absorbing State.
 </pre></div>
 </div>
 <img alt="_images/markov-properties_14_3.png" src="_images/markov-properties_14_3.png" />
@@ -706,8 +705,8 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P-Absorbing (re-ordered P):
 [[1.         0.         0.        ]
- [0.61045553 0.23003755 0.15950691]
- [0.42153449 0.19283099 0.38563452]]
+ [0.41386776 0.40519732 0.18093492]
+ [0.48326752 0.38182071 0.13491177]]
 
 Probabilities that NAS will end up in AS: (re-ordered list)
 [[1.]
@@ -719,7 +718,7 @@ All arranged probabilities:
  [1.]]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/numpy/matrixlib/defmatrix.py:193: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/f004p57/miniforge3/envs/py38/lib/python3.8/site-packages/numpy/matrixlib/defmatrix.py:193: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   out = N.ndarray.__getitem__(self, index)
 </pre></div>
 </div>
@@ -750,9 +749,6 @@ All arranged probabilities:
  [1.]]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <br/>
@@ -773,11 +769,11 @@ All arranged probabilities:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/markov-properties_20_0.png" src="_images/markov-properties_20_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.         0.        ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.71661635 0.28338365]
+ [0.66119628 0.33880372]
+ [1.         0.        ]
  [0.         1.        ]
- [0.54233097 0.45766903]
- [0.57545293 0.42454707]
- [0.60536241 0.39463759]]
+ [0.68591758 0.31408242]]
 </pre></div>
 </div>
 </div>
@@ -797,17 +793,17 @@ All arranged probabilities:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/markov-properties_21_0.png" src="_images/markov-properties_21_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.29837164 0.29032189 0.41130647]
- [0.3216941  0.33431623 0.34398967]
- [1.         0.         0.        ]
- [0.29821167 0.31130094 0.39048738]
- [0.24682375 0.29912575 0.4540505 ]
- [0.39374656 0.26127667 0.34497677]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.         0.         0.        ]
  [0.         1.         0.        ]
- [0.40135554 0.25084089 0.34780356]
- [0.3242776  0.29097264 0.38474976]
+ [0.41479326 0.26262508 0.32258166]
+ [0.44989375 0.29390464 0.25620161]
+ [0.33319301 0.35310265 0.31370434]
+ [0.46014593 0.24529365 0.29456042]
+ [0.4300895  0.28901169 0.28089881]
+ [0.33434513 0.41931868 0.24633619]
  [0.         0.         1.        ]
- [0.37051855 0.22575217 0.40372928]]
+ [0.35671057 0.27585027 0.36743916]
+ [0.35516079 0.40958599 0.23525322]]
 </pre></div>
 </div>
 </div>
@@ -839,22 +835,31 @@ All arranged probabilities:
               </div>
               
             
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="network-theory.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Network/Graph Theory</p>
+                
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Welcome</p>
+            </div>
+        </a>
     </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+     <div id="next">
+        <a class="right-next" href="network-theory.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Network/Graph Theory</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
             
         </div>
