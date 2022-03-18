@@ -4,4 +4,6 @@
 format: jb-book
 root: intro
 chapters:
+  - file: markov-properties
+  - file: network-theory
   - file: info-theoretic-social-networks
