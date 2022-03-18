@@ -411,9 +411,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package words to /home/runner/nltk_data...
-[nltk_data]   Unzipping corpora/words.zip.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Unzipping corpora/words.zip.
 [nltk_data] Downloading package gutenberg to /home/runner/nltk_data...
-[nltk_data]   Unzipping corpora/gutenberg.zip.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Unzipping corpora/gutenberg.zip.
 </pre></div>
 </div>
 </div>
@@ -432,22 +436,22 @@ const thebe_selector_output = ".output, .cell_output"
       white-space: pre-wrap;
   }
 </style>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ikrusaf 1
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Zgxfknw 1
 
 
-Cmf Trnsaf Annmws, wz Gannxyik Krnn, my Cwhafcasckmfa, trc r hry tkw,
-zwf kmc wty rhecahays, yavaf swwg eu ryx lwwg les ska Lrfwyasrba;
-skafa ka zweyq wiieursmwy zwf ry mqna kwef, ryq iwycwnrsmwy my r
-qmcsfaccaq wya; skafa kmc zriensmac tafa fwecaq mysw rqhmfrsmwy ryq
-facuais, lx iwysahunrsmyb ska nmhmsaq fahyrys wz ska arfnmacs ursaysc;
-skafa ryx eytaniwha caycrsmwyc, rfmcmyb zfwh qwhacsmi rzzrmfc
-ikrybaq yrsefrnnx mysw umsx ryq iwysahus rc ka sefyaq wvaf
-ska rnhwcs ayqnacc ifarsmwyc wz ska nrcs iaysefx; ryq skafa,
-mz avafx wskaf narz tafa uwtafnacc, ka iwenq farq kmc wty kmcswfx
-tmsk ry mysafacs tkmik yavaf zrmnaq.  Skmc trc ska urba rs tkmik
-ska zrvwefmsa vwneha rntrxc wuayaq:
+Jaw Exoknw Nooatk, tc Bnoorvzg Gxoo, av Jtpnwjnkjgawn, exj x pxv egt,
+ctw gaj tev xpijnpnvk, vnsnw kttb if xvr yttb yik kgn Yxwtvnkxqn;
+kgnwn gn ctivd tzzifxkatv ctw xv adon gtiw, xvd ztvjtoxkatv av x
+dajkwnjjnd tvn; kgnwn gaj cxziokanj enwn wtijnd avkt xdpawxkatv xvd
+wnjfnzk, yr ztvknpfoxkavq kgn oapaknd wnpvxvk tc kgn nxwoanjk fxknvkj;
+kgnwn xvr ivenoztpn jnvjxkatvj, xwajavq cwtp dtpnjkaz xccxawj
+zgxvqnd vxkiwxoor avkt fakr xvd ztvknpfk xj gn kiwvnd tsnw
+kgn xoptjk nvdonjj zwnxkatvj tc kgn oxjk znvkiwr; xvd kgnwn,
+ac nsnwr tkgnw onxc enwn ftenwonjj, gn ztiod wnxd gaj tev gajktwr
+eakg xv avknwnjk egazg vnsnw cxaond.  Kgaj exj kgn fxqn xk egazg
+kgn cxstiwakn stoipn xoexrj tfnvnd:
 
-           &quot;ANNMWS WZ GANNXYIK KRNN.
+           &quot;NOOATK TC BNOORVZG GXOO.
 
 &quot;
 </pre></div>
@@ -639,7 +643,7 @@ As we go through the decrypted text (which is significantly larger than the sing
 <p>We can definitely do better than 30% – in fact, the original text contains 81.7% accepted English words. In order to improve our decryption, we’ll try swapping out letter mappings for letters that have the most similar probabilities in English (i.e. R and S both constitute approximately 7.2% of letters used in this corpus). If the percentage of accepted English words improves by making a substitution, we keep it. Let’s watch this technique at work. <em>N.B. This make take a few minutes; feel free to make a nice cup of tea while the next cell runs!</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Run this to improve the deciphering!  { display-mode: &quot;form&quot; }</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@markdown Run this to improve the deciphering!  { display-mode: &quot;form&quot; }</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">get_letter_distribution</span><span class="p">(</span><span class="n">second_pass</span><span class="p">)</span>
 <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">26</span><span class="p">,</span><span class="mi">26</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
@@ -662,7 +666,7 @@ As we go through the decrypted text (which is significantly larger than the sing
     <span class="n">percent_real</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">percent_real</span> <span class="o">&gt;</span> <span class="n">percent_real_before</span><span class="o">+</span><span class="p">(</span><span class="mf">0.82</span><span class="o">-</span><span class="n">percent_real_before</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">:</span>
       <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;swap&#39;</span><span class="p">,</span> <span class="n">L1</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span><span class="n">L2</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">percent valid English words:&#39;</span><span class="p">,</span> <span class="n">percent_real</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
-      <span class="c1">#print(re.sub(r&#39;[^a-zA-Z ]&#39;, &#39;&#39;, unencrypted_quote.lower())[35:776])</span>
+      <span class="c1"># print(re.sub(r&#39;[^a-zA-Z ]&#39;, &#39;&#39;, unencrypted_quote.lower())[35:776])</span>
       <span class="nb">print</span><span class="p">(</span><span class="n">unencrypted_quote</span><span class="p">[</span><span class="mi">35</span><span class="p">:</span><span class="mi">776</span><span class="p">])</span>
       <span class="n">swap_keys_inplace</span><span class="p">(</span><span class="n">reverse_cipher</span><span class="p">,</span> <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">)</span>
       <span class="n">percent_real_before</span> <span class="o">=</span> <span class="n">percent_real</span>
@@ -677,7 +681,7 @@ As we go through the decrypted text (which is significantly larger than the sing
       white-space: pre-wrap;
   }
 </style>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap K and Y 	percent valid English words: 0.5160721105097512 
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap G and V 	percent valid English words: 0.5160721105097512 
 
 
 Fhabter 1
