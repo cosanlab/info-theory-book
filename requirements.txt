@@ -4,7 +4,6 @@ numpy
 nltk
 pandas
 matplotlib
-random
 ipython
 networkx
 bct
