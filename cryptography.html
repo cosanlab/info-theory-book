@@ -411,13 +411,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package words to /home/runner/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Unzipping corpora/words.zip.
+[nltk_data]   Unzipping corpora/words.zip.
 [nltk_data] Downloading package gutenberg to /home/runner/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Unzipping corpora/gutenberg.zip.
+[nltk_data]   Unzipping corpora/gutenberg.zip.
 </pre></div>
 </div>
 </div>
@@ -436,22 +432,22 @@ const thebe_selector_output = ".output, .cell_output"
       white-space: pre-wrap;
   }
 </style>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eiokjsb 1
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qhudilp 1
 
 
-Yxb Poljsb Sllxqj, qt Usllrhei Ioll, xh Yqvsbysjyixbs, poy o voh piq,
-tqb ixy qph ovcysvshj, hsgsb jqqu ck ohr zqqu zcj jis Zobqhsjods;
-jisbs is tqchw qeeckojxqh tqb oh xwls iqcb, ohw eqhyqlojxqh xh o
-wxyjbsyysw qhs; jisbs ixy toecljxsy psbs bqcysw xhjq owvxbojxqh ohw
-bsyksej, zr eqhjsvklojxhd jis lxvxjsw bsvhohj qt jis soblxsyj kojshjy;
-jisbs ohr chpsleqvs yshyojxqhy, obxyxhd tbqv wqvsyjxe ottoxby
-eiohdsw hojcbollr xhjq kxjr ohw eqhjsvkj oy is jcbhsw qgsb
-jis olvqyj shwlsyy ebsojxqhy qt jis loyj eshjcbr; ohw jisbs,
-xt sgsbr qjisb lsot psbs kqpsblsyy, is eqclw bsow ixy qph ixyjqbr
-pxji oh xhjsbsyj pixei hsgsb toxlsw.  Jixy poy jis kods oj pixei
-jis togqcbxjs gqlcvs olpory qkshsw:
+Scp Euxilp Lxxcoi, ov Klxxyzqh Huxx, cz Soalpslishcpl, eus u auz eho,
+vop hcs oez uarslalzi, zlglp iook rd uzy nook nri ihl Nupozliuwl;
+ihlpl hl vorzj oqqrduicoz vop uz cjxl horp, uzj qozsoxuicoz cz u
+jcsiplsslj ozl; ihlpl hcs vuqrxicls elpl porslj czio ujacpuicoz uzj
+plsdlqi, ny qoziladxuiczw ihl xcacilj plazuzi ov ihl lupxclsi duilzis;
+ihlpl uzy rzelxqoal slzsuicozs, upcsczw vpoa joalsicq uvvucps
+qhuzwlj zuirpuxxy czio dciy uzj qoziladi us hl irpzlj oglp
+ihl uxaosi lzjxlss qpluicozs ov ihl xusi qlzirpy; uzj ihlpl,
+cv lglpy oihlp xluv elpl doelpxlss, hl qorxj pluj hcs oez hcsiopy
+ecih uz czilplsi ehcqh zlglp vucxlj.  Ihcs eus ihl duwl ui ehcqh
+ihl vugorpcil goxral uxeuys odlzlj:
 
-           &quot;SLLXQJ QT USLLRHEI IOLL.
+           &quot;LXXCOI OV KLXXYZQH HUXX.
 
 &quot;
 </pre></div>
@@ -653,7 +649,7 @@ As we go through the decrypted text (which is significantly larger than the sing
 <span class="n">indeces</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">dists</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
 <span class="k">while</span> <span class="n">percent_real</span> <span class="o">&lt;</span> <span class="mf">0.81</span><span class="p">:</span>
   <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">indeces</span><span class="p">:</span>
-    <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="mi">26</span><span class="p">))</span>
+    <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="mi">26</span><span class="p">))</span>
     <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span> <span class="o">=</span> <span class="n">alphabet</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alphabet</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
     <span class="n">updated</span> <span class="o">=</span> <span class="n">swap_keys</span><span class="p">(</span><span class="n">reverse_cipher</span><span class="p">,</span> <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">)</span>
     <span class="n">unencrypted_quote</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -681,60 +677,14 @@ As we go through the decrypted text (which is significantly larger than the sing
       white-space: pre-wrap;
   }
 </style>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap I and H 	percent valid English words: 0.5160721105097512 
-
-
-Fhabter 1
-
-
-Sir Wadter Eddiot, oc Keddynfh Hadd, in Somersetshire, was a man who,
-cor his own amusement, never took ub any pook put the Paronetage;
-there he counl offubation cor an ilde hour, anl fonsodation in a
-listressel one; there his cafudties were rousel into almiration anl
-resbeft, py fontembdating the dimitel remnant oc the eardiest batents;
-there any unwedfome sensations, arising crom lomestif accairs
-fhangel naturaddy into bity anl fontembt as he turnel over
-the admost enldess freations oc the dast fentury; anl there,
-ic every other deac were bowerdess, he foudl real his own history
-with an interest whifh never caidel.  This was the bage at whifh
-the cavourite vodume adways obenel:
-
-           &quot;EDDIOT OC KEDDYNFH HADD.
-
-&quot;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap W and L 	percent valid English words: 0.6301505155453719 
-
-
-Fhabter 1
-
-
-Sir Walter Elliot, oc Kellynfh Hall, in Somersetshire, was a man who,
-cor his own amusement, never took ub any pook put the Paronetage;
-there he cound offubation cor an idle hour, and fonsolation in a
-distressed one; there his cafulties were roused into admiration and
-resbeft, py fontemblating the limited remnant oc the earliest batents;
-there any unwelfome sensations, arising crom domestif accairs
-fhanged naturally into bity and fontembt as he turned over
-the almost endless freations oc the last fentury; and there,
-ic every other leac were bowerless, he fould read his own history
-with an interest whifh never cailed.  This was the bage at whifh
-the cavourite volume always obened:
-
-           &quot;ELLIOT OC KELLYNFH HALL.
-
-&quot;
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+</div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
 <span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 9&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">updated</span> <span class="o">=</span> <span class="n">swap_keys</span><span class="p">(</span><span class="n">reverse_cipher</span><span class="p">,</span> <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">unencrypted_quote</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-<span class="ne">---&gt; </span><span class="mi">15</span> <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">encrypted_quote</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>   <span class="k">if</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">updated</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">encrypted_quote</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">16</span>   <span class="k">if</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">updated</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
 <span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">unencrypted_quote</span><span class="o">+=</span><span class="p">(</span><span class="n">updated</span><span class="p">[</span><span class="n">letter</span><span class="p">])</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>   <span class="k">else</span><span class="p">:</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
