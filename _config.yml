@@ -10,6 +10,13 @@ logo: logo.png
 execute:
   execute_notebooks: force
 
+# Parse and render settings
+parse:
+  myst_enable_extensions:
+    - html_image
+    - dollarmath
+  myst_url_schemes: [mailto, http, https] # URI schemes that will be recognised as external URLs in Markdown links
+
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:

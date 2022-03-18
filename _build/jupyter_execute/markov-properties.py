@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Markov Chains and Markov Dynamics
+# # Markov Chains & Markov Dynamics
 # 
 # Let's say an event can exist in two **states**, represented in a **State Vector** $S_t = \begin{bmatrix} s_{1,t} \\ s_{2,t} \end{bmatrix}$ (at time $t$), and there is a probability $p_{i,j}$ to transfer information from state $s_i$ to state $s_j$. All such probabilities can be accounted together in a **Transfer Matrix**, $P = \begin{bmatrix} p_{1,1} & p_{1,2} \\ p_{2,1} & p_{2,2} \end{bmatrix}$. Also given that these are probabilities, we have that $\sum_{j=1}^{n} p_{i,j} = 1$. We find:<br/>
 # &emsp;&emsp;&emsp;&emsp;$P_{2\times2} = \begin{bmatrix} 1-p_{1,2} & p_{1,2} \\ p_{2,1} & 1-p_{2,1} \end{bmatrix}$,<br/>

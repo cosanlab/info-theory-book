@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Markov Chains and Markov Dynamics &#8212; Information Theory for Social Neuroscientists</title>
+    <title>Markov Chains &amp; Markov Dynamics &#8212; Information Theory for Social Neuroscientists</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -101,7 +101,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Markov Chains and Markov Dynamics
+   Markov Chains &amp; Markov Dynamics
   </a>
  </li>
  <li class="toctree-l1">
@@ -171,11 +171,11 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://cosanlab.github.io/info-theory-book"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/cosanlab/info-theory-book"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://cosanlab.github.io/info-theory-book/issues/new?title=Issue%20on%20page%20%2Fmarkov-properties.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/cosanlab/info-theory-book/issues/new?title=Issue%20on%20page%20%2Fmarkov-properties.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -190,6 +190,23 @@ const thebe_selector_output = ".output, .cell_output"
             class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/cosanlab/info-theory-book/main?urlpath=tree/markov-properties.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
 
         </div>
 
@@ -223,7 +240,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Markov Chains and Markov Dynamics</h1>
+                <h1>Markov Chains & Markov Dynamics</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -254,8 +271,8 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="markov-chains-and-markov-dynamics">
-<h1>Markov Chains and Markov Dynamics<a class="headerlink" href="#markov-chains-and-markov-dynamics" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="markov-chains-markov-dynamics">
+<h1>Markov Chains &amp; Markov Dynamics<a class="headerlink" href="#markov-chains-markov-dynamics" title="Permalink to this headline">¶</a></h1>
 <p>Let’s say an event can exist in two <strong>states</strong>, represented in a <strong>State Vector</strong> <span class="math notranslate nohighlight">\(S_t = \begin{bmatrix} s_{1,t} \\ s_{2,t} \end{bmatrix}\)</span> (at time <span class="math notranslate nohighlight">\(t\)</span>), and there is a probability <span class="math notranslate nohighlight">\(p_{i,j}\)</span> to transfer information from state <span class="math notranslate nohighlight">\(s_i\)</span> to state <span class="math notranslate nohighlight">\(s_j\)</span>. All such probabilities can be accounted together in a <strong>Transfer Matrix</strong>, <span class="math notranslate nohighlight">\(P = \begin{bmatrix} p_{1,1} &amp; p_{1,2} \\ p_{2,1} &amp; p_{2,2} \end{bmatrix}\)</span>. Also given that these are probabilities, we have that <span class="math notranslate nohighlight">\(\sum_{j=1}^{n} p_{i,j} = 1\)</span>. We find:<br/>
     <span class="math notranslate nohighlight">\(P_{2\times2} = \begin{bmatrix} 1-p_{1,2} &amp; p_{1,2} \\ p_{2,1} &amp; 1-p_{2,1} \end{bmatrix}\)</span>,<br/>
     <span class="math notranslate nohighlight">\(P_{3\times3} = \begin{bmatrix}
@@ -422,12 +439,11 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3 0.7]
  [1.  0. ]]
+
+(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
-</pre></div>
-</div>
-<img alt="_images/markov-properties_5_2.png" src="_images/markov-properties_5_2.png" />
+<img alt="_images/markov-properties_5_1.png" src="_images/markov-properties_5_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -541,11 +557,11 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3783 0.4248 0.197 ]
- [0.0952 0.6977 0.2071]
- [0.338  0.4595 0.2025]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.4861 0.2986 0.2153]
+ [0.435  0.3236 0.2413]
+ [0.5018 0.0763 0.4219]]
 
-(S1, S1): 0.3783		(S1, S2): 0.4248		(S1, S3): 0.197		(S2, S1): 0.0952		(S2, S2): 0.6977		(S2, S3): 0.2071		(S3, S1): 0.338		(S3, S2): 0.4595		(S3, S3): 0.2025		
+(S1, S1): 0.4861		(S1, S2): 0.2986		(S1, S3): 0.2153		(S2, S1): 0.435		(S2, S2): 0.3236		(S2, S3): 0.2413		(S3, S1): 0.5018		(S3, S2): 0.0763		(S3, S3): 0.4219		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_10_1.png" src="_images/markov-properties_10_1.png" />
@@ -581,13 +597,13 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[1.999e-01 2.026e-01 1.913e-01 2.312e-01 1.751e-01]
- [4.455e-01 2.956e-01 2.020e-02 1.481e-01 9.060e-02]
- [1.256e-01 4.000e-04 2.096e-01 4.148e-01 2.496e-01]
- [1.038e-01 6.049e-01 4.930e-02 2.010e-02 2.218e-01]
- [1.768e-01 2.532e-01 1.151e-01 1.827e-01 2.723e-01]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.24   0.2761 0.0578 0.209  0.2171]
+ [0.338  0.2698 0.1282 0.1428 0.1212]
+ [0.179  0.2424 0.0708 0.2882 0.2196]
+ [0.134  0.2615 0.2093 0.0534 0.3417]
+ [0.1129 0.4417 0.0193 0.0781 0.3479]]
 
-(S1, S1): 0.1999		(S1, S2): 0.2026		(S1, S3): 0.1913		(S1, S4): 0.2312		(S1, S5): 0.1751		(S2, S1): 0.4455		(S2, S2): 0.2956		(S2, S3): 0.0202		(S2, S4): 0.1481		(S2, S5): 0.0906		(S3, S1): 0.1256		(S3, S2): 0.0004		(S3, S3): 0.2096		(S3, S4): 0.4148		(S3, S5): 0.2496		(S4, S1): 0.1038		(S4, S2): 0.6049		(S4, S3): 0.0493		(S4, S4): 0.0201		(S4, S5): 0.2218		(S5, S1): 0.1768		(S5, S2): 0.2532		(S5, S3): 0.1151		(S5, S4): 0.1827		(S5, S5): 0.2723		
+(S1, S1): 0.24		(S1, S2): 0.2761		(S1, S3): 0.0578		(S1, S4): 0.209		(S1, S5): 0.2171		(S2, S1): 0.338		(S2, S2): 0.2698		(S2, S3): 0.1282		(S2, S4): 0.1428		(S2, S5): 0.1212		(S3, S1): 0.179		(S3, S2): 0.2424		(S3, S3): 0.0708		(S3, S4): 0.2882		(S3, S5): 0.2196		(S4, S1): 0.134		(S4, S2): 0.2615		(S4, S3): 0.2093		(S4, S4): 0.0534		(S4, S5): 0.3417		(S5, S1): 0.1129		(S5, S2): 0.4417		(S5, S3): 0.0193		(S5, S4): 0.0781		(S5, S5): 0.3479		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_11_1.png" src="_images/markov-properties_11_1.png" />
@@ -629,11 +645,11 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.1485 0.6793 0.1722]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.5307 0.1725 0.2968]
  [0.     1.     0.    ]
- [0.4328 0.0904 0.4768]]
+ [0.1436 0.3998 0.4566]]
 
-(S1, S1): 0.1485		(S1, S2): 0.6793		(S1, S3): 0.1722		(S2, S2): 1.0		(S3, S1): 0.4328		(S3, S2): 0.0904		(S3, S3): 0.4768		
+(S1, S1): 0.5307		(S1, S2): 0.1725		(S1, S3): 0.2968		(S2, S2): 1.0		(S3, S1): 0.1436		(S3, S2): 0.3998		(S3, S3): 0.4566		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_14_1.png" src="_images/markov-properties_14_1.png" />
@@ -685,8 +701,8 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P-Absorbing (re-ordered P):
 [[1.         0.         0.        ]
- [0.67927199 0.14853317 0.17219485]
- [0.0904491  0.43276574 0.47678516]]
+ [0.17245987 0.53070445 0.29683568]
+ [0.39980496 0.14364356 0.45655148]]
 
 Probabilities that NAS will end up in AS: (re-ordered list)
 [[1.]
@@ -749,11 +765,11 @@ All arranged probabilities:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/markov-properties_20_0.png" src="_images/markov-properties_20_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.20322568 0.79677432]
- [1.         0.        ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.         0.        ]
+ [0.35361463 0.64638537]
+ [0.46319507 0.53680493]
  [0.         1.        ]
- [0.24270304 0.75729696]
- [0.17013001 0.82986999]]
+ [0.34564606 0.65435394]]
 </pre></div>
 </div>
 </div>
@@ -773,17 +789,17 @@ All arranged probabilities:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/markov-properties_21_0.png" src="_images/markov-properties_21_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.42026543 0.18153932 0.39819525]
- [0.43008721 0.19849735 0.37141545]
- [0.40596172 0.17726472 0.41677355]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.51752827 0.18403087 0.29844086]
+ [0.43057066 0.26129768 0.30813166]
  [1.         0.         0.        ]
- [0.4139174  0.22093916 0.36514343]
- [0.42852119 0.22675197 0.34472684]
- [0.35564537 0.24445535 0.39989928]
+ [0.4247497  0.15860216 0.41664814]
+ [0.40347214 0.20166047 0.39486738]
+ [0.39216206 0.2268649  0.38097304]
  [0.         1.         0.        ]
- [0.44375896 0.20615377 0.35008727]
  [0.         0.         1.        ]
- [0.43036699 0.26386327 0.30576974]]
+ [0.42881406 0.20504263 0.36614332]
+ [0.49104338 0.22680346 0.28215315]
+ [0.51578682 0.17378855 0.31042462]]
 </pre></div>
 </div>
 </div>

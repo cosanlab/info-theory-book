@@ -3,7 +3,7 @@
 
 # # Network/Graph Theory
 # 
-# &emsp;&emsp;&emsp;The basic unit here is called a **Node** (or a Vertex; '$V$') and the link connecting two nodes/vertices is called an **Edge** ('$E$'). A map of these nodes and edges is a **Network** (or a Graph). To study a system or interactions therein, one may use analyses and models of **Network theory**, or Graph theory. This theory can act as a good tool for systems-level analyses, given that...
+# The basic unit here is called a **Node** (or a Vertex; '$V$') and the link connecting two nodes/vertices is called an **Edge** ('$E$'). A map of these nodes and edges is a **Network** (or a Graph). To study a system or interactions therein, one may use analyses and models of **Network theory**, or Graph theory. This theory can act as a good tool for systems-level analyses, given that...
 # <br/>&emsp;... one can cleanly define basic units in the system being study, in the form of Nodes.
 # <br/>&emsp;... one can clearly define the nature of relations that connects these units, to delineate as Edges.
 # <br/>&emsp;... one can infer organisational functionality or model development/evolution of the system based on the patterns of connectivity.
