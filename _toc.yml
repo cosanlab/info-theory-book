@@ -7,3 +7,4 @@ chapters:
   - file: markov-properties
   - file: network-theory
   - file: networks-in-social-media
+  - file: cryptography

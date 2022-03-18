@@ -135,24 +135,21 @@ def get_p2as_prob(p):
     return all2as[np.argsort(reorder),:];
 
 
-# <br/>
-# 
 # **Basic idea:**
-# <p>Let's assume that $t\rightarrow n$ and $\Delta t\rightarrow1$<br/>
-#     $S_{n+1} = S_n\cdot P$.&emsp;&emsp;&emsp;
-#     <br/>&emsp;&emsp;&emsp;where,$\ $$S_n$ := State Vector at instnace $n$.
-#     <br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$P$ := transition matrix of size $k\times k$.
-# </p>
+# Let's assume that $t\rightarrow n$ and $\Delta t\rightarrow1$
+# 
+# $S_{n+1} = S_n\cdot P$. <br>
+# $\ $ $\ $ $\ $ where, $\ $ $S_n$ := State Vector at instance $n$. <br>
+# $\ $ $\ $ $\ $ $\ $ $\ $ $\ $ $P$ := transition matrix of size $k\times k$.
 # 
 # $P$ maintains its transition values no matter what; i.e. it is temporally invariant.
-# <p style="margin-left:0.5in">
-#     i.e. if $S_0$ := initial state of a system;<br/>
-#     &emsp;&emsp;&emsp;$S_1 = S_0\cdot P$<br/>
-#     &emsp;&emsp;&emsp;$S_2 = S_1\cdot P = (S_0\cdot P)\cdot P = S_0\cdot P^2$<br/>
-#     &emsp;&emsp;&emsp;$S_3 = S_2\cdot P = (S_0\cdot P^2)\cdot P = S_0\cdot P^3$<br/>
-#     &emsp;&emsp;&emsp;$\vdots$<br/>
-#     &emsp;&emsp;&emsp;$S_n = S_0\cdot P^n$<br/>
-# </p><br/>
+#     i.e. if $S_0$ := initial state of a system; <br/>
+#     $\ $ $\ $ $\ $ $S_1 = S_0\cdot P$ <br/>
+#     $\ $ $\ $ $\ $ $S_2 = S_1\cdot P = (S_0\cdot P)\cdot P = S_0\cdot P^2$<br/>
+#     $\ $ $\ $ $\ $ $S_3 = S_2\cdot P = (S_0\cdot P^2)\cdot P = S_0\cdot P^3$<br/>
+#     $\ $ $\ $ $\ $ $\vdots$<br/>
+#     $\ $ $\ $ $\ $ $S_n = S_0\cdot P^n$<br/>
+# <br/>
 
 # As an example, let $P = \begin{bmatrix}0.3 & 0.7\\1.0 & 0.0\end{bmatrix}$
 # and $\ S_0 = \begin{bmatrix}0.8 & 0.2\end{bmatrix}$;
@@ -214,7 +211,7 @@ plt.show();
 del fig, ax, s0;
 
 
-# <br/><big>This holds true for most real-life markovv chain models, no matter the size of the model. For example:</big>
+# <br/><big>This holds true for most real-life markov chain models, no matter the size of the model. For example:</big>
 
 # In[6]:
 
