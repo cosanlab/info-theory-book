@@ -30,7 +30,6 @@ By building the website locally you can preview any changes you make in your web
 
 ```jupyter-book build .```
 
-4. **Push updated book to GitHub on the master branch**
+4. **Push updated book to GitHub on the `main` branch**
 
-This will automatically trigger a workflow to sync the updated book to the `gh-pages` branch of our github repository, which ultimately deploys the website on [https://cosanlab.github.io/info-theory-book/intro.html](https://cosanlab.github.io/info-theory-book/intro.html).
-If you would like us to review your changes before pushing or deploying them, you can submit a pull request to the `main` branch and add @ljchang as a reviewer.
+This will automatically trigger a workflow to sync the updated book to the `gh-pages` branch of our github repository, which ultimately deploys the website to [https://cosanlab.github.io/info-theory-book/intro.html](https://cosanlab.github.io/info-theory-book/intro.html).
