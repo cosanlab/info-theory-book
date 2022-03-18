@@ -1,0 +1,847 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markov Chains and Markov Dynamics &#8212; Information Theory for Social Neuroscientists</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Information Theory for Social Neuroscientists</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome!
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="info-theoretic-social-networks.html">
+   An info theoretic approach to social networks in social media
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/markov-properties.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmarkov-properties.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/markov-properties.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markov-property">
+   Markov Property:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#absorbing-markov-chains-and-absorbing-states">
+     Absorbing Markov Chains and Absorbing States:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Markov Chains and Markov Dynamics</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#markov-property">
+   Markov Property:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#absorbing-markov-chains-and-absorbing-states">
+     Absorbing Markov Chains and Absorbing States:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="markov-chains-and-markov-dynamics">
+<h1>Markov Chains and Markov Dynamics<a class="headerlink" href="#markov-chains-and-markov-dynamics" title="Permalink to this headline">¶</a></h1>
+<p>Let’s say an event can exist in two <strong>states</strong>, represented in a <strong>State Vector</strong> <span class="math notranslate nohighlight">\(S_t = \begin{bmatrix} s_{1,t} \\ s_{2,t} \end{bmatrix}\)</span> (at time <span class="math notranslate nohighlight">\(t\)</span>), and there is a probability <span class="math notranslate nohighlight">\(p_{i,j}\)</span> to transfer information from state <span class="math notranslate nohighlight">\(s_i\)</span> to state <span class="math notranslate nohighlight">\(s_j\)</span>. All such probabilities can be accounted together in a <strong>Transfer Matrix</strong>, <span class="math notranslate nohighlight">\(P = \begin{bmatrix} p_{1,1} &amp; p_{1,2} \\ p_{2,1} &amp; p_{2,2} \end{bmatrix}\)</span>. Also given that these are probabilities, we have that <span class="math notranslate nohighlight">\(\sum_{j=1}^{n} p_{i,j} = 1\)</span>. We find:<br/>
+    <span class="math notranslate nohighlight">\(P_{2\times2} = \begin{bmatrix} 1-p_{1,2} &amp; p_{1,2} \\ p_{2,1} &amp; 1-p_{2,1} \end{bmatrix}\)</span>,<br/>
+    <span class="math notranslate nohighlight">\(P_{3\times3} = \begin{bmatrix}
+    1-(p_{1,2}+p_{1,3}) &amp; p_{1,2} &amp; p_{1,3}\\
+    p_{2,1} &amp; 1-(p_{2,1}+p_{2,3}) &amp; p_{2,3}\\
+    p_{3,1} &amp; 1-p_{3,2} &amp; 1-(p_{3,1}+p_{3,2})
+\end{bmatrix}\)</span>, and so on…</p>
+<div class="section" id="markov-property">
+<h2>Markov Property:<a class="headerlink" href="#markov-property" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Memory-lessness: the transfer matrix <span class="math notranslate nohighlight">\(P\)</span> is not dependent on time or the value of information in the states prior to the present state.</p></li>
+<li><p>Homogeneity: the function of information transfer will remain the same regardless of the information in the state. i.e. the probability of information transfer from State <span class="math notranslate nohighlight">\(s_i\)</span> to <span class="math notranslate nohighlight">\(s_j\)</span> will remain <span class="math notranslate nohighlight">\(p_{i,j}\)</span> for all time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+</ol>
+<p>    We can then write a function using these tranfer probabilities such that <span class="math notranslate nohighlight">\(s_{i,t+\Delta t} = \sum_{j=1}^{n} s_{j,t}\cdot p_{i,j}\)</span>, for all <span class="math notranslate nohighlight">\(i \in \{1,2,...,n\}\)</span>. Our new state vector <span class="math notranslate nohighlight">\(S\)</span> at any given time <span class="math notranslate nohighlight">\((t+\Delta t)\)</span> can be written as:<br/>
+    <span class="math notranslate nohighlight">\(\begin{align}
+S_{t+\Delta t} &amp;= \begin{bmatrix}s_{i,t+\Delta t}\end{bmatrix}\\
+&amp;= \begin{bmatrix}\sum_{j=1}^{n} s_{j,t}\cdot p_{i,j}\end{bmatrix}\\
+&amp;= \begin{bmatrix}s_{i,t}\end{bmatrix}\cdot\begin{bmatrix}p_{i,j}\end{bmatrix}\\
+\therefore S_{t+\Delta t} &amp;= S_t\cdot P
+\end{align}\)</span></p>
+<p><br/>Simply put, a network of such events, connected by directed edges whose strength are the probabilities, is called a ‘Markov Chain’.</p>
+<br/><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function calculates and collects all the states for the Markov Process</span>
+<span class="k">def</span> <span class="nf">solve_for_markov_process</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span> <span class="n">transition_mat</span><span class="p">,</span> <span class="n">iterate_len</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">convergence_rounding</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">init_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">init_state</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">();</span>
+    <span class="n">transition_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">transition_mat</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
+    <span class="n">sz</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">init_state</span><span class="p">);</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">init_state</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">transition_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span> <span class="k">return</span> <span class="p">[];</span>
+    
+    <span class="c1"># Iterate over the states if specific number of steps are provided...</span>
+    <span class="k">if</span> <span class="n">iterate_len</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">sn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">iterate_len</span><span class="p">,</span><span class="n">sz</span><span class="p">]);</span>
+        <span class="n">sn</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">init_state</span><span class="p">;</span>
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">iterate_len</span><span class="p">):</span>
+            <span class="n">sn</span><span class="p">[</span><span class="n">state</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sn</span><span class="p">[</span><span class="n">state</span><span class="o">-</span><span class="mi">1</span><span class="p">,:])</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">el</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+                <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">transition_mat</span>
+            <span class="p">]);</span>
+        <span class="k">return</span> <span class="n">sn</span><span class="p">;</span>
+    
+    <span class="c1"># Iterate over the states until convergence is reached...</span>
+    <span class="n">sn</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="n">sn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">init_state</span><span class="p">);</span>
+    <span class="n">factval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span><span class="o">&gt;</span><span class="n">factval</span><span class="p">:</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">factval</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="n">idy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">factval</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">sn</span><span class="p">[(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span><span class="o">-</span><span class="n">factval</span><span class="p">):</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)])</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+                <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">sn</span><span class="p">[(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span><span class="o">-</span><span class="n">factval</span><span class="o">-</span><span class="mi">1</span><span class="p">):(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">convergence_rounding</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="n">sn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sn</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">el</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">transition_mat</span>
+        <span class="p">]));</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sn</span><span class="p">);</span>
+
+<span class="c1"># Plots all Markov States based on the &#39;solve_for_markov_process()&#39; function</span>
+<span class="k">def</span> <span class="nf">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="n">sn</span> <span class="o">=</span> <span class="n">solve_for_markov_process</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sn</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;S_0 = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">S_n = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sn</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:],</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+
+<span class="c1"># Draw/Plot the Markov Chain based on the Transfer Matrix (P)</span>
+<span class="k">def</span> <span class="nf">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">layout_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">print_prob</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">));</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+    <span class="k">if</span> <span class="n">layout_type</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">planar_layout</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+    <span class="k">elif</span> <span class="n">layout_type</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">kamada_kawai_layout</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+    <span class="k">else</span><span class="p">:</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+    <span class="k">if</span> <span class="n">print_prob</span><span class="p">:</span>
+        <span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(S</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">, S</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">): </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">edge</span><span class="p">],</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">()];</span>
+
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+        <span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span>
+        <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">*</span><span class="mf">2.5</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">()]),</span>
+        <span class="n">node_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">font_color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+        <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;S</span><span class="si">{</span><span class="n">node</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()},</span>
+        <span class="n">connectionstyle</span><span class="o">=</span><span class="s1">&#39;arc3, rad=0.15&#39;</span>
+    <span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+    <span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">;</span>
+
+<span class="c1"># Get Probabilities of State ending in an Absorbing State:</span>
+<span class="k">def</span> <span class="nf">get_p2as_prob</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">as_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">p</span><span class="o">==</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>               <span class="c1"># Absorbing States (AS)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">as_s</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]);</span>   <span class="c1"># Check if P is Absorbing</span>
+    
+    <span class="c1"># Get the Non-Absorbing States (NAS)</span>
+    <span class="n">nas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">as_s</span><span class="p">);</span>
+    <span class="n">reorder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">as_s</span><span class="p">),</span> <span class="n">nas</span><span class="p">);</span>
+    
+    <span class="c1"># Record the Sub-Matrices:</span>
+    <span class="n">I_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">as_s</span><span class="p">));</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">nas</span><span class="p">,</span><span class="n">as_s</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
+    <span class="n">Q_n</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">nas</span><span class="p">,</span><span class="n">nas</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
+    
+    <span class="c1"># Calculate the NAS to AS probabilities</span>
+    <span class="n">I_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nas</span><span class="p">));</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">I_n</span><span class="o">-</span><span class="n">Q_n</span><span class="p">);</span>
+    <span class="n">nas2as</span> <span class="o">=</span> <span class="n">F</span> <span class="o">*</span> <span class="n">R</span><span class="p">;</span>
+    
+    <span class="c1"># Return All-to-AS probabilities</span>
+    <span class="n">all2as</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">I_m</span><span class="p">,</span> <span class="n">nas2as</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">all2as</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">reorder</span><span class="p">),:];</span>
+</pre></div>
+</div>
+</div>
+</div>
+<br/>
+<p><strong>Basic idea:</strong></p>
+<p>Let's assume that $t\rightarrow n$ and $\Delta t\rightarrow1$<br/>
+    $S_{n+1} = S_n\cdot P$.&emsp;&emsp;&emsp;
+    <br/>&emsp;&emsp;&emsp;where,$\ $$S_n$ := State Vector at instnace $n$.
+    <br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$P$ := transition matrix of size $k\times k$.
+</p>
+<p><span class="math notranslate nohighlight">\(P\)</span> maintains its transition values no matter what; i.e. it is temporally invariant.</p>
+<p style="margin-left:0.5in">
+    i.e. if $S_0$ := initial state of a system;<br/>
+    &emsp;&emsp;&emsp;$S_1 = S_0\cdot P$<br/>
+    &emsp;&emsp;&emsp;$S_2 = S_1\cdot P = (S_0\cdot P)\cdot P = S_0\cdot P^2$<br/>
+    &emsp;&emsp;&emsp;$S_3 = S_2\cdot P = (S_0\cdot P^2)\cdot P = S_0\cdot P^3$<br/>
+    &emsp;&emsp;&emsp;$\vdots$<br/>
+    &emsp;&emsp;&emsp;$S_n = S_0\cdot P^n$<br/>
+</p><br/><p>As an example, let <span class="math notranslate nohighlight">\(P = \begin{bmatrix}0.3 &amp; 0.7\\1.0 &amp; 0.0\end{bmatrix}\)</span>
+and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp; 0.2\end{bmatrix}\)</span>;</p>
+<p>We find:<br/>
+<span class="math notranslate nohighlight">\(S_1 = \begin{bmatrix}0.44 &amp; 0.56\end{bmatrix}\)</span>,<br/>
+<span class="math notranslate nohighlight">\(S_2 = \begin{bmatrix}0.692 &amp; 0.308\end{bmatrix}\)</span>,<br/>
+<span class="math notranslate nohighlight">\(S_3 = \begin{bmatrix}0.516 &amp; 0.484\end{bmatrix}\)</span>,<br/>
+<span class="math notranslate nohighlight">\(\vdots\)</span> <br/>
+<span class="math notranslate nohighlight">\(S_S \approx \begin{bmatrix}0.588 &amp; 0.412\end{bmatrix}\)</span> at instance ‘<span class="math notranslate nohighlight">\(n_S\)</span>’.</p>
+<p>Let’s simulate this part…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]);</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([[</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.7</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]);</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">layout_type</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3 0.7]
+ [1.  0. ]]
+
+(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
+</pre></div>
+</div>
+<img alt="_images/markov-properties_5_1.png" src="_images/markov-properties_5_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The function &#39;solve_for_markov_process&#39; calculates all transitions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;All state transitions:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">solve_for_markov_process</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">));</span>
+
+<span class="c1"># The function &#39;plot_markov_states&#39; plots all &#39;solve_for_markov_process&#39; outputs</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">));</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">);</span>
+<span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>All state transitions:
+
+[[0.8        0.2       ]
+ [0.44       0.56      ]
+ [0.692      0.308     ]
+ [0.5156     0.4844    ]
+ [0.63908    0.36092   ]
+ [0.552644   0.447356  ]
+ [0.6131492  0.3868508 ]
+ [0.57079556 0.42920444]
+ [0.60044311 0.39955689]
+ [0.57968982 0.42031018]
+ [0.59421712 0.40578288]
+ [0.58404801 0.41595199]
+ [0.59116639 0.40883361]
+ [0.58618353 0.41381647]
+ [0.58967153 0.41032847]
+ [0.58722993 0.41277007]
+ [0.58893905 0.41106095]
+ [0.58774266 0.41225734]
+ [0.58858013 0.41141987]
+ [0.58799391 0.41200609]
+ [0.58840427 0.41159573]
+ [0.58811701 0.41188299]
+ [0.58831809 0.41168191]
+ [0.58817734 0.41182266]
+ [0.58827586 0.41172414]
+ [0.5882069  0.4117931 ]
+ [0.58825517 0.41174483]
+ [0.58822138 0.41177862]
+ [0.58824504 0.41175496]
+ [0.58822848 0.41177152]
+ [0.58824007 0.41175993]
+ [0.58823195 0.41176805]
+ [0.58823763 0.41176237]
+ [0.58823366 0.41176634]]
+</pre></div>
+</div>
+<img alt="_images/markov-properties_6_1.png" src="_images/markov-properties_6_1.png" />
+</div>
+</div>
+<p>In fact, we find that if <span class="math notranslate nohighlight">\(S_n = S_S\)</span>, then <span class="math notranslate nohighlight">\(S_{n+1} = S_S\)</span>.</p>
+<p>Such states, <span class="math notranslate nohighlight">\(S_S\)</span>, are called <strong>Steady States</strong>. All transfer matrices (<span class="math notranslate nohighlight">\(P\)</span>) which end in such states are called <strong>Regular Markov chains</strong>. These markov chains have a property where the chain will converge at the Steady State no matter what the initial state (<span class="math notranslate nohighlight">\(S_0\)</span>) is.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">10</span><span class="p">));</span>
+<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
+    <span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+    <span class="n">s0</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s0</span><span class="p">);</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">el</span><span class="p">);</span>
+    <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="k">del</span> <span class="n">el</span><span class="p">;</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="n">p</span><span class="p">);</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">);</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">s0</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/markov-properties_8_0.png" src="_images/markov-properties_8_0.png" />
+</div>
+</div>
+<p><br/><big>This holds true for most real-life markovv chain models, no matter the size of the model. For example:</big></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Size-3 Markov Chains:</span>
+<span class="n">sz</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">10</span><span class="p">));</span>
+<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
+    <span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+    <span class="n">s0</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s0</span><span class="p">);</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">el</span><span class="p">);</span>
+    <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="k">del</span> <span class="n">el</span><span class="p">;</span>
+
+<span class="n">ax7</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="n">p</span><span class="p">);</span>
+<span class="n">ax8</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">s0</span><span class="p">,</span> <span class="n">sz</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.4328 0.3555 0.2116]
+ [0.2716 0.4601 0.2683]
+ [0.2956 0.3207 0.3837]]
+
+(S1, S1): 0.4328		(S1, S2): 0.3555		(S1, S3): 0.2116		(S2, S1): 0.2716		(S2, S2): 0.4601		(S2, S3): 0.2683		(S3, S1): 0.2956		(S3, S2): 0.3207		(S3, S3): 0.3837		
+</pre></div>
+</div>
+<img alt="_images/markov-properties_10_1.png" src="_images/markov-properties_10_1.png" />
+<img alt="_images/markov-properties_10_2.png" src="_images/markov-properties_10_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Size-5 Markov Chains:</span>
+<span class="n">sz</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
+<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
+    <span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">sz</span><span class="p">));</span>
+    <span class="n">s0</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s0</span><span class="p">);</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">el</span><span class="p">);</span>
+    <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="k">del</span> <span class="n">el</span><span class="p">;</span>
+
+<span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span> <span class="n">s0</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">sz</span><span class="p">))]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">sz</span><span class="p">)</span><span class="o">/</span><span class="n">sz</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">s0</span><span class="p">,</span> <span class="n">sz</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3129 0.3187 0.054  0.0054 0.3091]
+ [0.1113 0.3207 0.0019 0.0485 0.5177]
+ [0.0947 0.0553 0.1597 0.3958 0.2944]
+ [0.2729 0.1396 0.1457 0.2138 0.228 ]
+ [0.2278 0.0507 0.41   0.1331 0.1784]]
+
+(S1, S1): 0.3129		(S1, S2): 0.3187		(S1, S3): 0.054		(S1, S4): 0.0054		(S1, S5): 0.3091		(S2, S1): 0.1113		(S2, S2): 0.3207		(S2, S3): 0.0019		(S2, S4): 0.0485		(S2, S5): 0.5177		(S3, S1): 0.0947		(S3, S2): 0.0553		(S3, S3): 0.1597		(S3, S4): 0.3958		(S3, S5): 0.2944		(S4, S1): 0.2729		(S4, S2): 0.1396		(S4, S3): 0.1457		(S4, S4): 0.2138		(S4, S5): 0.228		(S5, S1): 0.2278		(S5, S2): 0.0507		(S5, S3): 0.41		(S5, S4): 0.1331		(S5, S5): 0.1784		
+</pre></div>
+</div>
+<img alt="_images/markov-properties_11_1.png" src="_images/markov-properties_11_1.png" />
+<img alt="_images/markov-properties_11_2.png" src="_images/markov-properties_11_2.png" />
+</div>
+</div>
+<p><br/>… even size-105 markov chains, but that will require a lot of computational power. So, let’s jump to a different type of markov chains/states…</p>
+<div class="section" id="absorbing-markov-chains-and-absorbing-states">
+<h3>Absorbing Markov Chains and Absorbing States:<a class="headerlink" href="#absorbing-markov-chains-and-absorbing-states" title="Permalink to this headline">¶</a></h3>
+<p>Absorbing Markov Chains are such that there exists at least one such node/state that only has connections coming inwards and that all nodes/states can be linked to it. That is, if the transfer matrix, <span class="math notranslate nohighlight">\(P = P_A\)</span>, has one or more elements which is of the type <span class="math notranslate nohighlight">\([0,0,...0,1,0,...,0]\)</span>, then all transitions to the state are possible, but a transition out of this state is not possible. In this case, the transfer matrix ends in an Absorbing State (<span class="math notranslate nohighlight">\(S_A\)</span>), such that all the values of vector <span class="math notranslate nohighlight">\(S\)</span> are zero except <span class="math notranslate nohighlight">\(S[k] = 1\)</span>.</p>
+<p>Let’s take the example of Size-3 Markov chain from earlier, and make one state absorbing…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sz</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">abs_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
+<span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,</span><span class="n">abs_state</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">layout_type</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;That is, S</span><span class="si">{</span><span class="n">abs_state</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> is the Absorbing State.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">7</span><span class="p">));</span>
+<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
+    <span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+    <span class="n">s0</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s0</span><span class="p">);</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">el</span><span class="p">);</span>
+    <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="k">del</span> <span class="n">el</span><span class="p">;</span>
+
+<span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">s0</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">abs_state</span><span class="p">))]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">s0</span><span class="p">,</span> <span class="n">sz</span><span class="p">,</span> <span class="n">abs_state</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[1.     0.     0.    ]
+ [0.4248 0.2127 0.3625]
+ [0.137  0.4326 0.4304]]
+
+(S1, S1): 1.0		(S2, S1): 0.4248		(S2, S2): 0.2127		(S2, S3): 0.3625		(S3, S1): 0.137		(S3, S2): 0.4326		(S3, S3): 0.4304		
+</pre></div>
+</div>
+<img alt="_images/markov-properties_14_1.png" src="_images/markov-properties_14_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S1 is the Absorbing State.
+</pre></div>
+</div>
+<img alt="_images/markov-properties_14_3.png" src="_images/markov-properties_14_3.png" />
+</div>
+</div>
+<p><br/>Such tranfer matrices have the form of: <span class="math notranslate nohighlight">\(P_{A\ ((m+n)\times(m+n))} = \begin{bmatrix}I_m&amp;O\\R&amp;Q_n\end{bmatrix}\)</span>.</p>
+<p>One can then define the <em>Fundamental Matrix</em> as: <span class="math notranslate nohighlight">\(F_n = (I_n - Q_n)^{-1}\)</span>;</p>
+<p>And then find the matrix of probabilities of starting in Non-Absorbing State and ending in an Absorbing State as <span class="math notranslate nohighlight">\(F\cdot R\)</span>.</p>
+<p><br/><hr/><br/></p>
+<p>Let’s try this out for the problem above. We already know what the Markov Chain looks like…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Absorbing States (AS)</span>
+<span class="n">as_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">p</span><span class="o">==</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+
+<span class="c1"># Get the Non-Absorbing States (NAS)</span>
+<span class="n">nas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">as_s</span><span class="p">);</span>
+
+<span class="c1"># Reorder the matrix to get the form for Absorbing Transfer Matrix:</span>
+<span class="n">reorder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">as_s</span><span class="p">),</span> <span class="n">nas</span><span class="p">);</span>
+<span class="n">p_absorbing</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">reorder</span><span class="p">,</span><span class="n">reorder</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">P-Absorbing (re-ordered P):</span><span class="se">\n</span><span class="si">{</span><span class="n">p_absorbing</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+
+<span class="c1"># Storing the Sub-Matrices:</span>
+<span class="n">I_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">as_s</span><span class="p">));</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">nas</span><span class="p">,</span><span class="n">as_s</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
+<span class="n">Q_n</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">nas</span><span class="p">,</span><span class="n">nas</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
+
+<span class="c1"># Calculate the NAS to AS probabilities</span>
+<span class="n">I_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nas</span><span class="p">));</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">I_n</span><span class="o">-</span><span class="n">Q_n</span><span class="p">);</span>
+<span class="n">nas2as</span> <span class="o">=</span> <span class="n">F</span> <span class="o">*</span> <span class="n">R</span><span class="p">;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Probabilities that NAS will end up in AS: (re-ordered list)</span><span class="se">\n</span><span class="si">{</span><span class="n">nas2as</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+
+<span class="c1"># Add AS-to-AS with NAS-to-AS probabilities</span>
+<span class="n">all2as</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">I_m</span><span class="p">,</span> <span class="n">nas2as</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1"># Re-arrange all the values according to the list of the States:</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">All arranged probabilities:</span><span class="se">\n</span><span class="si">{</span><span class="n">all2as</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">reorder</span><span class="p">),:]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P-Absorbing (re-ordered P):
+[[1.         0.         0.        ]
+ [0.4248434  0.21268076 0.36247584]
+ [0.1369878  0.43260906 0.43040315]]
+
+Probabilities that NAS will end up in AS: (re-ordered list)
+[[1.]
+ [1.]]
+
+All arranged probabilities:
+[[1.]
+ [1.]
+ [1.]]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/numpy/matrixlib/defmatrix.py:193: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  out = N.ndarray.__getitem__(self, index)
+</pre></div>
+</div>
+</div>
+</div>
+<br/>
+<big>
+    The calculations reflect those from the function <i>get_p2as_prob( )</i><br/>
+</big><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sz</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">abs_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
+<span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,</span><span class="n">abs_state</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">print_prob</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">p2as</span> <span class="o">=</span> <span class="n">get_p2as_prob</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p2as</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/markov-properties_18_0.png" src="_images/markov-properties_18_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.]
+ [1.]
+ [1.]
+ [1.]
+ [1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<br/>
+<big>
+    &emsp;&emsp;&emsp;Note that the list is all 1's because only 1 Absorbing State (AS) exists in this case. What if more were added? Given below, are examples with 2 and 3 absorbing states. Notice that the probabilities of escaping these states is 0, i.e. if one begins from an AS, they cannot transition out of the state...
+</big><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sz</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">abs_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sz</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
+<span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,</span><span class="n">abs_state</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">print_prob</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">p2as</span> <span class="o">=</span> <span class="n">get_p2as_prob</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p2as</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/markov-properties_20_0.png" src="_images/markov-properties_20_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.46712926 0.53287074]
+ [1.         0.        ]
+ [0.         1.        ]
+ [0.60293709 0.39706291]
+ [0.55381482 0.44618518]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sz</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span> <span class="n">abs_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sz</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
+<span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,</span><span class="n">abs_state</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">print_prob</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">p2as</span> <span class="o">=</span> <span class="n">get_p2as_prob</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p2as</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/markov-properties_21_0.png" src="_images/markov-properties_21_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.         0.         0.        ]
+ [0.31239516 0.32283139 0.36477345]
+ [0.         1.         0.        ]
+ [0.28898242 0.30530062 0.40571696]
+ [0.27807667 0.34720784 0.37471549]
+ [0.30772112 0.26325373 0.42902516]
+ [0.22659979 0.27764283 0.49575739]
+ [0.24616287 0.27715339 0.47668373]
+ [0.         0.         1.        ]
+ [0.32383772 0.31720512 0.35895717]
+ [0.2378345  0.31410214 0.44806336]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
