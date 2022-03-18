@@ -31,15 +31,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-      # Use default CC
-      - name: Cookiecutter no GHA
-        run: |
-          cookiecutter . --no-input include_ci=no
-      # Install requirements.txt
-      - name: Install requirements
-        run: |
-          pip install -r my_book/requirements.txt
-      # Build the example book
+      # Build the book
       - name: Build book
         run: |
           jupyter-book build .
