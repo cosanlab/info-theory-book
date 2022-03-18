@@ -3,12 +3,13 @@
 
 title: An Introduction to Information Theory for Social Neuroscientists
 author: Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit
-logo: logo.png
+logo: images/logo/soc_net.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
+  timeout: 900
 
 # Parse and render settings
 parse:
