@@ -1,3 +1,11 @@
 jupyter-book
 matplotlib
 numpy
+nltk
+pandas
+re
+matplotlib
+random
+ipython
+networkx
+bct
