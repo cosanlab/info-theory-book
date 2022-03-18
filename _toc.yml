@@ -4,7 +4,8 @@
 format: jb-book
 root: intro
 chapters:
-  - file: markov-properties
-  - file: network-theory
-  - file: networks-in-social-media
-  - file: cryptography
+  - file: notebooks/markov-properties
+  - file: notebooks/network-theory
+  - file: notebooks/complex-systems
+  - file: notebooks/networks-in-social-media
+  - file: notebooks/cryptography

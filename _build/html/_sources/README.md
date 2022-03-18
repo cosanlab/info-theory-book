@@ -2,7 +2,7 @@
 
 ## Adding notebooks to this Jupyter Book
 
-1. Add your notebook in the form of a Jupyter notebook file (e.g., `your-new-notebook.ipynb`) to this repository.
+1. Add your notebook in the form of a Jupyter notebook file (e.g., `your-new-notebook.ipynb`) to this repository within the `notebooks` folder.
 
 2. In `_toc.yml`, add another line under chapters like so:
 
