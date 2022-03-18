@@ -6,4 +6,4 @@ root: intro
 chapters:
   - file: markov-properties
   - file: network-theory
-  - file: info-theoretic-social-networks
+  - file: networks-in-social-media
