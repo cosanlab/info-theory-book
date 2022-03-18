@@ -2,17 +2,17 @@
 
 ## Adding notebooks to this Jupyter Book
 
-1. Add your notebook in the form of a `.ipynb` file (e.g., `your-new-notebook.ipynb`) to to this repository.
+1. Add your notebook in the form of a Jupyter notebook file (e.g., `your-new-notebook.ipynb`) to this repository.
 
 2. In `_toc.yml`, add another line under chapters like so:
 
-````- file: your-new-notebook````
+ ````- file: your-new-notebook````
 
-3. Follow the directions on updating this Jupyter Book below.
+3. Follow the directions below on updating this Jupyter Book.
 
 ## Updating this Jupyter Book
 
-To update the book, you can either push changes directly to the `main` branch (skip to step 4) or you can build the book locally with [jupyter-book build](https://jupyterbook.org/start/build.html) and then push it to the `main` branch on this repo. We are syncing the code to `main` and then deploying the website through the gh-pages branch. Thanks to [this workflow in our repo](https://github.com/cosanlab/info-theory-book/blob/main/.github/workflows/deploy-book.yml), when changes are pushed to the `main` branch they will be automatically deployed to [https://cosanlab.github.io/info-theory-book/intro.html](https://cosanlab.github.io/info-theory-book/intro.html) through the `gh-pages` branch.
+To update the book, you can either push changes directly to the `main` branch (skip to step 4) or you can build the book locally with [jupyter-book build](https://jupyterbook.org/start/build.html) and then push it to the `main` branch on this repo. We are syncing the code to `main` and then deploying the website through the gh-pages branch. Thanks to [this workflow in our repo](https://github.com/cosanlab/info-theory-book/blob/main/.github/workflows/deploy-book.yml), when changes are pushed to the `main` branch they will be automatically deployed to [https://cosanlab.github.io/info-theory-book](https://cosanlab.github.io/info-theory-book) through the `gh-pages` branch.
 
 To locally build the book, to easily visualize any changes you make, I recommend using [ghp-import](https://github.com/c-w/ghp-import). We are using the new version of jupyter-book, so make sure this package is up to date.
 
@@ -32,4 +32,4 @@ By building the website locally you can preview any changes you make in your web
 
 4. **Push updated book to GitHub on the `main` branch**
 
-This will automatically trigger a workflow to sync the updated book to the `gh-pages` branch of our github repository, which ultimately deploys the website to [https://cosanlab.github.io/info-theory-book/intro.html](https://cosanlab.github.io/info-theory-book/intro.html).
+This will automatically trigger a workflow to sync the updated book to the `gh-pages` branch of our github repository, which ultimately deploys the website to [https://cosanlab.github.io/info-theory-book](https://cosanlab.github.io/info-theory-book).
