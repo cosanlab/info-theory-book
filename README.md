@@ -1,14 +1,22 @@
 # info-theory-book
+<p float="left">
+  <img src="images/logo/soc_net.png" width="200" />
+</p>
+
+[![deploy-book](https://github.com/cosanlab/info-theory-book/actions/workflows/deploy-book.yml/badge.svg)](https://github.com/cosanlab/info-theory-book/actions/workflows/deploy-book.yml)
+[![pages-build-deployment](https://github.com/cosanlab/info-theory-book/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/cosanlab/info-theory-book/actions/workflows/pages/pages-build-deployment)
+
+This Jupyter Book was created in March '22 with the intention to provide introductory tutorials and materials on information theory with applications to social neuroscience. 
 
 ## Adding notebooks to this Jupyter Book
 
-1. Add your notebook in the form of a Jupyter notebook file (e.g., `your-new-notebook.ipynb`) to this repository within the `notebooks` folder.
+1. Follow the directions in the "Updating this Jupyter Book" section.
 
-2. In `_toc.yml`, add another line under chapters like so:
+2. Add your notebook in the form of a Jupyter notebook file (e.g., `your-new-notebook.ipynb`) to this repository within the `notebooks` folder.
+
+3. In `_toc.yml`, add another line under chapters like so:
 
  ````- file: your-new-notebook````
-
-3. Follow the directions below on updating this Jupyter Book.
 
 ## Updating this Jupyter Book
 
