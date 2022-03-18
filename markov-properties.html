@@ -404,22 +404,20 @@ S_{t+\Delta t} &amp;= \begin{bmatrix}s_{i,t+\Delta t}\end{bmatrix}\\
 </div>
 </div>
 </div>
-<br/>
-<p><strong>Basic idea:</strong></p>
-<p>Let's assume that $t\rightarrow n$ and $\Delta t\rightarrow1$<br/>
-    $S_{n+1} = S_n\cdot P$.&emsp;&emsp;&emsp;
-    <br/>&emsp;&emsp;&emsp;where,$\ $$S_n$ := State Vector at instnace $n$.
-    <br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$P$ := transition matrix of size $k\times k$.
-</p>
-<p><span class="math notranslate nohighlight">\(P\)</span> maintains its transition values no matter what; i.e. it is temporally invariant.</p>
-<p style="margin-left:0.5in">
-    i.e. if $S_0$ := initial state of a system;<br/>
-    &emsp;&emsp;&emsp;$S_1 = S_0\cdot P$<br/>
-    &emsp;&emsp;&emsp;$S_2 = S_1\cdot P = (S_0\cdot P)\cdot P = S_0\cdot P^2$<br/>
-    &emsp;&emsp;&emsp;$S_3 = S_2\cdot P = (S_0\cdot P^2)\cdot P = S_0\cdot P^3$<br/>
-    &emsp;&emsp;&emsp;$\vdots$<br/>
-    &emsp;&emsp;&emsp;$S_n = S_0\cdot P^n$<br/>
-</p><br/><p>As an example, let <span class="math notranslate nohighlight">\(P = \begin{bmatrix}0.3 &amp; 0.7\\1.0 &amp; 0.0\end{bmatrix}\)</span>
+<p><strong>Basic idea:</strong>
+Let’s assume that <span class="math notranslate nohighlight">\(t\rightarrow n\)</span> and <span class="math notranslate nohighlight">\(\Delta t\rightarrow1\)</span></p>
+<p><span class="math notranslate nohighlight">\(S_{n+1} = S_n\cdot P\)</span>. <br>
+<span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> where, <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(S_n\)</span> := State Vector at instance <span class="math notranslate nohighlight">\(n\)</span>. <br>
+<span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(P\)</span> := transition matrix of size <span class="math notranslate nohighlight">\(k\times k\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(P\)</span> maintains its transition values no matter what; i.e. it is temporally invariant.
+i.e. if <span class="math notranslate nohighlight">\(S_0\)</span> := initial state of a system; <br/>
+<span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(S_1 = S_0\cdot P\)</span> <br/>
+<span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(S_2 = S_1\cdot P = (S_0\cdot P)\cdot P = S_0\cdot P^2\)</span><br/>
+<span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(S_3 = S_2\cdot P = (S_0\cdot P^2)\cdot P = S_0\cdot P^3\)</span><br/>
+<span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\vdots\)</span><br/>
+<span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(\ \)</span> <span class="math notranslate nohighlight">\(S_n = S_0\cdot P^n\)</span><br/>
+<br/></p>
+<p>As an example, let <span class="math notranslate nohighlight">\(P = \begin{bmatrix}0.3 &amp; 0.7\\1.0 &amp; 0.0\end{bmatrix}\)</span>
 and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp; 0.2\end{bmatrix}\)</span>;</p>
 <p>We find:<br/>
 <span class="math notranslate nohighlight">\(S_1 = \begin{bmatrix}0.44 &amp; 0.56\end{bmatrix}\)</span>,<br/>
@@ -441,11 +439,12 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3 0.7]
  [1.  0. ]]
-
-(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
 </pre></div>
 </div>
-<img alt="_images/markov-properties_5_1.png" src="_images/markov-properties_5_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
+</pre></div>
+</div>
+<img alt="_images/markov-properties_5_2.png" src="_images/markov-properties_5_2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -530,7 +529,7 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <img alt="_images/markov-properties_8_0.png" src="_images/markov-properties_8_0.png" />
 </div>
 </div>
-<p><br/><big>This holds true for most real-life markovv chain models, no matter the size of the model. For example:</big></p>
+<p><br/><big>This holds true for most real-life markov chain models, no matter the size of the model. For example:</big></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Size-3 Markov Chains:</span>
@@ -559,11 +558,11 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.2032 0.6886 0.1082]
- [0.2522 0.0602 0.6876]
- [0.6881 0.2813 0.0305]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.7467 0.1144 0.1389]
+ [0.4384 0.0108 0.5508]
+ [0.3025 0.051  0.6465]]
 
-(S1, S1): 0.2032		(S1, S2): 0.6886		(S1, S3): 0.1082		(S2, S1): 0.2522		(S2, S2): 0.0602		(S2, S3): 0.6876		(S3, S1): 0.6881		(S3, S2): 0.2813		(S3, S3): 0.0305		
+(S1, S1): 0.7467		(S1, S2): 0.1144		(S1, S3): 0.1389		(S2, S1): 0.4384		(S2, S2): 0.0108		(S2, S3): 0.5508		(S3, S1): 0.3025		(S3, S2): 0.051		(S3, S3): 0.6465		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_10_1.png" src="_images/markov-properties_10_1.png" />
@@ -599,13 +598,13 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.1286 0.2017 0.2438 0.2812 0.1447]
- [0.3981 0.0454 0.0519 0.3287 0.1759]
- [0.1967 0.253  0.068  0.1957 0.2866]
- [0.2701 0.0544 0.3076 0.1464 0.2215]
- [0.0399 0.5273 0.1187 0.2466 0.0675]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.1551 0.2473 0.2637 0.2172 0.1166]
+ [0.3277 0.1615 0.3877 0.0874 0.0357]
+ [0.0677 0.2212 0.4855 0.2122 0.0135]
+ [0.278  0.1758 0.2982 0.0455 0.2025]
+ [0.2226 0.0801 0.0773 0.0721 0.5478]]
 
-(S1, S1): 0.1286		(S1, S2): 0.2017		(S1, S3): 0.2438		(S1, S4): 0.2812		(S1, S5): 0.1447		(S2, S1): 0.3981		(S2, S2): 0.0454		(S2, S3): 0.0519		(S2, S4): 0.3287		(S2, S5): 0.1759		(S3, S1): 0.1967		(S3, S2): 0.253		(S3, S3): 0.068		(S3, S4): 0.1957		(S3, S5): 0.2866		(S4, S1): 0.2701		(S4, S2): 0.0544		(S4, S3): 0.3076		(S4, S4): 0.1464		(S4, S5): 0.2215		(S5, S1): 0.0399		(S5, S2): 0.5273		(S5, S3): 0.1187		(S5, S4): 0.2466		(S5, S5): 0.0675		
+(S1, S1): 0.1551		(S1, S2): 0.2473		(S1, S3): 0.2637		(S1, S4): 0.2172		(S1, S5): 0.1166		(S2, S1): 0.3277		(S2, S2): 0.1615		(S2, S3): 0.3877		(S2, S4): 0.0874		(S2, S5): 0.0357		(S3, S1): 0.0677		(S3, S2): 0.2212		(S3, S3): 0.4855		(S3, S4): 0.2122		(S3, S5): 0.0135		(S4, S1): 0.278		(S4, S2): 0.1758		(S4, S3): 0.2982		(S4, S4): 0.0455		(S4, S5): 0.2025		(S5, S1): 0.2226		(S5, S2): 0.0801		(S5, S3): 0.0773		(S5, S4): 0.0721		(S5, S5): 0.5478		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_11_1.png" src="_images/markov-properties_11_1.png" />
@@ -647,15 +646,15 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.5348 0.1177 0.3475]
- [0.     1.     0.    ]
- [0.4551 0.4829 0.062 ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.4706 0.0332 0.4962]
+ [0.1724 0.5274 0.3002]
+ [0.     0.     1.    ]]
 
-(S1, S1): 0.5348		(S1, S2): 0.1177		(S1, S3): 0.3475		(S2, S2): 1.0		(S3, S1): 0.4551		(S3, S2): 0.4829		(S3, S3): 0.062		
+(S1, S1): 0.4706		(S1, S2): 0.0332		(S1, S3): 0.4962		(S2, S1): 0.1724		(S2, S2): 0.5274		(S2, S3): 0.3002		(S3, S3): 1.0		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_14_1.png" src="_images/markov-properties_14_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S2 is the Absorbing State.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S3 is the Absorbing State.
 </pre></div>
 </div>
 <img alt="_images/markov-properties_14_3.png" src="_images/markov-properties_14_3.png" />
@@ -703,8 +702,8 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P-Absorbing (re-ordered P):
 [[1.         0.         0.        ]
- [0.11772891 0.53478406 0.34748703]
- [0.48292429 0.45510115 0.06197456]]
+ [0.49616009 0.47060989 0.03323002]
+ [0.30023182 0.172412   0.52735618]]
 
 Probabilities that NAS will end up in AS: (re-ordered list)
 [[1.]
@@ -767,10 +766,10 @@ All arranged probabilities:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/markov-properties_20_0.png" src="_images/markov-properties_20_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.61004927 0.38995073]
- [0.51575983 0.48424017]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.35433117 0.64566883]
+ [0.54235457 0.45764543]
+ [0.38160166 0.61839834]
  [1.         0.        ]
- [0.52771479 0.47228521]
  [0.         1.        ]]
 </pre></div>
 </div>
@@ -791,17 +790,17 @@ All arranged probabilities:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/markov-properties_21_0.png" src="_images/markov-properties_21_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.         0.         0.        ]
- [0.3657245  0.24105858 0.39321692]
- [0.31256675 0.30957449 0.37785877]
- [0.34469335 0.20486445 0.45044221]
- [0.36181904 0.29800781 0.34017315]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.34808688 0.34274947 0.30916365]
+ [0.33136202 0.44269883 0.22593915]
+ [0.30711078 0.40048332 0.2924059 ]
+ [0.33961551 0.40212981 0.25825468]
+ [0.34352925 0.38360826 0.27286249]
+ [1.         0.         0.        ]
  [0.         1.         0.        ]
- [0.35947246 0.29439591 0.34613164]
- [0.373081   0.2873795  0.33953949]
  [0.         0.         1.        ]
- [0.41640263 0.22446108 0.35913629]
- [0.34000003 0.30451752 0.35548246]]
+ [0.34276364 0.40175809 0.25547827]
+ [0.31229573 0.4388895  0.24881477]
+ [0.39899184 0.29264508 0.30836308]]
 </pre></div>
 </div>
 </div>
