@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Network/Graph Theory" href="network-theory.html" />
-    <link rel="prev" title="Welcome!" href="intro.html" />
+    <link rel="prev" title="Welcome" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -96,7 +96,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   Welcome!
+   Welcome
   </a>
  </li>
 </ul>
@@ -113,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="info-theoretic-social-networks.html">
-   An info theoretic approach to social networks in social media
+   Networks in social media
   </a>
  </li>
 </ul>
@@ -441,12 +441,11 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3 0.7]
  [1.  0. ]]
+
+(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
-</pre></div>
-</div>
-<img alt="_images/markov-properties_5_2.png" src="_images/markov-properties_5_2.png" />
+<img alt="_images/markov-properties_5_1.png" src="_images/markov-properties_5_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -560,11 +559,11 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.1622 0.6638 0.1739]
- [0.3751 0.0413 0.5836]
- [0.2238 0.4213 0.3549]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3779 0.2695 0.3526]
+ [0.3126 0.0958 0.5916]
+ [0.3618 0.3802 0.258 ]]
 
-(S1, S1): 0.1622		(S1, S2): 0.6638		(S1, S3): 0.1739		(S2, S1): 0.3751		(S2, S2): 0.0413		(S2, S3): 0.5836		(S3, S1): 0.2238		(S3, S2): 0.4213		(S3, S3): 0.3549		
+(S1, S1): 0.3779		(S1, S2): 0.2695		(S1, S3): 0.3526		(S2, S1): 0.3126		(S2, S2): 0.0958		(S2, S3): 0.5916		(S3, S1): 0.3618		(S3, S2): 0.3802		(S3, S3): 0.258		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_10_1.png" src="_images/markov-properties_10_1.png" />
@@ -600,13 +599,13 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.0907 0.2675 0.247  0.311  0.0837]
- [0.1165 0.1677 0.0271 0.0765 0.6122]
- [0.1758 0.2668 0.0574 0.2303 0.2696]
- [0.2128 0.2286 0.1435 0.1332 0.2819]
- [0.0903 0.1939 0.2044 0.0667 0.4448]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.1886 0.0462 0.164  0.3117 0.2896]
+ [0.28   0.0412 0.2448 0.1497 0.2843]
+ [0.0673 0.2941 0.2972 0.1956 0.1458]
+ [0.1814 0.0928 0.2849 0.4019 0.039 ]
+ [0.2178 0.3574 0.1102 0.1684 0.1463]]
 
-(S1, S1): 0.0907		(S1, S2): 0.2675		(S1, S3): 0.247		(S1, S4): 0.311		(S1, S5): 0.0837		(S2, S1): 0.1165		(S2, S2): 0.1677		(S2, S3): 0.0271		(S2, S4): 0.0765		(S2, S5): 0.6122		(S3, S1): 0.1758		(S3, S2): 0.2668		(S3, S3): 0.0574		(S3, S4): 0.2303		(S3, S5): 0.2696		(S4, S1): 0.2128		(S4, S2): 0.2286		(S4, S3): 0.1435		(S4, S4): 0.1332		(S4, S5): 0.2819		(S5, S1): 0.0903		(S5, S2): 0.1939		(S5, S3): 0.2044		(S5, S4): 0.0667		(S5, S5): 0.4448		
+(S1, S1): 0.1886		(S1, S2): 0.0462		(S1, S3): 0.164		(S1, S4): 0.3117		(S1, S5): 0.2896		(S2, S1): 0.28		(S2, S2): 0.0412		(S2, S3): 0.2448		(S2, S4): 0.1497		(S2, S5): 0.2843		(S3, S1): 0.0673		(S3, S2): 0.2941		(S3, S3): 0.2972		(S3, S4): 0.1956		(S3, S5): 0.1458		(S4, S1): 0.1814		(S4, S2): 0.0928		(S4, S3): 0.2849		(S4, S4): 0.4019		(S4, S5): 0.039		(S5, S1): 0.2178		(S5, S2): 0.3574		(S5, S3): 0.1102		(S5, S4): 0.1684		(S5, S5): 0.1463		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_11_1.png" src="_images/markov-properties_11_1.png" />
@@ -648,15 +647,15 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[1.     0.     0.    ]
- [0.1441 0.6604 0.1955]
- [0.4069 0.1859 0.4072]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.1409 0.0588 0.8002]
+ [0.3301 0.3055 0.3644]
+ [0.     0.     1.    ]]
 
-(S1, S1): 1.0		(S2, S1): 0.1441		(S2, S2): 0.6604		(S2, S3): 0.1955		(S3, S1): 0.4069		(S3, S2): 0.1859		(S3, S3): 0.4072		
+(S1, S1): 0.1409		(S1, S2): 0.0588		(S1, S3): 0.8002		(S2, S1): 0.3301		(S2, S2): 0.3055		(S2, S3): 0.3644		(S3, S3): 1.0		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_14_1.png" src="_images/markov-properties_14_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S1 is the Absorbing State.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S3 is the Absorbing State.
 </pre></div>
 </div>
 <img alt="_images/markov-properties_14_3.png" src="_images/markov-properties_14_3.png" />
@@ -704,8 +703,8 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P-Absorbing (re-ordered P):
 [[1.         0.         0.        ]
- [0.14410015 0.66044384 0.19545602]
- [0.40692951 0.18591285 0.40715764]]
+ [0.80024607 0.14092111 0.05883282]
+ [0.36437311 0.33010696 0.30551993]]
 
 Probabilities that NAS will end up in AS: (re-ordered list)
 [[1.]
@@ -768,11 +767,11 @@ All arranged probabilities:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/markov-properties_20_0.png" src="_images/markov-properties_20_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.80996977 0.19003023]
- [1.         0.        ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.         0.        ]
  [0.         1.        ]
- [0.43877299 0.56122701]
- [0.5870308  0.4129692 ]]
+ [0.48426538 0.51573462]
+ [0.44300322 0.55699678]
+ [0.24048454 0.75951546]]
 </pre></div>
 </div>
 </div>
@@ -792,17 +791,17 @@ All arranged probabilities:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/markov-properties_21_0.png" src="_images/markov-properties_21_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.         0.         0.        ]
- [0.33315147 0.44445278 0.22239575]
- [0.42436179 0.32110417 0.25453404]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.37670163 0.27911558 0.34418279]
+ [0.24284312 0.33773013 0.41942675]
+ [1.         0.         0.        ]
+ [0.27461773 0.3457983  0.37958397]
+ [0.33528239 0.33169444 0.33302317]
  [0.         1.         0.        ]
- [0.30827449 0.35772096 0.33400455]
- [0.41487637 0.32315235 0.26197127]
- [0.30050631 0.43900849 0.26048519]
- [0.29599012 0.37855217 0.3254577 ]
- [0.34415871 0.32372449 0.33211681]
- [0.28446438 0.36407695 0.35145867]
- [0.         0.         1.        ]]
+ [0.23202001 0.36907881 0.39890118]
+ [0.31294434 0.38303883 0.30401683]
+ [0.25760887 0.41582198 0.32656915]
+ [0.         0.         1.        ]
+ [0.3468231  0.29370385 0.35947305]]
 </pre></div>
 </div>
 </div>
@@ -840,7 +839,7 @@ All arranged probabilities:
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome!</p>
+            <p class="prev-next-title">Welcome</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="network-theory.html" title="next page">
