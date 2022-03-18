@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Markov Chains &amp; Markov Dynamics &#8212; Information Theory for Social Neuroscientists</title>
+    <title>Markov Chains &amp; Markov Dynamics &#8212; An Introduction to Information Theory for Social Neuroscientists</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -85,7 +85,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Information Theory for Social Neuroscientists</h1>
+      <h1 class="site-logo" id="site-title">An Introduction to Information Theory for Social Neuroscientists</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -114,6 +114,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="networks-in-social-media.html">
    Networks in social media
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cryptography.html">
+   Cryptography
   </a>
  </li>
 </ul>
@@ -439,12 +444,11 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3 0.7]
  [1.  0. ]]
+
+(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
-</pre></div>
-</div>
-<img alt="_images/markov-properties_5_2.png" src="_images/markov-properties_5_2.png" />
+<img alt="_images/markov-properties_5_1.png" src="_images/markov-properties_5_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -558,11 +562,11 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.7467 0.1144 0.1389]
- [0.4384 0.0108 0.5508]
- [0.3025 0.051  0.6465]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3506 0.1503 0.4991]
+ [0.0661 0.7599 0.174 ]
+ [0.4423 0.2559 0.3018]]
 
-(S1, S1): 0.7467		(S1, S2): 0.1144		(S1, S3): 0.1389		(S2, S1): 0.4384		(S2, S2): 0.0108		(S2, S3): 0.5508		(S3, S1): 0.3025		(S3, S2): 0.051		(S3, S3): 0.6465		
+(S1, S1): 0.3506		(S1, S2): 0.1503		(S1, S3): 0.4991		(S2, S1): 0.0661		(S2, S2): 0.7599		(S2, S3): 0.174		(S3, S1): 0.4423		(S3, S2): 0.2559		(S3, S3): 0.3018		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_10_1.png" src="_images/markov-properties_10_1.png" />
@@ -598,13 +602,13 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.1551 0.2473 0.2637 0.2172 0.1166]
- [0.3277 0.1615 0.3877 0.0874 0.0357]
- [0.0677 0.2212 0.4855 0.2122 0.0135]
- [0.278  0.1758 0.2982 0.0455 0.2025]
- [0.2226 0.0801 0.0773 0.0721 0.5478]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.1117 0.3127 0.1981 0.2298 0.1477]
+ [0.2746 0.2208 0.3352 0.0731 0.0963]
+ [0.1516 0.2984 0.2519 0.1563 0.1418]
+ [0.1501 0.0816 0.2088 0.4564 0.1031]
+ [0.226  0.1276 0.2512 0.014  0.3812]]
 
-(S1, S1): 0.1551		(S1, S2): 0.2473		(S1, S3): 0.2637		(S1, S4): 0.2172		(S1, S5): 0.1166		(S2, S1): 0.3277		(S2, S2): 0.1615		(S2, S3): 0.3877		(S2, S4): 0.0874		(S2, S5): 0.0357		(S3, S1): 0.0677		(S3, S2): 0.2212		(S3, S3): 0.4855		(S3, S4): 0.2122		(S3, S5): 0.0135		(S4, S1): 0.278		(S4, S2): 0.1758		(S4, S3): 0.2982		(S4, S4): 0.0455		(S4, S5): 0.2025		(S5, S1): 0.2226		(S5, S2): 0.0801		(S5, S3): 0.0773		(S5, S4): 0.0721		(S5, S5): 0.5478		
+(S1, S1): 0.1117		(S1, S2): 0.3127		(S1, S3): 0.1981		(S1, S4): 0.2298		(S1, S5): 0.1477		(S2, S1): 0.2746		(S2, S2): 0.2208		(S2, S3): 0.3352		(S2, S4): 0.0731		(S2, S5): 0.0963		(S3, S1): 0.1516		(S3, S2): 0.2984		(S3, S3): 0.2519		(S3, S4): 0.1563		(S3, S5): 0.1418		(S4, S1): 0.1501		(S4, S2): 0.0816		(S4, S3): 0.2088		(S4, S4): 0.4564		(S4, S5): 0.1031		(S5, S1): 0.226		(S5, S2): 0.1276		(S5, S3): 0.2512		(S5, S4): 0.014		(S5, S5): 0.3812		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_11_1.png" src="_images/markov-properties_11_1.png" />
@@ -646,15 +650,15 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.4706 0.0332 0.4962]
- [0.1724 0.5274 0.3002]
- [0.     0.     1.    ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[1.     0.     0.    ]
+ [0.4756 0.2197 0.3047]
+ [0.2578 0.1836 0.5586]]
 
-(S1, S1): 0.4706		(S1, S2): 0.0332		(S1, S3): 0.4962		(S2, S1): 0.1724		(S2, S2): 0.5274		(S2, S3): 0.3002		(S3, S3): 1.0		
+(S1, S1): 1.0		(S2, S1): 0.4756		(S2, S2): 0.2197		(S2, S3): 0.3047		(S3, S1): 0.2578		(S3, S2): 0.1836		(S3, S3): 0.5586		
 </pre></div>
 </div>
 <img alt="_images/markov-properties_14_1.png" src="_images/markov-properties_14_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S3 is the Absorbing State.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S1 is the Absorbing State.
 </pre></div>
 </div>
 <img alt="_images/markov-properties_14_3.png" src="_images/markov-properties_14_3.png" />
@@ -702,8 +706,8 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P-Absorbing (re-ordered P):
 [[1.         0.         0.        ]
- [0.49616009 0.47060989 0.03323002]
- [0.30023182 0.172412   0.52735618]]
+ [0.47555651 0.21973321 0.30471027]
+ [0.25779822 0.18360032 0.55860146]]
 
 Probabilities that NAS will end up in AS: (re-ordered list)
 [[1.]
@@ -766,11 +770,11 @@ All arranged probabilities:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/markov-properties_20_0.png" src="_images/markov-properties_20_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.35433117 0.64566883]
- [0.54235457 0.45764543]
- [0.38160166 0.61839834]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.37957346 0.62042654]
  [1.         0.        ]
- [0.         1.        ]]
+ [0.28222334 0.71777666]
+ [0.         1.        ]
+ [0.39828498 0.60171502]]
 </pre></div>
 </div>
 </div>
@@ -790,17 +794,17 @@ All arranged probabilities:
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/markov-properties_21_0.png" src="_images/markov-properties_21_0.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.34808688 0.34274947 0.30916365]
- [0.33136202 0.44269883 0.22593915]
- [0.30711078 0.40048332 0.2924059 ]
- [0.33961551 0.40212981 0.25825468]
- [0.34352925 0.38360826 0.27286249]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.1820573  0.34911978 0.46882292]
+ [0.2961015  0.22666103 0.47723747]
+ [0.26551659 0.2375092  0.49697421]
+ [0.34560463 0.29405739 0.36033798]
+ [0.2070863  0.34401667 0.44889702]
+ [0.31930633 0.24850809 0.43218559]
  [1.         0.         0.        ]
  [0.         1.         0.        ]
  [0.         0.         1.        ]
- [0.34276364 0.40175809 0.25547827]
- [0.31229573 0.4388895  0.24881477]
- [0.39899184 0.29264508 0.30836308]]
+ [0.26852268 0.20319777 0.52827955]
+ [0.2585618  0.20318832 0.53824988]]
 </pre></div>
 </div>
 </div>

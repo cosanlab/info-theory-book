@@ -18,7 +18,7 @@ To locally build the book, to easily visualize any changes you make, I recommend
 
 1. **Clone the repo into your desired directory**
 
-```git clone <https://github.com/cosanlab/info-theory-book.git>```
+```git clone https://github.com/cosanlab/info-theory-book.git```
 
 2. **Install packages**
 
