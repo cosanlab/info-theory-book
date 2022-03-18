@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Information Theory for Cognitive Neuroscientists
-author: Dhaval, Katie, Sushmita, Wasita
+title: Information Theory for Social Neuroscientists
+author: Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
