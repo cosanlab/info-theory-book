@@ -382,12 +382,17 @@ $<span class="math notranslate nohighlight">\(let\ x := x(t) = k\phi(t)\)</span>
 <div class="section" id="modeling-for-a-simple-1-d-system">
 <h2>Modeling for a simple 1-D system:<a class="headerlink" href="#modeling-for-a-simple-1-d-system" title="Permalink to this headline">¶</a></h2>
 <p>    Let’s assume a simple uni-directional motion of a physical body (a ball in a spring-mass system). We assume the spring constant to be <span class="math notranslate nohighlight">\(k\)</span> and mass of the ball to be <span class="math notranslate nohighlight">\(m\)</span>. If the spring is pulled down by an amount <span class="math notranslate nohighlight">\(x\)</span>, we can write the equations for conservation of energy <span class="math notranslate nohighlight">\((\frac{1}{2}kx^2 = \frac{1}{2}mv^2)\)</span> and equillibrium of force <span class="math notranslate nohighlight">\((ma = -kx)\)</span>. Note, that velocity is <span class="math notranslate nohighlight">\(v = \frac{dx}{dt} =: \dot{x}\)</span> and acceleration is <span class="math notranslate nohighlight">\(a = \frac{d^2x}{dt^2} =: \ddot{x}\)</span>. We now get the following equations:</p>
-<p><img alt="dynsys_1d_spring_mass" src="../_images/dynsys_1d_spring_mass.png" />
-$<span class="math notranslate nohighlight">\(\frac{1}{2}kx^2 = \frac{1}{2}m\dot{x}^2\)</span><span class="math notranslate nohighlight">\(
-    \)</span><span class="math notranslate nohighlight">\(\implies \dot{x}^2 = \frac{k}{m}x^2\)</span><span class="math notranslate nohighlight">\(
-    \)</span><span class="math notranslate nohighlight">\(\implies \dot{x} = \sqrt{\frac{k}{m}}x + 0\dot{x}\)</span><span class="math notranslate nohighlight">\(
-    \)</span><span class="math notranslate nohighlight">\( also,\ m\ddot{x} = -kx\)</span><span class="math notranslate nohighlight">\(
-    \)</span><span class="math notranslate nohighlight">\(\therefore \ddot{x} = -\frac{k}{m}x + 0\dot{x}\)</span>$</p>
+<p><img alt="dynsys_1d_spring_mass" src="../_images/dynsys_1d_spring_mass.png" /></p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{2}kx^2 = \frac{1}{2}m\dot{x}^2\]</div>
+<div class="math notranslate nohighlight">
+\[\implies \dot{x}^2 = \frac{k}{m}x^2\]</div>
+<div class="math notranslate nohighlight">
+\[\implies \dot{x} = \sqrt{\frac{k}{m}}x + 0\dot{x}\]</div>
+<div class="math notranslate nohighlight">
+\[ also,\ m\ddot{x} = -kx\]</div>
+<div class="math notranslate nohighlight">
+\[\therefore \ddot{x} = -\frac{k}{m}x + 0\dot{x}\]</div>
 <p>Now, why would we want to add a ‘<span class="math notranslate nohighlight">\(0\dot{x}\)</span>’ term here? To account for a position/motion vector, <span class="math notranslate nohighlight">\(
 \mathbb{y} = \begin{bmatrix} x \\ \dot{x} \end{bmatrix}\)</span>, and its differential;</p>
 <div class="math notranslate nohighlight">
