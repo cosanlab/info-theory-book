@@ -6,4 +6,4 @@ pandas
 matplotlib
 ipython
 networkx
-bct
+bctpy
