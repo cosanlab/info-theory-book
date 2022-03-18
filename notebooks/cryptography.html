@@ -264,8 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Run this to download data and prepare our environment!  { display-mode: &quot;form&quot; }</span>
-<span class="c1">#file imports</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#file imports</span>
 <span class="kn">import</span> <span class="nn">nltk</span>
 <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">words</span> <span class="k">as</span> <span class="n">wordlist</span>
 <span class="kn">import</span> <span class="nn">re</span>
@@ -437,22 +436,22 @@ const thebe_selector_output = ".output, .cell_output"
       white-space: pre-wrap;
   }
 </style>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bqmkpcg 1
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Icqjlxy 1
 
 
-Dzg Emspcg Csszrp, ri Hcssjlbq Qmss, zl Drfcgdcpdqzgc, emd m fml eqr,
-irg qzd rel mfvdcfclp, lcocg prrh vk mlj yrrh yvp pqc Ymgrlcpmac;
-pqcgc qc irvlu rbbvkmpzrl irg ml zusc qrvg, mlu brldrsmpzrl zl m
-uzdpgcddcu rlc; pqcgc qzd imbvspzcd ecgc grvdcu zlpr mufzgmpzrl mlu
-gcdkcbp, yj brlpcfksmpzla pqc szfzpcu gcflmlp ri pqc cmgszcdp kmpclpd;
-pqcgc mlj vlecsbrfc dcldmpzrld, mgzdzla igrf urfcdpzb miimzgd
-bqmlacu lmpvgmssj zlpr kzpj mlu brlpcfkp md qc pvglcu rocg
-pqc msfrdp cluscdd bgcmpzrld ri pqc smdp bclpvgj; mlu pqcgc,
-zi cocgj rpqcg scmi ecgc krecgscdd, qc brvsu gcmu qzd rel qzdprgj
-ezpq ml zlpcgcdp eqzbq lcocg imzscu.  Pqzd emd pqc kmac mp eqzbq
-pqc imorvgzpc orsvfc msemjd rkclcu:
+Rpy Fqalxy Xaapsl, sv Nxaatmic Cqaa, pm Rskxyrxlrcpyx, fqr q kqm fcs,
+vsy cpr sfm qkwrxkxml, mxbxy lssn wj qmt dssn dwl lcx Dqysmxlqhx;
+lcxyx cx vswmz siiwjqlpsm vsy qm pzax cswy, qmz ismrsaqlpsm pm q
+zprlyxrrxz smx; lcxyx cpr vqiwalpxr fxyx yswrxz pmls qzkpyqlpsm qmz
+yxrjxil, dt ismlxkjaqlpmh lcx apkplxz yxkmqml sv lcx xqyapxrl jqlxmlr;
+lcxyx qmt wmfxaiskx rxmrqlpsmr, qyprpmh vysk zskxrlpi qvvqpyr
+icqmhxz mqlwyqaat pmls jplt qmz ismlxkjl qr cx lwymxz sbxy
+lcx qaksrl xmzaxrr iyxqlpsmr sv lcx aqrl ixmlwyt; qmz lcxyx,
+pv xbxyt slcxy axqv fxyx jsfxyaxrr, cx iswaz yxqz cpr sfm cprlsyt
+fplc qm pmlxyxrl fcpic mxbxy vqpaxz.  Lcpr fqr lcx jqhx ql fcpic
+lcx vqbswyplx bsawkx qafqtr sjxmxz:
 
-           &quot;CSSZRP RI HCSSJLBQ QMSS.
+           &quot;XAAPSL SV NXAATMIC CQAA.
 
 &quot;
 </pre></div>
@@ -644,8 +643,7 @@ As we go through the decrypted text (which is significantly larger than the sing
 <p>We can definitely do better than 30% – in fact, the original text contains 81.7% accepted English words. In order to improve our decryption, we’ll try swapping out letter mappings for letters that have the most similar probabilities in English (i.e. R and S both constitute approximately 7.2% of letters used in this corpus). If the percentage of accepted English words improves by making a substitution, we keep it. Let’s watch this technique at work. <em>N.B. This make take a few minutes; feel free to make a nice cup of tea while the next cell runs!</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@markdown Run this to improve the deciphering!  { display-mode: &quot;form&quot; }</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">get_letter_distribution</span><span class="p">(</span><span class="n">second_pass</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">get_letter_distribution</span><span class="p">(</span><span class="n">second_pass</span><span class="p">)</span>
 <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">26</span><span class="p">,</span><span class="mi">26</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">26</span><span class="p">):</span>
@@ -682,14 +680,37 @@ As we go through the decrypted text (which is significantly larger than the sing
       white-space: pre-wrap;
   }
 </style>
-</div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap C and M 	percent valid English words: 0.5160721105097512 
+
+
+Fhabter 1
+
+
+Sir Wadter Eddiot, oc Keddynfh Hadd, in Somersetshire, was a man who,
+cor his own amusement, never took ub any pook put the Paronetage;
+there he counl offubation cor an ilde hour, anl fonsodation in a
+listressel one; there his cafudties were rousel into almiration anl
+resbeft, py fontembdating the dimitel remnant oc the eardiest batents;
+there any unwedfome sensations, arising crom lomestif accairs
+fhangel naturaddy into bity anl fontembt as he turnel over
+the admost enldess freations oc the dast fentury; anl there,
+ic every other deac were bowerdess, he foudl real his own history
+with an interest whifh never caidel.  This was the bage at whifh
+the cavourite vodume adways obenel:
+
+           &quot;EDDIOT OC KEDDYNFH HADD.
+
+&quot;
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 9&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>   <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">unencrypted_quote</span> <span class="o">+=</span> <span class="p">(</span><span class="n">letter</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">20</span> <span class="n">reals</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="ow">in</span> <span class="n">english</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-zA-Z ]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">unencrypted_quote</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="n">percent_real</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="k">if</span> <span class="n">percent_real</span> <span class="o">&gt;</span> <span class="n">percent_real_before</span><span class="o">+</span><span class="p">(</span><span class="mf">0.82</span><span class="o">-</span><span class="n">percent_real_before</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">:</span>
+<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 8&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>   <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">unencrypted_quote</span> <span class="o">+=</span> <span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">19</span> <span class="n">reals</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="ow">in</span> <span class="n">english</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-zA-Z ]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">unencrypted_quote</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">percent_real</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="k">if</span> <span class="n">percent_real</span> <span class="o">&gt;</span> <span class="n">percent_real_before</span><span class="o">+</span><span class="p">(</span><span class="mf">0.82</span><span class="o">-</span><span class="n">percent_real_before</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">:</span>
 
 <span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/re.py:210,</span> in <span class="ni">sub</span><span class="nt">(pattern, repl, string, count, flags)</span>
 <span class="g g-Whitespace">    </span><span class="mi">203</span> <span class="k">def</span> <span class="nf">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">repl</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
