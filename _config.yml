@@ -4,6 +4,7 @@
 title: An Introduction to Information Theory for Social Neuroscientists
 author: Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit
 logo: images/logo/soc_net.png
+copyright: '2022'
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -38,3 +39,4 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+  favicon: 'images/logo/soc_net.png' # A path to a favicon image
