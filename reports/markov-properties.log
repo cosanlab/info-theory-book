@@ -1,0 +1,80 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Absorbing States (AS)
+as_s = np.where(p==1)[0];
+
+# Get the Non-Absorbing States (NAS)
+nas = np.setdiff1d(np.arange(p.shape[0]), as_s);
+
+# Reorder the matrix to get the form for Absorbing Transfer Matrix:
+reorder = np.append(np.asarray(as_s), nas);
+p_absorbing = p[np.meshgrid(reorder,reorder)].T;
+
+print(f'\nP-Absorbing (re-ordered P):\n{p_absorbing}');
+
+# Storing the Sub-Matrices:
+I_m = np.eye(len(as_s));
+R = p[np.meshgrid(nas,as_s)].T;
+Q_n = p[np.meshgrid(nas,nas)].T;
+
+# Calculate the NAS to AS probabilities
+I_n = np.eye(len(nas));
+F = np.linalg.inv(I_n-Q_n);
+nas2as = F * R;
+
+print(f'\nProbabilities that NAS will end up in AS: (re-ordered list)\n{nas2as}');
+
+# Add AS-to-AS with NAS-to-AS probabilities
+all2as = np.concatenate((I_m, nas2as), axis=0);
+
+# Re-arrange all the values according to the list of the States:
+print(f'\nAll arranged probabilities:\n{all2as[np.argsort(reorder),:]}');
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+Input [0;32mIn [9][0m, in [0;36m<cell line: 9>[0;34m()[0m
+[1;32m      7[0m [38;5;66;03m# Reorder the matrix to get the form for Absorbing Transfer Matrix:[39;00m
+[1;32m      8[0m reorder [38;5;241m=[39m np[38;5;241m.[39mappend(np[38;5;241m.[39masarray(as_s), nas);
+[0;32m----> 9[0m p_absorbing [38;5;241m=[39m [43mp[49m[43m[[49m[43mnp[49m[38;5;241;43m.[39;49m[43mmeshgrid[49m[43m([49m[43mreorder[49m[43m,[49m[43mreorder[49m[43m)[49m[43m][49m[38;5;241;43m.[39;49m[43mT[49m;
+[1;32m     11[0m [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m'[39m[38;5;130;01m\n[39;00m[38;5;124mP-Absorbing (re-ordered P):[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00mp_absorbing[38;5;132;01m}[39;00m[38;5;124m'[39m);
+[1;32m     13[0m [38;5;66;03m# Storing the Sub-Matrices:[39;00m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/numpy/matrixlib/defmatrix.py:966[0m, in [0;36mmatrix.T[0;34m(self)[0m
+[1;32m    935[0m [38;5;129m@property[39m
+[1;32m    936[0m [38;5;28;01mdef[39;00m [38;5;21mT[39m([38;5;28mself[39m):
+[1;32m    937[0m     [38;5;124;03m"""[39;00m
+[1;32m    938[0m [38;5;124;03m    Returns the transpose of the matrix.[39;00m
+[1;32m    939[0m 
+[0;32m   (...)[0m
+[1;32m    964[0m 
+[1;32m    965[0m [38;5;124;03m    """[39;00m
+[0;32m--> 966[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mtranspose[49m[43m([49m[43m)[49m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/numpy/matrixlib/defmatrix.py:180[0m, in [0;36mmatrix.__array_finalize__[0;34m(self, obj)[0m
+[1;32m    178[0m         [38;5;28;01mreturn[39;00m
+[1;32m    179[0m     [38;5;28;01melif[39;00m (ndim [38;5;241m>[39m [38;5;241m2[39m):
+[0;32m--> 180[0m         [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mshape too large to be a matrix.[39m[38;5;124m"[39m)
+[1;32m    181[0m [38;5;28;01melse[39;00m:
+[1;32m    182[0m     newshape [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mshape
+
+[0;31mValueError[0m: shape too large to be a matrix.
+ValueError: shape too large to be a matrix.
+

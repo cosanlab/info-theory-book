@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Complex Systems Theory &#8212; An Introduction to Information Theory for Social Neuroscientists</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -65,7 +64,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -74,9 +87,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -94,14 +108,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="markov-properties.html">
    Markov Chains &amp; Markov Dynamics
@@ -130,107 +145,209 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/notebooks/complex-systems.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/cosanlab/info-theory-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/cosanlab/info-theory-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/complex-systems.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/cosanlab/info-theory-book/main?urlpath=tree/notebooks/complex-systems.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/cosanlab/info-theory-book/main?urlpath=tree/notebooks/complex-systems.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/cosanlab/info-theory-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/cosanlab/info-theory-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/complex-systems.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/complex-systems.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dynamical-systems">
    Dynamical Systems
@@ -279,12 +396,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Complex Systems Theory</h1>
@@ -349,17 +465,18 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="complex-systems-theory">
-<h1>Complex Systems Theory<a class="headerlink" href="#complex-systems-theory" title="Permalink to this headline">¶</a></h1>
+  <section id="complex-systems-theory">
+<h1>Complex Systems Theory<a class="headerlink" href="#complex-systems-theory" title="Permalink to this headline">#</a></h1>
 <a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/c/c7/Complex_systems_thoery.jpg"><img alt="https://upload.wikimedia.org/wikipedia/commons/c/c7/Complex_systems_thoery.jpg" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Complex_systems_thoery.jpg" style="width: 500px;" /></a>
 <p>    Complex systems theory is a mixture of multipple fields of study including (but not limited to) systems theory, network/graph theory, non-linear dynamics, control theory, and field theory. In this notebook, we shall focus on dynamical systems theory, starting with simpler, linear, 1-dimensional systems, move to 2-dimensional systems, simple oscillatory motion, phase oscillators, coupled oscillation, and end with control of system with an introduction to bifurcations.<br/><br/></p>
 <center><i>The road is long, and the theory is math-heavy, so let's begin...</i></center>
 <p><br/><br/><small><em>image source: wikimedia corresponding to the wikipedia article titled <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_system">Complex system</a></em></small></p>
-<div class="section" id="dynamical-systems">
-<h2>Dynamical Systems<a class="headerlink" href="#dynamical-systems" title="Permalink to this headline">¶</a></h2>
+<section id="dynamical-systems">
+<h2>Dynamical Systems<a class="headerlink" href="#dynamical-systems" title="Permalink to this headline">#</a></h2>
 <p>    The idea behind dynamical systems is relating the change in position of a body, a function of the body, or a system with the position itself. We characterize that with the differential equation: <span class="math notranslate nohighlight">\(\frac{dx}{dt} = \mathcal{f}(x)\)</span>.<br/></p>
 <p><strong>Some nomenclature:</strong></p>
 <blockquote>
@@ -379,9 +496,9 @@ $<span class="math notranslate nohighlight">\(let\ x := x(t) = k\phi(t)\)</span>
     \)</span><span class="math notranslate nohighlight">\(\implies\ \frac{d\phi(t)}{dt} = \phi(t) \)</span><span class="math notranslate nohighlight">\(
     \)</span><span class="math notranslate nohighlight">\(\implies\ \phi(t) = \mathcal{e}^{t} \)</span><span class="math notranslate nohighlight">\(
     \)</span><span class="math notranslate nohighlight">\(\implies\ x(t) = k\mathcal{e}^{t} \ \ \ \ \ [k = x(t=0)]\)</span>$</p>
-</div>
-<div class="section" id="modeling-for-a-simple-1-d-system">
-<h2>Modeling for a simple 1-D system:<a class="headerlink" href="#modeling-for-a-simple-1-d-system" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="modeling-for-a-simple-1-d-system">
+<h2>Modeling for a simple 1-D system:<a class="headerlink" href="#modeling-for-a-simple-1-d-system" title="Permalink to this headline">#</a></h2>
 <p>    Let’s assume a simple uni-directional motion of a physical body (a ball in a spring-mass system). We assume the spring constant to be <span class="math notranslate nohighlight">\(k\)</span> and mass of the ball to be <span class="math notranslate nohighlight">\(m\)</span>. If the spring is pulled down by an amount <span class="math notranslate nohighlight">\(x\)</span>, we can write the equations for conservation of energy <span class="math notranslate nohighlight">\((\frac{1}{2}kx^2 = \frac{1}{2}mv^2)\)</span> and equillibrium of force <span class="math notranslate nohighlight">\((ma = -kx)\)</span>. Note, that velocity is <span class="math notranslate nohighlight">\(v = \frac{dx}{dt} =: \dot{x}\)</span> and acceleration is <span class="math notranslate nohighlight">\(a = \frac{d^2x}{dt^2} =: \ddot{x}\)</span>. We now get the following equations:</p>
 <p><img alt="dynsys_1d_spring_mass" src="../_images/dynsys_1d_spring_mass.png" /></p>
 <div class="math notranslate nohighlight">
@@ -429,9 +546,9 @@ x \\
 &amp;\text { or, } \dot{y}=\mathbb{K} \cdot \mathbb{y}
 \end{aligned}
 \end{split}\]</div>
-</div>
-<div class="section" id="modeling-a-coupled-system">
-<h2>Modeling a Coupled System:<a class="headerlink" href="#modeling-a-coupled-system" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="modeling-a-coupled-system">
+<h2>Modeling a Coupled System:<a class="headerlink" href="#modeling-a-coupled-system" title="Permalink to this headline">#</a></h2>
 <p>    Let’s set up a similar system but with two different variables, <span class="math notranslate nohighlight">\(\mathbb{v} = \begin{bmatrix} x \\ y \end{bmatrix}\)</span>, such that <span class="math notranslate nohighlight">\((\dot{x} = ax + by)\)</span> and <span class="math notranslate nohighlight">\((\dot{y} = cx + dy)\)</span>. Think, motion of a body on a surface. One can then write:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -452,8 +569,8 @@ a &amp; b \\
 c &amp; d
 \end{array}\right] \cdot \mathbb{v}=: \mathbb{A} \cdot \mathbb{v}
 \end{split}\]</div>
-<div class="section" id="simple-predation-model">
-<h3>Simple Predation Model:<a class="headerlink" href="#simple-predation-model" title="Permalink to this headline">¶</a></h3>
+<section id="simple-predation-model">
+<h3>Simple Predation Model:<a class="headerlink" href="#simple-predation-model" title="Permalink to this headline">#</a></h3>
 <p>    These systems model equation where the population growth is linked to multiple predatory/prey groups, including their own. Let’s assume a simpler model of only 2 groups: rabbits (<span class="math notranslate nohighlight">\(x\)</span>) and foxes (<span class="math notranslate nohighlight">\(y\)</span>). We assume that rabbits have a population growth factor of <span class="math notranslate nohighlight">\(g\)</span> and their death rate can be measured by a kill rate <span class="math notranslate nohighlight">\(k\)</span> dependent upon the population of foxes. On the other hand, foxes will have a growth rate based on the availability of food/prey, with a factor of <span class="math notranslate nohighlight">\(f\)</span>, while an absence of food will imply a death rate of <span class="math notranslate nohighlight">\(d\)</span>. We can now form the two equations as:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -468,9 +585,9 @@ c &amp; d
 = \begin{bmatrix}g &amp; -k\\f &amp; -d\end{bmatrix}\cdot\begin{bmatrix}x\\y\end{bmatrix}
 =: \begin{bmatrix}g &amp; -k\\f &amp; -d\end{bmatrix}\cdot\mathbb{v}\)</span></p>
 <p><br/>    Note that this is a simpler, linear predation model. Generally, the interaction term is controlled by the population value of the group. That is, there is a control parameter for the death toll on rabbits with the corrected equation looking like [<span class="math notranslate nohighlight">\(\dot{x} = gx - kxy = (g - ky)\cdot x\)</span>], and the predation-value is controlled by how many foxes go on the hunt, giving us [<span class="math notranslate nohighlight">\(\dot{y} = fxy - dy = (-d + fx)\cdot y\)</span>].</p>
-</div>
-<div class="section" id="models-in-discrete-time">
-<h3>Models in Discrete time:<a class="headerlink" href="#models-in-discrete-time" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="models-in-discrete-time">
+<h3>Models in Discrete time:<a class="headerlink" href="#models-in-discrete-time" title="Permalink to this headline">#</a></h3>
 <p>    Let’s go back to the general model, and link discrete intervals as sampled continuous time segments. i.e. we can say that <span class="math notranslate nohighlight">\(t\rightarrow n\)</span>, in which case <span class="math notranslate nohighlight">\(dt(\approx\Delta t)\rightarrow \Delta n = (n+1)-(n) = 1\)</span>. Sampling thus, we can also change the continuous models from the coupled system:</p>
 <div class="math notranslate nohighlight">
 \[\dot{x} \approx \frac{\Delta x}{\Delta n} = \frac{x(n+1)-x(n)}{(n+1)-(n)} = x(n+1) - x(n)\]</div>
@@ -535,10 +652,10 @@ y(n)
 \end{aligned}
 \end{split}\]</div>
 <p><br/>    The last equation is similar to that of the Markov Chain, especially given that the dynamical systems we study are usually memoryless and homogeneous, satisfying the Markov Principal. However, one must note that unlike probabilities for the transition matrix, here the matrix is made up of a set of parameters that may act as control variables/functions.</p>
-</div>
-</div>
-<div class="section" id="phase-oscillators">
-<h2>Phase Oscillators:<a class="headerlink" href="#phase-oscillators" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="phase-oscillators">
+<h2>Phase Oscillators:<a class="headerlink" href="#phase-oscillators" title="Permalink to this headline">#</a></h2>
 <p>    We now look at phase oscillators. Assume, as shown in the figure, that a mass is hanging by a thread in an ideal world where the only force on the mass is that of gravity. We now displace the mass by an angle <span class="math notranslate nohighlight">\(\theta\)</span>, and let it swing. The angular velocity could be calculated as <span class="math notranslate nohighlight">\(\omega = \frac{d\theta}{dt} = \dot{\theta}\)</span>, or the position/angle of the mass by <span class="math notranslate nohighlight">\(\theta = \omega t + \theta_0\)</span>, where <span class="math notranslate nohighlight">\(\theta_0\)</span> is the initial position/angle of the mass.</p>
 <p><img alt="dynsys_phase_oscillation" src="../_images/dynsys_phase_oscillation.png" /></p>
 <p>    In case we couple the system by adding another mass on a string, and connect them both by a rod. Then do the same excercise, that is pull a mass to an angle and let the mass swing, we see that since the rod is ideal, the second mass-string system will follow the first system, <span class="math notranslate nohighlight">\(\theta_i = \omega_i t + \theta_{0,i}\)</span>. In such cases, we say that the system is ‘coupled’;</p>
@@ -583,8 +700,8 @@ f(\phi, \mu) &amp;:=(1-\mu \sin \phi) \\
 \end{aligned}
 \end{split}\]</div>
 <p><br/>    Now, we know that <span class="math notranslate nohighlight">\(\mathcal{f}\sim\frac{d\phi}{ds}\)</span>, i.e. if <span class="math notranslate nohighlight">\(\mu=1\)</span>, we may find that we hit a local extrema (<span class="math notranslate nohighlight">\(\frac{d\phi}{ds}=0\)</span>) at <span class="math notranslate nohighlight">\(\phi=\frac{pi}{2}\)</span>. In systems theory, we call such points <strong>Equillibrium Points</strong>, represented as <span class="math notranslate nohighlight">\(\text{EQL} \sim (\phi^\text{*},\mu^\text{*})\)</span>. However, if <span class="math notranslate nohighlight">\(\phi=\frac{\pi}{2}\)</span>, then <span class="math notranslate nohighlight">\(\mathcal{f'} \sim \frac{d^2\phi}{ds^2} = 0\)</span>. From differential mathematics, we find that when the second-order differential equates to zero (<span class="math notranslate nohighlight">\(0\)</span>) for a given set of values, the system becomes bi-stable. In dynamical systems, we call systems at this point to be in a state of <strong>Bifurcation</strong>.</p>
-<div class="section" id="general-equation-for-bifurcations">
-<h3>General Equation for Bifurcations:<a class="headerlink" href="#general-equation-for-bifurcations" title="Permalink to this headline">¶</a></h3>
+<section id="general-equation-for-bifurcations">
+<h3>General Equation for Bifurcations:<a class="headerlink" href="#general-equation-for-bifurcations" title="Permalink to this headline">#</a></h3>
 <p><br/>    Bifurcative states always occur at <span class="math notranslate nohighlight">\(\text{EQL}\sim(x^\text{*},\mu^\text{*})\)</span> for any given function (<span class="math notranslate nohighlight">\(\mathcal{f}\)</span>) of a dynamical system. To solve for the bifurcation, we use the generalized Taylor expantion for differential equations:<br/><br/></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -597,8 +714,8 @@ f(\phi, \mu) &amp;:=(1-\mu \sin \phi) \\
 \end{split}\]</div>
 <p>[higher order terms <span class="math notranslate nohighlight">\(\sim 0\)</span> ].
 <br/></p>
-<div class="section" id="notes-and-resources">
-<h4>Notes and Resources:<a class="headerlink" href="#notes-and-resources" title="Permalink to this headline">¶</a></h4>
+<section id="notes-and-resources">
+<h4>Notes and Resources:<a class="headerlink" href="#notes-and-resources" title="Permalink to this headline">#</a></h4>
 <p>    Some really good examples of bifurcation are provided in <a class="reference external" href="https://courses.physics.ucsd.edu/2011/Spring/physics221a/LECTURES/CH02_BIFURCATIONS.pdf">this PDF from UCSD</a>. Even though we stop here in this notebook, certain topics like <a class="reference external" href="https://www.math.colostate.edu/~shipman/47/volume3b2011/M640_MunozAlicea.pdf">Hopf bifurcation</a>, <a class="reference external" href="https://stanford.edu/class/ee363/lectures/lyap.pdf">Lyapunov theory</a>, and <a class="reference external" href="https://repository.upenn.edu/cgi/viewcontent.cgi?article=1425&amp;context=ese_papers">Chaos theory</a> are also pretty interesting. Other resources one may want to go through would be <a class="reference external" href="https://complexityexplained.github.io/">Project Complexity Explained</a> by Dr. Manlio De Domenico (CoMuNe Lab, Fondazione Bruno Kessler, Italy) and Dr. Hiroki Sayama (Dept. of Systems Science and Industrial Engineering, Binghamton Univ., USA), Dr. Sayama’s repository for complex systems analysis <a class="reference external" href="https://github.com/hsayama/PyCX">PyCX</a>, and the project <a class="reference external" href="https://www.complexity-explorables.org/">Complexity Explorables</a> by Dirk Brockmann. Books we found useful to review included:</p>
 <ol class="simple">
 <li><p>J. Guckenheimer and P. Holmes’ <strong>Nonlinear Oscillations, Dynamical Systems, and Bifurcations of Vector Fields</strong> (Springer)</p></li>
@@ -606,10 +723,10 @@ f(\phi, \mu) &amp;:=(1-\mu \sin \phi) \\
 <li><p>M. W. Hirsch S. Smale and R. L. Devaney’s <strong>Differential equations, dynamical systems and an introduction to chaos</strong> (Elsevier)</p></li>
 <li><p>Eugene Izhikevich’s <strong>Dynamical systems in neuroscience: the geometry of excitability and bursting</strong> (MIT Press)</p></li>
 </ol>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -633,9 +750,11 @@ f(\phi, \mu) &amp;:=(1-\mu \sin \phi) \\
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="network-theory.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -651,24 +770,28 @@ f(\phi, \mu) &amp;:=(1-\mu \sin \phi) \\
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

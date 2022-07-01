@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Networks in Social Media &#8212; An Introduction to Information Theory for Social Neuroscientists</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -65,7 +64,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -74,9 +87,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -94,14 +108,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="markov-properties.html">
    Markov Chains &amp; Markov Dynamics
@@ -130,107 +145,209 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/notebooks/networks-in-social-media.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/cosanlab/info-theory-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/cosanlab/info-theory-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/networks-in-social-media.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/cosanlab/info-theory-book/main?urlpath=tree/notebooks/networks-in-social-media.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/cosanlab/info-theory-book/main?urlpath=tree/notebooks/networks-in-social-media.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/cosanlab/info-theory-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/cosanlab/info-theory-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/networks-in-social-media.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/notebooks/networks-in-social-media.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#entropy-based-classification-of-retweeting-activity-on-twitter-ghosh-et-al-2011-5">
    Entropy-based Classification of Retweeting Activity on Twitter (Ghosh et al., 2011)[5]
@@ -332,12 +449,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Networks in Social Media</h1>
@@ -455,53 +571,54 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="networks-in-social-media">
-<h1>Networks in Social Media<a class="headerlink" href="#networks-in-social-media" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="networks-in-social-media">
+<h1>Networks in Social Media<a class="headerlink" href="#networks-in-social-media" title="Permalink to this headline">#</a></h1>
 <p>The key benefit of this approach is that it affords the flexibility to study social networks by moving beyond the number of interactions people have to considering textual content, timing, and context, ultimately making use of the rich data provided from social media. [1]</p>
-<div class="section" id="entropy-based-classification-of-retweeting-activity-on-twitter-ghosh-et-al-2011-5">
-<h2>Entropy-based Classification of Retweeting Activity on Twitter (Ghosh et al., 2011)[5]<a class="headerlink" href="#entropy-based-classification-of-retweeting-activity-on-twitter-ghosh-et-al-2011-5" title="Permalink to this headline">¶</a></h2>
+<section id="entropy-based-classification-of-retweeting-activity-on-twitter-ghosh-et-al-2011-5">
+<h2>Entropy-based Classification of Retweeting Activity on Twitter (Ghosh et al., 2011)[5]<a class="headerlink" href="#entropy-based-classification-of-retweeting-activity-on-twitter-ghosh-et-al-2011-5" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>As for a specific example of how information-theoretic concepts have been successfully applied to characterize processes in social networks and social media, we can look to Ghosh et al., 2011 [5]. In their work, they sought to automatically classify different types of activity on Twitter. They had a particular interest in differentiating between retweet activity that was spam-like (e.g., a bot account that repeatedly retweets a singular tweet) vs. successful information dissemination.</p></li>
 <li><p>This might conceptually relate to the concept of mutual information, whereby in characterizing retweet activity and content, you are ultimately trying to see how much the retweet content actually gives any information about what the original tweet was. In other words, bot accounts spam-retweeting isn’t particularly informative in studying actual Twitter user behavior and information propagation.</p></li>
 <li><p><em>Problem statement</em>: manual analysis of retweeting activity is labor-intensive. Given some user-generated content or tweet, Ghosh et al. aimed to analyze the trace (the collective activity on all content) of retweeting activity on it, to understand the content of the tweet and the interaction dynamics associated with the tweet.</p></li>
 <li><p><strong>TLDR: Ghosh et al., 2011 sought how to automatically classify different types of activity on Twitter.</strong></p></li>
 </ul>
-</div>
-<div class="section" id="number-of-times-a-post-is-retweeted-as-a-function-of-time">
-<h2>Number of times a post is retweeted as a function of time<a class="headerlink" href="#number-of-times-a-post-is-retweeted-as-a-function-of-time" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="number-of-times-a-post-is-retweeted-as-a-function-of-time">
+<h2>Number of times a post is retweeted as a function of time<a class="headerlink" href="#number-of-times-a-post-is-retweeted-as-a-function-of-time" title="Permalink to this headline">#</a></h2>
 <p><img alt="fig1" src="../_images/fig1.png" />
 <img alt="fig2" src="../_images/fig2.png" /></p>
-</div>
-<div class="section" id="characterizing-activity-who-tweets-and-when">
-<h2>Characterizing activity: who tweets and when<a class="headerlink" href="#characterizing-activity-who-tweets-and-when" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="characterizing-activity-who-tweets-and-when">
+<h2>Characterizing activity: who tweets and when<a class="headerlink" href="#characterizing-activity-who-tweets-and-when" title="Permalink to this headline">#</a></h2>
 <p><img alt="fig3" src="../_images/fig3.png" />
 <img alt="fig4" src="../_images/fig4.png" />
 <img alt="fig5" src="../_images/fig5.png" /></p>
-</div>
-<div class="section" id="primary-features-found-to-be-enough-to-classify-twitter-behavior">
-<h2>2 primary features found to be enough to classify Twitter behavior<a class="headerlink" href="#primary-features-found-to-be-enough-to-classify-twitter-behavior" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="characterizing-user-diversity">
-<h3>Characterizing user diversity<a class="headerlink" href="#characterizing-user-diversity" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="primary-features-found-to-be-enough-to-classify-twitter-behavior">
+<h2>2 primary features found to be enough to classify Twitter behavior<a class="headerlink" href="#primary-features-found-to-be-enough-to-classify-twitter-behavior" title="Permalink to this headline">#</a></h2>
+<section id="characterizing-user-diversity">
+<h3>Characterizing user diversity<a class="headerlink" href="#characterizing-user-diversity" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>The retweeting behavior among different users
 <img alt="fig6" src="../_images/fig6.png" /></p></li>
 <li><p>This looks at the frequency counts as a function of user.</p></li>
 </ul>
-</div>
-<div class="section" id="characterizing-time-interval-diversity">
-<h3>Characterizing time interval diversity<a class="headerlink" href="#characterizing-time-interval-diversity" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="characterizing-time-interval-diversity">
+<h3>Characterizing time interval diversity<a class="headerlink" href="#characterizing-time-interval-diversity" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>The time in between retweeting from users (i.e., the regularity or predictability of the temporal trace of tweets)
 <img alt="fig7" src="../_images/fig7.png" /></p></li>
 <li><p>This looks at the frequency of counts as a interval gap (in seconds).</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="calculating-user-and-time-interval-entropy">
-<h2>Calculating user and time interval entropy<a class="headerlink" href="#calculating-user-and-time-interval-entropy" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="calculating-user-and-time-interval-entropy">
+<h2>Calculating user and time interval entropy<a class="headerlink" href="#calculating-user-and-time-interval-entropy" title="Permalink to this headline">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
 \text { entropy }=-\sum_{n=1}^{N} p\left(e_{n}\right) \ln p\left(e_{n}\right)
@@ -514,9 +631,9 @@ p\left(e_{n}\right)=\frac{\text { freq }\left(e_{n}\right)}{\sum_{n=1}^{N} \text
 <li><p>For user entropy, <span class="math notranslate nohighlight">\(e_{n}\)</span> is a specific user</p></li>
 <li><p>For time interval entropy, <span class="math notranslate nohighlight">\(e_{n}\)</span> is a unique interval (in sceonds)</p></li>
 </ul>
-</div>
-<div class="section" id="user-entropy">
-<h2>User entropy<a class="headerlink" href="#user-entropy" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="user-entropy">
+<h2>User entropy<a class="headerlink" href="#user-entropy" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Measures the number of times a specific user retweets some URL (specific tweet)</p></li>
 <li><p>Random variable <span class="math notranslate nohighlight">\(F\)</span> represents a distinct user in a trace <span class="math notranslate nohighlight">\(T_{j}\)</span></p></li>
@@ -532,9 +649,9 @@ H_{F}\left(\mathcal{T}_{j}\right)=-\sum_{i=1}^{n_{F}} p_{F}\left(f_{i}\right) \l
 <ul class="simple">
 <li><p>Given the equation above, spam-like activity having small number of users responsible for large number of tweets, would have lower entropy than retweeting activity of news-worthy content</p></li>
 </ul>
-</div>
-<div class="section" id="time-interval-entropy">
-<h2>Time interval entropy<a class="headerlink" href="#time-interval-entropy" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="time-interval-entropy">
+<h2>Time interval entropy<a class="headerlink" href="#time-interval-entropy" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Regularity or predictability of temporal trace of tweets</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Delta T\)</span> represents the time interval between 2 consecutives retweets in a trace <span class="math notranslate nohighlight">\(T_{j}\)</span> (a tuple representing a user, whether they retweeted, and time)</p></li>
@@ -545,9 +662,9 @@ H_{F}\left(\mathcal{T}_{j}\right)=-\sum_{i=1}^{n_{F}} p_{F}\left(f_{i}\right) \l
 \[
 p_{\Delta T}\left(\Delta t_{i}\right)=\frac{n_{\Delta t_{i}}}{\sum_{k=1}^{n_{T}} n_{\Delta t_{k}}}
 \]</div>
-</div>
-<div class="section" id="tweet-activity-in-entropy-plane">
-<h2>Tweet activity in entropy plane<a class="headerlink" href="#tweet-activity-in-entropy-plane" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="tweet-activity-in-entropy-plane">
+<h2>Tweet activity in entropy plane<a class="headerlink" href="#tweet-activity-in-entropy-plane" title="Permalink to this headline">#</a></h2>
 <p><img alt="fig8" src="../_images/fig8.png" /></p>
 <p>To interpret the above figure depicting different tweeting types in the entropy plane:</p>
 <ul class="simple">
@@ -557,9 +674,9 @@ p_{\Delta T}\left(\Delta t_{i}\right)=\frac{n_{\Delta t_{i}}}{\sum_{k=1}^{n_{T}}
 <li><p>bot activity: many individuals, few time scales</p></li>
 </ul>
 <p><img alt="user-entropy-vs-time-interval-entropy" src="https://www.isi.edu/~galstyan/icwsm13/entropy-clustering.png" /></p>
-</div>
-<div class="section" id="measuring-influence-via-information-transfer-transfer-entropy-in-social-media-ver-steeg-galstyan-2011">
-<h2>Measuring influence via information transfer (transfer entropy) in social media (Ver Steeg &amp; Galstyan, 2011)<a class="headerlink" href="#measuring-influence-via-information-transfer-transfer-entropy-in-social-media-ver-steeg-galstyan-2011" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="measuring-influence-via-information-transfer-transfer-entropy-in-social-media-ver-steeg-galstyan-2011">
+<h2>Measuring influence via information transfer (transfer entropy) in social media (Ver Steeg &amp; Galstyan, 2011)<a class="headerlink" href="#measuring-influence-via-information-transfer-transfer-entropy-in-social-media-ver-steeg-galstyan-2011" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>One important problem is the characterization and identification of influential individuals in social networks. These users are those who influence the behavior of large numbers of other users.</p></li>
 <li><p>Prior work has used centrality measures such as PageRank (PR) to determine influential individuals. PR was invented by the founders of Google(!), and it evaluates the quality and quantity of links to a webpage to determine a relative score of that page’s importance authority on a 0 to 10 scale. Its key underlying assumption is that more important websites are likely to receive more links from other websites.</p></li>
@@ -575,9 +692,9 @@ p_{\Delta T}\left(\Delta t_{i}\right)=\frac{n_{\Delta t_{i}}}{\sum_{k=1}^{n_{T}}
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="influence-via-predictability">
-<h2>Influence via predictability<a class="headerlink" href="#influence-via-predictability" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="influence-via-predictability">
+<h2>Influence via predictability<a class="headerlink" href="#influence-via-predictability" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(Y\)</span> influences <span class="math notranslate nohighlight">\(X\)</span> if <span class="math notranslate nohighlight">\(Y\)</span>’s past activity is a good predictor of <span class="math notranslate nohighlight">\(X\)</span>’s future activity</p></li>
 </ul>
@@ -596,9 +713,9 @@ p_{\Delta T}\left(\Delta t_{i}\right)=\frac{n_{\Delta t_{i}}}{\sum_{k=1}^{n_{T}}
 <p>Example:
 <img alt="fig11" src="../_images/fig11.png" /></p>
 <p><img alt="fig12" src="../_images/fig12.png" /></p>
-</div>
-<div class="section" id="hol-up-granger-has-some-stuff-to-say-1969">
-<h2>Hol’ up: Granger has some stuff to say (1969)<a class="headerlink" href="#hol-up-granger-has-some-stuff-to-say-1969" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="hol-up-granger-has-some-stuff-to-say-1969">
+<h2>Hol’ up: Granger has some stuff to say (1969)<a class="headerlink" href="#hol-up-granger-has-some-stuff-to-say-1969" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>This is a statistical hypothesis test that helps us determine whether one time series is useful in forecasting another time series.</p></li>
 <li><p><strong>Granger Causality</strong>: If a signal <span class="math notranslate nohighlight">\(Y\)</span> “Granger-causes” (or “G-causes”) a signal <span class="math notranslate nohighlight">\(X\)</span>, then past values of <span class="math notranslate nohighlight">\(Y\)</span> should contain information that helps predict <span class="math notranslate nohighlight">\(X\)</span> above and beyond the information contained in past values of <span class="math notranslate nohighlight">\(X\)</span> alone</p>
@@ -616,29 +733,29 @@ p_{\Delta T}\left(\Delta t_{i}\right)=\frac{n_{\Delta t_{i}}}{\sum_{k=1}^{n_{T}}
 <ul class="simple">
 <li><p>1 bit of information transfer from <span class="math notranslate nohighlight">\(Y\)</span> to <span class="math notranslate nohighlight">\(X\)</span> means we can use <span class="math notranslate nohighlight">\(Y\)</span> to perfectly predict the next bit of <span class="math notranslate nohighlight">\(X\)</span></p></li>
 </ul>
-</div>
-<div class="section" id="so-back-to-tweet-timing-and-transfer-entropy">
-<h2>So back to tweet timing and transfer entropy<a class="headerlink" href="#so-back-to-tweet-timing-and-transfer-entropy" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="so-back-to-tweet-timing-and-transfer-entropy">
+<h2>So back to tweet timing and transfer entropy<a class="headerlink" href="#so-back-to-tweet-timing-and-transfer-entropy" title="Permalink to this headline">#</a></h2>
 <p><img alt="fig14" src="../_images/fig14.png" /></p>
 <p><img alt="fig15" src="../_images/fig15.png" /></p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(X\)</span> is affected by <span class="math notranslate nohighlight">\(Y\)</span>, but not vice versa, this asymmetry can be captured using information transfer</p></li>
 </ul>
-</div>
-<div class="section" id="what-if-we-had-a-whole-raster-plot-several-users-and-wanted-to-know-who-influences-whom-and-what-if-we-wanted-to-recover-the-network">
-<h2>What if we had a whole raster plot (several users) and wanted to know who influences whom? And what if we wanted to recover the network?<a class="headerlink" href="#what-if-we-had-a-whole-raster-plot-several-users-and-wanted-to-know-who-influences-whom-and-what-if-we-wanted-to-recover-the-network" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="what-if-we-had-a-whole-raster-plot-several-users-and-wanted-to-know-who-influences-whom-and-what-if-we-wanted-to-recover-the-network">
+<h2>What if we had a whole raster plot (several users) and wanted to know who influences whom? And what if we wanted to recover the network?<a class="headerlink" href="#what-if-we-had-a-whole-raster-plot-several-users-and-wanted-to-know-who-influences-whom-and-what-if-we-wanted-to-recover-the-network" title="Permalink to this headline">#</a></h2>
 <p><img alt="fig16" src="../_images/fig16.png" /></p>
 <p><img alt="fig17" src="../_images/fig17.png" /></p>
 <ul class="simple">
 <li><p>Ver Steeg &amp; Galstyan, 2011 found that ~50 posts/person typically leads to perfect reconstruction of the network.</p></li>
 </ul>
-<div class="section" id="example-of-2-users-with-the-same-te">
-<h3>Example of 2 users with the same TE<a class="headerlink" href="#example-of-2-users-with-the-same-te" title="Permalink to this headline">¶</a></h3>
+<section id="example-of-2-users-with-the-same-te">
+<h3>Example of 2 users with the same TE<a class="headerlink" href="#example-of-2-users-with-the-same-te" title="Permalink to this headline">#</a></h3>
 <p><img alt="fig18" src="../_images/fig18.png" /></p>
-</div>
-</div>
-<div class="section" id="now-return-to-granger-causality">
-<h2>Now return to Granger Causality<a class="headerlink" href="#now-return-to-granger-causality" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="now-return-to-granger-causality">
+<h2>Now return to Granger Causality<a class="headerlink" href="#now-return-to-granger-causality" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Twitter time series could be # of tweets by a user in a given timeframe (e.g., tweets per day) or # of hashtags, etc.</p></li>
 <li><p>What if we wanted to calculate an influence network using Granger Causality?</p>
@@ -650,17 +767,17 @@ p_{\Delta T}\left(\Delta t_{i}\right)=\frac{n_{\Delta t_{i}}}{\sum_{k=1}^{n_{T}}
 <li><p><strong>Solution</strong>: You can magically add a sparsity term:</p></li>
 </ul>
 <p><img alt="fig19" src="../_images/fig19.png" /></p>
-</div>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><strong>Transfer entropy</strong>: how much is our uncertainty about user <span class="math notranslate nohighlight">\(X\)</span>’s future activity reduced by knowing about <span class="math notranslate nohighlight">\(Y\)</span>’s past activity?</p></li>
 <li><p><strong>Granger Causality</strong>: <span class="math notranslate nohighlight">\(Y\)</span> is “Granger-causal” to <span class="math notranslate nohighlight">\(X\)</span> if the model summing the past activity of both <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is a better predictor of <span class="math notranslate nohighlight">\(X\)</span>’s future activity than <span class="math notranslate nohighlight">\(X\)</span>’s past activity alone.</p></li>
 </ul>
 <p><img alt="fig20" src="../_images/fig20.png" /></p>
-</div>
-<div class="section" id="further-reading-referenced-materials">
-<h2>Further Reading &amp; Referenced Materials<a class="headerlink" href="#further-reading-referenced-materials" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="further-reading-referenced-materials">
+<h2>Further Reading &amp; Referenced Materials<a class="headerlink" href="#further-reading-referenced-materials" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>[1] <a class="reference external" href="https://www.isi.edu/~galstyan/icwsm13/">Information-Theoretic Tools for social Media - Greg Ver Steeg &amp; Adam Galstyan</a></p>
 <ul>
@@ -687,8 +804,8 @@ p_{\Delta T}\left(\Delta t_{i}\right)=\frac{n_{\Delta t_{i}}}{\sum_{k=1}^{n_{T}}
 <li><p>[7] <a class="reference external" href="https://www.science.org/doi/10.1126/sciadv.1501158">The dynamics of information-driven coordination phenomena: A transfer entropy analysis (Holthoefer et al., Science Advances, 2016)</a></p></li>
 <li><p>[8] <a class="reference external" href="https://www.youtube.com/watch?v=b8hzDzGWyGM">Granger Causality Explanation Video (ritvikmath)</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -712,9 +829,11 @@ p_{\Delta T}\left(\Delta t_{i}\right)=\frac{n_{\Delta t_{i}}}{\sum_{k=1}^{n_{T}}
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="complex-systems.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -730,24 +849,28 @@ p_{\Delta T}\left(\Delta t_{i}\right)=\frac{n_{\Delta t_{i}}}{\sum_{k=1}^{n_{T}}
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
