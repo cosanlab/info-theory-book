@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -686,11 +686,11 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.8234 0.0704 0.1062]
- [0.365  0.23   0.405 ]
- [0.3951 0.4306 0.1743]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3495 0.2346 0.4158]
+ [0.3122 0.4204 0.2674]
+ [0.3129 0.2282 0.4588]]
 
-(S1, S1): 0.8234		(S1, S2): 0.0704		(S1, S3): 0.1062		(S2, S1): 0.365		(S2, S2): 0.23		(S2, S3): 0.405		(S3, S1): 0.3951		(S3, S2): 0.4306		(S3, S3): 0.1743		
+(S1, S1): 0.3495		(S1, S2): 0.2346		(S1, S3): 0.4158		(S2, S1): 0.3122		(S2, S2): 0.4204		(S2, S3): 0.2674		(S3, S1): 0.3129		(S3, S2): 0.2282		(S3, S3): 0.4588		
 </pre></div>
 </div>
 <img alt="../_images/markov-properties_10_1.png" src="../_images/markov-properties_10_1.png" />
@@ -726,13 +726,13 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.2225 0.2217 0.1489 0.1169 0.2901]
- [0.1264 0.2576 0.1381 0.2129 0.265 ]
- [0.0042 0.0773 0.3626 0.2051 0.3508]
- [0.1008 0.1928 0.1749 0.2736 0.2579]
- [0.1613 0.1733 0.3011 0.3182 0.046 ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.063  0.267  0.373  0.2341 0.063 ]
+ [0.2302 0.0105 0.1157 0.297  0.3466]
+ [0.1782 0.1962 0.4341 0.0804 0.111 ]
+ [0.0281 0.1487 0.2436 0.2844 0.2952]
+ [0.1853 0.4435 0.1952 0.0859 0.0901]]
 
-(S1, S1): 0.2225		(S1, S2): 0.2217		(S1, S3): 0.1489		(S1, S4): 0.1169		(S1, S5): 0.2901		(S2, S1): 0.1264		(S2, S2): 0.2576		(S2, S3): 0.1381		(S2, S4): 0.2129		(S2, S5): 0.265		(S3, S1): 0.0042		(S3, S2): 0.0773		(S3, S3): 0.3626		(S3, S4): 0.2051		(S3, S5): 0.3508		(S4, S1): 0.1008		(S4, S2): 0.1928		(S4, S3): 0.1749		(S4, S4): 0.2736		(S4, S5): 0.2579		(S5, S1): 0.1613		(S5, S2): 0.1733		(S5, S3): 0.3011		(S5, S4): 0.3182		(S5, S5): 0.046		
+(S1, S1): 0.063		(S1, S2): 0.267		(S1, S3): 0.373		(S1, S4): 0.2341		(S1, S5): 0.063		(S2, S1): 0.2302		(S2, S2): 0.0105		(S2, S3): 0.1157		(S2, S4): 0.297		(S2, S5): 0.3466		(S3, S1): 0.1782		(S3, S2): 0.1962		(S3, S3): 0.4341		(S3, S4): 0.0804		(S3, S5): 0.111		(S4, S1): 0.0281		(S4, S2): 0.1487		(S4, S3): 0.2436		(S4, S4): 0.2844		(S4, S5): 0.2952		(S5, S1): 0.1853		(S5, S2): 0.4435		(S5, S3): 0.1952		(S5, S4): 0.0859		(S5, S5): 0.0901		
 </pre></div>
 </div>
 <img alt="../_images/markov-properties_11_1.png" src="../_images/markov-properties_11_1.png" />
@@ -774,15 +774,15 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[1.     0.     0.    ]
- [0.2488 0.2503 0.501 ]
- [0.2782 0.0522 0.6696]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.454  0.27   0.276 ]
+ [0.     1.     0.    ]
+ [0.3013 0.6377 0.061 ]]
 
-(S1, S1): 1.0		(S2, S1): 0.2488		(S2, S2): 0.2503		(S2, S3): 0.501		(S3, S1): 0.2782		(S3, S2): 0.0522		(S3, S3): 0.6696		
+(S1, S1): 0.454		(S1, S2): 0.27		(S1, S3): 0.276		(S2, S2): 1.0		(S3, S1): 0.3013		(S3, S2): 0.6377		(S3, S3): 0.061		
 </pre></div>
 </div>
 <img alt="../_images/markov-properties_14_1.png" src="../_images/markov-properties_14_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S1 is the Absorbing State.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S2 is the Absorbing State.
 </pre></div>
 </div>
 <img alt="../_images/markov-properties_14_3.png" src="../_images/markov-properties_14_3.png" />
