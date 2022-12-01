@@ -426,108 +426,108 @@ S_{t+\Delta t} &amp;= \begin{bmatrix}s_{i,t+\Delta t}\end{bmatrix}\\
 <p><br/>Simply put, a network of such events, connected by directed edges whose strength are the probabilities, is called a ‘Markov Chain’.</p>
 <br/><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Libraries</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Initialize Libraries
+import numpy as np
+from matplotlib import pyplot as plt
+import networkx as nx
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function calculates and collects all the states for the Markov Process</span>
-<span class="k">def</span> <span class="nf">solve_for_markov_process</span><span class="p">(</span><span class="n">init_state</span><span class="p">,</span> <span class="n">transition_mat</span><span class="p">,</span> <span class="n">iterate_len</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">convergence_rounding</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="n">init_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">init_state</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">();</span>
-    <span class="n">transition_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">transition_mat</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
-    <span class="n">sz</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">init_state</span><span class="p">);</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">init_state</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">transition_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span> <span class="k">return</span> <span class="p">[];</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Function calculates and collects all the states for the Markov Process
+def solve_for_markov_process(init_state, transition_mat, iterate_len=0, convergence_rounding=5):
+    init_state = np.asarray(init_state).ravel();
+    transition_mat = np.asmatrix(transition_mat).T;
+    sz = len(init_state);
+    if len(init_state) != np.unique(transition_mat.shape): return [];
     
-    <span class="c1"># Iterate over the states if specific number of steps are provided...</span>
-    <span class="k">if</span> <span class="n">iterate_len</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">sn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">iterate_len</span><span class="p">,</span><span class="n">sz</span><span class="p">]);</span>
-        <span class="n">sn</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">init_state</span><span class="p">;</span>
-        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">iterate_len</span><span class="p">):</span>
-            <span class="n">sn</span><span class="p">[</span><span class="n">state</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sn</span><span class="p">[</span><span class="n">state</span><span class="o">-</span><span class="mi">1</span><span class="p">,:])</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">el</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
-                <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">transition_mat</span>
-            <span class="p">]);</span>
-        <span class="k">return</span> <span class="n">sn</span><span class="p">;</span>
+    # Iterate over the states if specific number of steps are provided...
+    if iterate_len &gt; 0:
+        sn = np.zeros([iterate_len,sz]);
+        sn[0,:] = init_state;
+        for state in np.arange(1,iterate_len):
+            sn[state,:] = np.asarray([
+                np.dot(np.asarray(sn[state-1,:]).ravel(),np.asarray(el).ravel())
+                for el in transition_mat
+            ]);
+        return sn;
     
-    <span class="c1"># Iterate over the states until convergence is reached...</span>
-    <span class="n">sn</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="n">sn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">init_state</span><span class="p">);</span>
-    <span class="n">factval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span>
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span><span class="o">&gt;</span><span class="n">factval</span><span class="p">:</span>
-            <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">factval</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-            <span class="n">idy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">factval</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">sn</span><span class="p">[(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span><span class="o">-</span><span class="n">factval</span><span class="p">):</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)])</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-                <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">sn</span><span class="p">[(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span><span class="o">-</span><span class="n">factval</span><span class="o">-</span><span class="mi">1</span><span class="p">):(</span><span class="nb">len</span><span class="p">(</span><span class="n">sn</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
-            <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">convergence_rounding</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">break</span><span class="p">;</span>
-        <span class="n">sn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sn</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">el</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
-            <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">transition_mat</span>
-        <span class="p">]));</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sn</span><span class="p">);</span>
+    # Iterate over the states until convergence is reached...
+    sn = [];
+    sn.append(init_state);
+    factval = np.math.factorial(sz);
+    while True:
+        if len(sn)&gt;factval:
+            idx = np.sort(len(sn) - np.arange(factval) - 1);
+            idy = np.sort(len(sn) - np.arange(factval) - 2);
+            if np.round(np.mean(
+                np.asmatrix(sn[(len(sn)-factval):len(sn)]).ravel()
+                - np.asmatrix(sn[(len(sn)-factval-1):(len(sn)-1)]).ravel(),
+            axis=0), convergence_rounding).all() == 0:
+                break;
+        sn.append(np.asarray([
+            np.dot(np.asarray(sn[-1]).ravel(),np.asarray(el).ravel())
+            for el in transition_mat
+        ]));
+    return np.asarray(sn);
 
-<span class="c1"># Plots all Markov States based on the &#39;solve_for_markov_process()&#39; function</span>
-<span class="k">def</span> <span class="nf">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-    <span class="n">sn</span> <span class="o">=</span> <span class="n">solve_for_markov_process</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sn</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]);</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;S_0 = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">S_n = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sn</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:],</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+# Plots all Markov States based on the &#39;solve_for_markov_process()&#39; function
+def plot_markov_states(s0, p):
+    sn = solve_for_markov_process(s0, p);
+    plt.plot(sn, linewidth=2);
+    plt.ylim([0,1]);
+    plt.title(f&#39;S_0 = {np.round(s0,3)}\nS_n = {np.round(np.asarray(sn)[-1,:],3)}&#39;);
+    plt.grid();
 
-<span class="c1"># Draw/Plot the Markov Chain based on the Transfer Matrix (P)</span>
-<span class="k">def</span> <span class="nf">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">layout_type</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">print_prob</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">));</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+# Draw/Plot the Markov Chain based on the Transfer Matrix (P)
+def draw_markov_chain(p, layout_type=0, print_prob=True):
+    fig = plt.figure(figsize=(10,7));
+    ax = fig.add_subplot(111, aspect=&#39;equal&#39;);
 
-    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-    <span class="k">if</span> <span class="n">layout_type</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">planar_layout</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
-    <span class="k">elif</span> <span class="n">layout_type</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">kamada_kawai_layout</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
-    <span class="k">else</span><span class="p">:</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
-    <span class="k">if</span> <span class="n">print_prob</span><span class="p">:</span>
-        <span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(S</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">, S</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">): </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">edge</span><span class="p">],</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">()];</span>
+    G = nx.DiGraph(p);
+    if layout_type==1: pos = nx.planar_layout(G);
+    elif layout_type==2: pos = nx.kamada_kawai_layout(G);
+    else: pos = nx.circular_layout(G);
+    if print_prob:
+        [print(f&#39;(S{edge[0]+1}, S{edge[1]+1}): {np.round(p[edge],4)}&#39;, end=&#39;\t\t&#39;) for edge in G.edges()];
 
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
-        <span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span>
-        <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">*</span><span class="mf">2.5</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">()]),</span>
-        <span class="n">node_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">font_color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
-        <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;S</span><span class="si">{</span><span class="n">node</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()},</span>
-        <span class="n">connectionstyle</span><span class="o">=</span><span class="s1">&#39;arc3, rad=0.15&#39;</span>
-    <span class="p">);</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+    nx.draw(
+        G, pos,
+        edge_color=&#39;black&#39;, linewidths=1, width=np.asarray([G[i][j][&#39;weight&#39;]*2.5 for i,j in G.edges()]),
+        node_size=500, node_color=&#39;k&#39;, alpha=0.9, font_color=&#39;w&#39;,
+        labels={node: f&#39;S{node+1}&#39; for node in G.nodes()},
+        connectionstyle=&#39;arc3, rad=0.15&#39;
+    );
+    plt.axis(&#39;off&#39;);
 
-    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
-    <span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">;</span>
+    fig.tight_layout(pad=3);
+    plt.show();
+    del fig, ax;
 
-<span class="c1"># Get Probabilities of State ending in an Absorbing State:</span>
-<span class="k">def</span> <span class="nf">get_p2as_prob</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="n">as_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">p</span><span class="o">==</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>               <span class="c1"># Absorbing States (AS)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">as_s</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]);</span>   <span class="c1"># Check if P is Absorbing</span>
+# Get Probabilities of State ending in an Absorbing State:
+def get_p2as_prob(p):
+    as_s = np.where(p==1)[0];               # Absorbing States (AS)
+    if len(as_s)==0: return np.array([]);   # Check if P is Absorbing
     
-    <span class="c1"># Get the Non-Absorbing States (NAS)</span>
-    <span class="n">nas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">as_s</span><span class="p">);</span>
-    <span class="n">reorder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">as_s</span><span class="p">),</span> <span class="n">nas</span><span class="p">);</span>
+    # Get the Non-Absorbing States (NAS)
+    nas = np.setdiff1d(np.arange(p.shape[0]), as_s);
+    reorder = np.append(np.asarray(as_s), nas);
     
-    <span class="c1"># Record the Sub-Matrices:</span>
-    <span class="n">I_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">as_s</span><span class="p">));</span>
-    <span class="n">R</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">nas</span><span class="p">,</span><span class="n">as_s</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
-    <span class="n">Q_n</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">nas</span><span class="p">,</span><span class="n">nas</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
+    # Record the Sub-Matrices:
+    I_m = np.eye(len(as_s));
+    R = p[np.meshgrid(nas,as_s)].T;
+    Q_n = p[np.meshgrid(nas,nas)].T;
     
-    <span class="c1"># Calculate the NAS to AS probabilities</span>
-    <span class="n">I_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nas</span><span class="p">));</span>
-    <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">I_n</span><span class="o">-</span><span class="n">Q_n</span><span class="p">);</span>
-    <span class="n">nas2as</span> <span class="o">=</span> <span class="n">F</span> <span class="o">*</span> <span class="n">R</span><span class="p">;</span>
+    # Calculate the NAS to AS probabilities
+    I_n = np.eye(len(nas));
+    F = np.linalg.inv(I_n-Q_n);
+    nas2as = F * R;
     
-    <span class="c1"># Return All-to-AS probabilities</span>
-    <span class="n">all2as</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">I_m</span><span class="p">,</span> <span class="n">nas2as</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">all2as</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">reorder</span><span class="p">),:];</span>
+    # Return All-to-AS probabilities
+    all2as = np.concatenate((I_m, nas2as), axis=0);
+    return all2as[np.argsort(reorder),:];
 </pre></div>
 </div>
 </div>
@@ -556,11 +556,11 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <p>Let’s simulate this part…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]);</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([[</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.7</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>s0 = np.asarray([0.8, 0.2]);
+p = np.asmatrix([[0.3,0.7],[1,0]]);
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
-<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">layout_type</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+print(f&#39;P = {np.round(p,4)}\n&#39;);
+draw_markov_chain(p, layout_type=1);
 </pre></div>
 </div>
 </div>
@@ -577,16 +577,16 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The function &#39;solve_for_markov_process&#39; calculates all transitions</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;All state transitions:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">solve_for_markov_process</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">));</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># The function &#39;solve_for_markov_process&#39; calculates all transitions
+print(&#39;All state transitions:\n&#39;);
+print(solve_for_markov_process(s0, p));
 
-<span class="c1"># The function &#39;plot_markov_states&#39; plots all &#39;solve_for_markov_process&#39; outputs</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">));</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">);</span>
-<span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
-<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">;</span>
+# The function &#39;plot_markov_states&#39; plots all &#39;solve_for_markov_process&#39; outputs
+fig = plt.figure(figsize=(8,5));
+ax = fig.add_subplot(111);
+plot_markov_states(s0, p);
+plt.show();
+del fig, ax;
 </pre></div>
 </div>
 </div>
@@ -636,20 +636,20 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <p>Such states, <span class="math notranslate nohighlight">\(S_S\)</span>, are called <strong>Steady States</strong>. All transfer matrices (<span class="math notranslate nohighlight">\(P\)</span>) which end in such states are called <strong>Regular Markov chains</strong>. These markov chains have a property where the chain will converge at the Steady State no matter what the initial state (<span class="math notranslate nohighlight">\(S_0\)</span>) is.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">10</span><span class="p">));</span>
-<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
-    <span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
-    <span class="n">s0</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s0</span><span class="p">);</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">el</span><span class="p">);</span>
-    <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-<span class="k">del</span> <span class="n">el</span><span class="p">;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = plt.figure(figsize=(13,10));
+for el in np.arange(4)+1:
+    s0 = np.absolute(np.random.random(p.shape[0]));
+    s0 /= np.sum(s0);
+    ax = fig.add_subplot(3,2,el);
+    plot_markov_states(s0, p);
+del el;
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="n">p</span><span class="p">);</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">);</span>
+ax = fig.add_subplot(3,2,5); plot_markov_states(np.array([0,1]), p);
+ax = fig.add_subplot(3,2,6); plot_markov_states(np.array([1,1])/p.shape[0], p);
 
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
-<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">s0</span><span class="p">;</span>
+fig.tight_layout(pad=3);
+plt.show();
+del fig, ax, s0;
 </pre></div>
 </div>
 </div>
@@ -660,37 +660,37 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <p><br/><big>This holds true for most real-life markov chain models, no matter the size of the model. For example:</big></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Size-3 Markov Chains:</span>
-<span class="n">sz</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Size-3 Markov Chains:
+sz = 3;
 
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
-<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+p = np.absolute(np.random.random([sz,sz]));
+p = np.asmatrix([el/np.sum(el) for el in p]);
+print(f&#39;P = {np.round(p,4)}\n&#39;);
+draw_markov_chain(p);
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">10</span><span class="p">));</span>
-<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
-    <span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
-    <span class="n">s0</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s0</span><span class="p">);</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">el</span><span class="p">);</span>
-    <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-<span class="k">del</span> <span class="n">el</span><span class="p">;</span>
+fig = plt.figure(figsize=(13,10));
+for el in np.arange(4)+1:
+    s0 = np.absolute(np.random.random(p.shape[0]));
+    s0 /= np.sum(s0);
+    ax = fig.add_subplot(3,2,el);
+    plot_markov_states(s0, p);
+del el;
 
-<span class="n">ax7</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="n">p</span><span class="p">);</span>
-<span class="n">ax8</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+ax7 = fig.add_subplot(3,2,5); plot_markov_states(np.array([0,0,1]), p);
+ax8 = fig.add_subplot(3,2,6); plot_markov_states(np.array([1,1,1])/3, p);
 
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
-<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">s0</span><span class="p">,</span> <span class="n">sz</span><span class="p">;</span>
+fig.tight_layout(pad=3);
+plt.show();
+del fig, ax, s0, sz;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3209 0.4888 0.1903]
- [0.4653 0.4346 0.1002]
- [0.1592 0.1281 0.7127]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.7274 0.2458 0.0268]
+ [0.4362 0.2784 0.2853]
+ [0.6293 0.2602 0.1105]]
 
-(S1, S1): 0.3209		(S1, S2): 0.4888		(S1, S3): 0.1903		(S2, S1): 0.4653		(S2, S2): 0.4346		(S2, S3): 0.1002		(S3, S1): 0.1592		(S3, S2): 0.1281		(S3, S3): 0.7127		
+(S1, S1): 0.7274		(S1, S2): 0.2458		(S1, S3): 0.0268		(S2, S1): 0.4362		(S2, S2): 0.2784		(S2, S3): 0.2853		(S3, S1): 0.6293		(S3, S2): 0.2602		(S3, S3): 0.1105		
 </pre></div>
 </div>
 <img alt="../_images/markov-properties_10_1.png" src="../_images/markov-properties_10_1.png" />
@@ -699,40 +699,40 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Size-5 Markov Chains:</span>
-<span class="n">sz</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Size-5 Markov Chains:
+sz = 5;
 
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
-<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+p = np.absolute(np.random.random([sz,sz]));
+p = np.asmatrix([el/np.sum(el) for el in p]);
+print(f&#39;P = {np.round(p,4)}\n&#39;);
+draw_markov_chain(p);
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">8</span><span class="p">));</span>
-<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
-    <span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">sz</span><span class="p">));</span>
-    <span class="n">s0</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s0</span><span class="p">);</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">el</span><span class="p">);</span>
-    <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-<span class="k">del</span> <span class="n">el</span><span class="p">;</span>
+fig = plt.figure(figsize=(13,8));
+for el in np.arange(2)+1:
+    s0 = np.absolute(np.random.random(sz));
+    s0 /= np.sum(s0);
+    ax = fig.add_subplot(2,2,el);
+    plot_markov_states(s0, p);
+del el;
 
-<span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span> <span class="n">s0</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">sz</span><span class="p">))]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">sz</span><span class="p">)</span><span class="o">/</span><span class="n">sz</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+s0 = np.zeros(sz); s0[np.random.choice(np.arange(sz))] = 1;
+ax = fig.add_subplot(2,2,3); plot_markov_states(s0, p);
+ax = fig.add_subplot(2,2,4); plot_markov_states(np.ones(sz)/sz, p);
 
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
-<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">s0</span><span class="p">,</span> <span class="n">sz</span><span class="p">;</span>
+fig.tight_layout(pad=3);
+plt.show();
+del fig, ax, s0, sz;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.045  0.0678 0.1309 0.4545 0.3017]
- [0.1773 0.187  0.2128 0.3242 0.0987]
- [0.0244 0.4663 0.2009 0.1803 0.1281]
- [0.2404 0.2036 0.3387 0.1897 0.0277]
- [0.2281 0.158  0.185  0.1547 0.2742]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.2133 0.1961 0.2426 0.1444 0.2036]
+ [0.1829 0.2711 0.1961 0.2965 0.0534]
+ [0.3003 0.0606 0.1921 0.4444 0.0026]
+ [0.2542 0.2489 0.282  0.1532 0.0617]
+ [0.4665 0.0852 0.1797 0.229  0.0396]]
 
-(S1, S1): 0.045		(S1, S2): 0.0678		(S1, S3): 0.1309		(S1, S4): 0.4545		(S1, S5): 0.3017		(S2, S1): 0.1773		(S2, S2): 0.187		(S2, S3): 0.2128		(S2, S4): 0.3242		(S2, S5): 0.0987		(S3, S1): 0.0244		(S3, S2): 0.4663		(S3, S3): 0.2009		(S3, S4): 0.1803		(S3, S5): 0.1281		(S4, S1): 0.2404		(S4, S2): 0.2036		(S4, S3): 0.3387		(S4, S4): 0.1897		(S4, S5): 0.0277		(S5, S1): 0.2281		(S5, S2): 0.158		(S5, S3): 0.185		(S5, S4): 0.1547		(S5, S5): 0.2742		
+(S1, S1): 0.2133		(S1, S2): 0.1961		(S1, S3): 0.2426		(S1, S4): 0.1444		(S1, S5): 0.2036		(S2, S1): 0.1829		(S2, S2): 0.2711		(S2, S3): 0.1961		(S2, S4): 0.2965		(S2, S5): 0.0534		(S3, S1): 0.3003		(S3, S2): 0.0606		(S3, S3): 0.1921		(S3, S4): 0.4444		(S3, S5): 0.0026		(S4, S1): 0.2542		(S4, S2): 0.2489		(S4, S3): 0.282		(S4, S4): 0.1532		(S4, S5): 0.0617		(S5, S1): 0.4665		(S5, S2): 0.0852		(S5, S3): 0.1797		(S5, S4): 0.229		(S5, S5): 0.0396		
 </pre></div>
 </div>
 <img alt="../_images/markov-properties_11_1.png" src="../_images/markov-properties_11_1.png" />
@@ -746,43 +746,43 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <p>Let’s take the example of Size-3 Markov chain from earlier, and make one state absorbing…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sz</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">abs_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sz = 3; abs_state = np.random.choice(sz);
 
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
-<span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,</span><span class="n">abs_state</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
-<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">layout_type</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;That is, S</span><span class="si">{</span><span class="n">abs_state</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> is the Absorbing State.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
+p = np.absolute(np.random.random([sz,sz]));
+p = np.asmatrix([el/np.sum(el) for el in p]);
+p[abs_state,:] = 0; p[abs_state,abs_state] = 1;
+print(f&#39;P = {np.round(p,4)}\n&#39;);
+draw_markov_chain(p, layout_type=1);
+print(f&#39;That is, S{abs_state+1} is the Absorbing State.\n&#39;);
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">7</span><span class="p">));</span>
-<span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
-    <span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
-    <span class="n">s0</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s0</span><span class="p">);</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">el</span><span class="p">);</span>
-    <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-<span class="k">del</span> <span class="n">el</span><span class="p">;</span>
+fig = plt.figure(figsize=(13,7));
+for el in np.arange(3)+1:
+    s0 = np.absolute(np.random.random(p.shape[0]));
+    s0 /= np.sum(s0);
+    ax = fig.add_subplot(2,2,el);
+    plot_markov_states(s0, p);
+del el;
 
-<span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-<span class="n">s0</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">abs_state</span><span class="p">))]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span> <span class="n">plot_markov_states</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+s0 = np.zeros(p.shape[0]);
+s0[np.random.choice(np.setdiff1d(np.arange(p.shape[0]),abs_state))]=1;
+ax = fig.add_subplot(2,2,4); plot_markov_states(s0, p);
 
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
-<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">s0</span><span class="p">,</span> <span class="n">sz</span><span class="p">,</span> <span class="n">abs_state</span><span class="p">;</span>
+fig.tight_layout(pad=3);
+plt.show();
+del fig, ax, s0, sz, abs_state;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[1.     0.     0.    ]
- [0.1415 0.4114 0.447 ]
- [0.4223 0.562  0.0157]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.1898 0.3339 0.4763]
+ [0.     1.     0.    ]
+ [0.4006 0.466  0.1334]]
 
-(S1, S1): 1.0		(S2, S1): 0.1415		(S2, S2): 0.4114		(S2, S3): 0.447		(S3, S1): 0.4223		(S3, S2): 0.562		(S3, S3): 0.0157		
+(S1, S1): 0.1898		(S1, S2): 0.3339		(S1, S3): 0.4763		(S2, S2): 1.0		(S3, S1): 0.4006		(S3, S2): 0.466		(S3, S3): 0.1334		
 </pre></div>
 </div>
 <img alt="../_images/markov-properties_14_1.png" src="../_images/markov-properties_14_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S1 is the Absorbing State.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S2 is the Absorbing State.
 </pre></div>
 </div>
 <img alt="../_images/markov-properties_14_3.png" src="../_images/markov-properties_14_3.png" />
@@ -795,42 +795,42 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <p>Let’s try this out for the problem above. We already know what the Markov Chain looks like…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Absorbing States (AS)</span>
-<span class="n">as_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">p</span><span class="o">==</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Absorbing States (AS)
+as_s = np.where(p==1)[0];
 
-<span class="c1"># Get the Non-Absorbing States (NAS)</span>
-<span class="n">nas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">as_s</span><span class="p">);</span>
+# Get the Non-Absorbing States (NAS)
+nas = np.setdiff1d(np.arange(p.shape[0]), as_s);
 
-<span class="c1"># Reorder the matrix to get the form for Absorbing Transfer Matrix:</span>
-<span class="n">reorder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">as_s</span><span class="p">),</span> <span class="n">nas</span><span class="p">);</span>
-<span class="n">p_absorbing</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">reorder</span><span class="p">,</span><span class="n">reorder</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
+# Reorder the matrix to get the form for Absorbing Transfer Matrix:
+reorder = np.append(np.asarray(as_s), nas);
+p_absorbing = p[np.meshgrid(reorder,reorder)].T;
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">P-Absorbing (re-ordered P):</span><span class="se">\n</span><span class="si">{</span><span class="n">p_absorbing</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+print(f&#39;\nP-Absorbing (re-ordered P):\n{p_absorbing}&#39;);
 
-<span class="c1"># Storing the Sub-Matrices:</span>
-<span class="n">I_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">as_s</span><span class="p">));</span>
-<span class="n">R</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">nas</span><span class="p">,</span><span class="n">as_s</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
-<span class="n">Q_n</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">nas</span><span class="p">,</span><span class="n">nas</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
+# Storing the Sub-Matrices:
+I_m = np.eye(len(as_s));
+R = p[np.meshgrid(nas,as_s)].T;
+Q_n = p[np.meshgrid(nas,nas)].T;
 
-<span class="c1"># Calculate the NAS to AS probabilities</span>
-<span class="n">I_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nas</span><span class="p">));</span>
-<span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">I_n</span><span class="o">-</span><span class="n">Q_n</span><span class="p">);</span>
-<span class="n">nas2as</span> <span class="o">=</span> <span class="n">F</span> <span class="o">*</span> <span class="n">R</span><span class="p">;</span>
+# Calculate the NAS to AS probabilities
+I_n = np.eye(len(nas));
+F = np.linalg.inv(I_n-Q_n);
+nas2as = F * R;
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Probabilities that NAS will end up in AS: (re-ordered list)</span><span class="se">\n</span><span class="si">{</span><span class="n">nas2as</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+print(f&#39;\nProbabilities that NAS will end up in AS: (re-ordered list)\n{nas2as}&#39;);
 
-<span class="c1"># Add AS-to-AS with NAS-to-AS probabilities</span>
-<span class="n">all2as</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">I_m</span><span class="p">,</span> <span class="n">nas2as</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+# Add AS-to-AS with NAS-to-AS probabilities
+all2as = np.concatenate((I_m, nas2as), axis=0);
 
-<span class="c1"># Re-arrange all the values according to the list of the States:</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">All arranged probabilities:</span><span class="se">\n</span><span class="si">{</span><span class="n">all2as</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">reorder</span><span class="p">),:]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+# Re-arrange all the values according to the list of the States:
+print(f&#39;\nAll arranged probabilities:\n{all2as[np.argsort(reorder),:]}&#39;);
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Reorder the matrix to get the form for Absorbing Transfer Matrix:</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">reorder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">as_s</span><span class="p">),</span> <span class="n">nas</span><span class="p">);</span>
 <span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">p_absorbing</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">reorder</span><span class="p">,</span><span class="n">reorder</span><span class="p">)]</span><span class="o">.</span><span class="n">T</span><span class="p">;</span>
@@ -865,14 +865,14 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
     The calculations reflect those from the function <i>get_p2as_prob( )</i><br/>
 </big><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sz</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">abs_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
-<span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,</span><span class="n">abs_state</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sz = 5; abs_state = np.random.choice(sz);
+p = np.absolute(np.random.random([sz,sz]));
+p = np.asmatrix([el/np.sum(el) for el in p]);
+p[abs_state,:] = 0; p[abs_state,abs_state] = 1;
 
-<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">print_prob</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
-<span class="n">p2as</span> <span class="o">=</span> <span class="n">get_p2as_prob</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">p2as</span><span class="p">);</span>
+draw_markov_chain(p, print_prob=False);
+p2as = get_p2as_prob(p);
+print(p2as);
 </pre></div>
 </div>
 </div>
@@ -892,14 +892,14 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
     &emsp;&emsp;&emsp;Note that the list is all 1's because only 1 Absorbing State (AS) exists in this case. What if more were added? Given below, are examples with 2 and 3 absorbing states. Notice that the probabilities of escaping these states is 0, i.e. if one begins from an AS, they cannot transition out of the state...
 </big><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sz</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">abs_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sz</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
-<span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,</span><span class="n">abs_state</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sz = 5; abs_state = np.random.choice(sz, 2, replace=False);
+p = np.absolute(np.random.random([sz,sz]));
+p = np.asmatrix([el/np.sum(el) for el in p]);
+p[abs_state,:] = 0; p[abs_state,abs_state] = 1;
 
-<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">print_prob</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
-<span class="n">p2as</span> <span class="o">=</span> <span class="n">get_p2as_prob</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">p2as</span><span class="p">);</span>
+draw_markov_chain(p, print_prob=False);
+p2as = get_p2as_prob(p);
+print(p2as);
 </pre></div>
 </div>
 </div>
@@ -916,14 +916,14 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sz</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span> <span class="n">abs_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sz</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="n">sz</span><span class="p">,</span><span class="n">sz</span><span class="p">]));</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">([</span><span class="n">el</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">p</span><span class="p">]);</span>
-<span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p</span><span class="p">[</span><span class="n">abs_state</span><span class="p">,</span><span class="n">abs_state</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sz = 11; abs_state = np.random.choice(sz, 3, replace=False);
+p = np.absolute(np.random.random([sz,sz]));
+p = np.asmatrix([el/np.sum(el) for el in p]);
+p[abs_state,:] = 0; p[abs_state,abs_state] = 1;
 
-<span class="n">draw_markov_chain</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">print_prob</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
-<span class="n">p2as</span> <span class="o">=</span> <span class="n">get_p2as_prob</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">p2as</span><span class="p">);</span>
+draw_markov_chain(p, print_prob=False);
+p2as = get_p2as_prob(p);
+print(p2as);
 </pre></div>
 </div>
 </div>
