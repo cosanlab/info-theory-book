@@ -410,152 +410,152 @@ title="Print to PDF"
 <h2>Run the cell below to download data and prepare our environment!<a class="headerlink" href="#run-the-cell-below-to-download-data-and-prepare-our-environment" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#file imports
-import nltk
-from nltk.corpus import words as wordlist
-import re
-import pandas
-from collections import Counter
-import matplotlib.pyplot as plt
-import numpy as np
-import random
-import os
-from IPython.display import HTML, display
-import string
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#file imports</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">words</span> <span class="k">as</span> <span class="n">wordlist</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">string</span>
 
-#set random seed and download corpora
-os.environ[&#39;PYTHONHASHSEED&#39;] = &#39;0&#39;
-nltk.download(&#39;words&#39;)
-nltk.download(&#39;gutenberg&#39;)
+<span class="c1">#set random seed and download corpora</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PYTHONHASHSEED&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;words&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;gutenberg&#39;</span><span class="p">)</span>
 
-#make sure the display fits the width of the page
-def set_css():
-  display(HTML(&#39;&#39;&#39;
-  &lt;style&gt;
-    pre {
-        white-space: pre-wrap;
-    }
-  &lt;/style&gt;
-  &#39;&#39;&#39;))
-get_ipython().events.register(&#39;pre_run_cell&#39;, set_css)
+<span class="c1">#make sure the display fits the width of the page</span>
+<span class="k">def</span> <span class="nf">set_css</span><span class="p">():</span>
+  <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">  &lt;style&gt;</span>
+<span class="s1">    pre {</span>
+<span class="s1">        white-space: pre-wrap;</span>
+<span class="s1">    }</span>
+<span class="s1">  &lt;/style&gt;</span>
+<span class="s1">  &#39;&#39;&#39;</span><span class="p">))</span>
+<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;pre_run_cell&#39;</span><span class="p">,</span> <span class="n">set_css</span><span class="p">)</span>
 
-def get_letter_distribution(text, plot=False, title=&#39;&#39;, zipfian=False):
-  text = re.sub(r&#39;[^a-z]&#39;, &#39;&#39;, text.lower())
-  letter_counts = Counter(sorted(text))
-  if plot:
-    if zipfian:
-      letters, vals = zip(*letter_counts.most_common())
-      letters = np.array(letters)
-      vals = np.array(vals).astype(&#39;float64&#39;)
-      vals /= sum(vals)
-      plt.bar(letters, vals)
-    else:
-      plt.bar(letter_counts.keys(), np.array(list(letter_counts.values()))/len(text))
-    plt.ylim([0,0.2])
-    plt.xlabel(&#39;letter&#39;)
-    plt.ylabel(&#39;percentage of all letters&#39;)
-    plt.title(title)
-    plt.show()
-  return letter_counts
+<span class="k">def</span> <span class="nf">get_letter_distribution</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">zipfian</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+  <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-z]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+  <span class="n">letter_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+  <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">zipfian</span><span class="p">:</span>
+      <span class="n">letters</span><span class="p">,</span> <span class="n">vals</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">letter_counts</span><span class="o">.</span><span class="n">most_common</span><span class="p">())</span>
+      <span class="n">letters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">letters</span><span class="p">)</span>
+      <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+      <span class="n">vals</span> <span class="o">/=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+      <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">letters</span><span class="p">,</span> <span class="n">vals</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">letter_counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">letter_counts</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;letter&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;percentage of all letters&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+  <span class="k">return</span> <span class="n">letter_counts</span>
 
-alphabet = list(string.ascii_lowercase)
-random.shuffle(alphabet)
-cipher = dict(zip(sorted(alphabet), alphabet))
-for letter in alphabet:
-  cipher[letter.upper()] = cipher[letter].upper()
+<span class="n">alphabet</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)</span>
+<span class="n">cipher</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">alphabet</span><span class="p">),</span> <span class="n">alphabet</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+  <span class="n">cipher</span><span class="p">[</span><span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 
-original_quote = nltk.corpus.gutenberg.raw(nltk.corpus.gutenberg.fileids()[1])
-encrypted_quote = &#39;&#39;
-for letter in original_quote:
-  if letter in cipher.keys():
-    encrypted_quote+=(cipher[letter])
-  else:
-    encrypted_quote+=(letter)
+<span class="n">original_quote</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">fileids</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">encrypted_quote</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">original_quote</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">cipher</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">encrypted_quote</span><span class="o">+=</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">])</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">encrypted_quote</span><span class="o">+=</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
 
-def decrypt(encrypted_quote, reverse_cipher):
-  unencrypted_quote = &#39;&#39;
-  for letter in encrypted_quote:
-    if letter in reverse_cipher.keys():
-      unencrypted_quote+=(reverse_cipher[letter])
-    else:
-      unencrypted_quote+=(letter)
-  return unencrypted_quote
+<span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">encrypted_quote</span><span class="p">,</span> <span class="n">reverse_cipher</span><span class="p">):</span>
+  <span class="n">unencrypted_quote</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+  <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">encrypted_quote</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">reverse_cipher</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+      <span class="n">unencrypted_quote</span><span class="o">+=</span><span class="p">(</span><span class="n">reverse_cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">unencrypted_quote</span><span class="o">+=</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">unencrypted_quote</span>
 
-def fix_single_letter_words(encrypted_quote, reverse_cipher):
-  single_letter_words = []
-  for word in re.sub(r&#39;[^a-zA-Z ]&#39;, &#39;&#39;, encrypted_quote.lower()).split():
-    if len(word) == 1:
-      single_letter_words.append(word)
-  (first, count1), (second, count2) = Counter(single_letter_words).most_common()[0:2]  
-  if reverse_cipher[first] != &#39;a&#39;:
-    for letter in reverse_cipher.keys():
-      if reverse_cipher[letter] == &#39;a&#39;:
-        reverse_cipher[letter] = reverse_cipher[first]
-      if reverse_cipher[letter] == &#39;A&#39;:
-        reverse_cipher[letter] = reverse_cipher[first].upper()
-    reverse_cipher[first] = &#39;a&#39;
-    reverse_cipher[first.upper()] = &#39;A&#39;
-  if reverse_cipher[second] != &#39;i&#39;:
-    for letter in reverse_cipher.keys():
-      if reverse_cipher[letter] == &#39;i&#39;:
-        reverse_cipher[letter] = reverse_cipher[second]
-      if reverse_cipher[letter] == &#39;I&#39;:
-        reverse_cipher[letter] = reverse_cipher[second].upper()
-    reverse_cipher[second] = &#39;i&#39;
-    reverse_cipher[second.upper()] = &#39;I&#39;
-  return reverse_cipher
+<span class="k">def</span> <span class="nf">fix_single_letter_words</span><span class="p">(</span><span class="n">encrypted_quote</span><span class="p">,</span> <span class="n">reverse_cipher</span><span class="p">):</span>
+  <span class="n">single_letter_words</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-zA-Z ]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encrypted_quote</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="n">single_letter_words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+  <span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">count1</span><span class="p">),</span> <span class="p">(</span><span class="n">second</span><span class="p">,</span> <span class="n">count2</span><span class="p">)</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">single_letter_words</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>  
+  <span class="k">if</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">first</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">reverse_cipher</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+      <span class="k">if</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span>
+        <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">first</span><span class="p">]</span>
+      <span class="k">if</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span>
+        <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">first</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">first</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
+    <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">first</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span>
+  <span class="k">if</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">second</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">reverse_cipher</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+      <span class="k">if</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span>
+        <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">second</span><span class="p">]</span>
+      <span class="k">if</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span>
+        <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">second</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">second</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;i&#39;</span>
+    <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">second</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">=</span> <span class="s1">&#39;I&#39;</span>
+  <span class="k">return</span> <span class="n">reverse_cipher</span>
 
-english = set(wordlist.words())
-def get_percent_real(recovered):
-  english = set(wordlist.words())
-  reals = [word in english for word in re.sub(r&#39;[^a-zA-Z ]&#39;, &#39;&#39;, recovered.lower()).split()]
-  percent_real = sum(reals)/len(reals)
-  return percent_real
+<span class="n">english</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">wordlist</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>
+<span class="k">def</span> <span class="nf">get_percent_real</span><span class="p">(</span><span class="n">recovered</span><span class="p">):</span>
+  <span class="n">english</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">wordlist</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>
+  <span class="n">reals</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="ow">in</span> <span class="n">english</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-zA-Z ]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">recovered</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+  <span class="n">percent_real</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">percent_real</span>
 
-import copy
-def swap_keys(reverse_cipher, L1, L2): 
-  updated = copy.deepcopy(reverse_cipher)
-  L1V, L2V = reverse_cipher[L1], reverse_cipher[L2]
-  updated[L1], updated[L2] = L2V, L1V
-  updated[L1.upper()], updated[L2.upper()] = L2V.upper(), L1V.upper()
-  return updated
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="k">def</span> <span class="nf">swap_keys</span><span class="p">(</span><span class="n">reverse_cipher</span><span class="p">,</span> <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">):</span> 
+  <span class="n">updated</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">reverse_cipher</span><span class="p">)</span>
+  <span class="n">L1V</span><span class="p">,</span> <span class="n">L2V</span> <span class="o">=</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">L1</span><span class="p">],</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">L2</span><span class="p">]</span>
+  <span class="n">updated</span><span class="p">[</span><span class="n">L1</span><span class="p">],</span> <span class="n">updated</span><span class="p">[</span><span class="n">L2</span><span class="p">]</span> <span class="o">=</span> <span class="n">L2V</span><span class="p">,</span> <span class="n">L1V</span>
+  <span class="n">updated</span><span class="p">[</span><span class="n">L1</span><span class="o">.</span><span class="n">upper</span><span class="p">()],</span> <span class="n">updated</span><span class="p">[</span><span class="n">L2</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">=</span> <span class="n">L2V</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">L1V</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+  <span class="k">return</span> <span class="n">updated</span>
 
-def swap_keys_inplace(reverse_cipher, L1, L2): 
-  L1V, L2V = reverse_cipher[L1], reverse_cipher[L2]
-  reverse_cipher[L1], reverse_cipher[L2] = L2V, L1V
-  reverse_cipher[L1.upper()], reverse_cipher[L2.upper()] = L2V.upper(), L1V.upper()
+<span class="k">def</span> <span class="nf">swap_keys_inplace</span><span class="p">(</span><span class="n">reverse_cipher</span><span class="p">,</span> <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">):</span> 
+  <span class="n">L1V</span><span class="p">,</span> <span class="n">L2V</span> <span class="o">=</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">L1</span><span class="p">],</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">L2</span><span class="p">]</span>
+  <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">L1</span><span class="p">],</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">L2</span><span class="p">]</span> <span class="o">=</span> <span class="n">L2V</span><span class="p">,</span> <span class="n">L1V</span>
+  <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">L1</span><span class="o">.</span><span class="n">upper</span><span class="p">()],</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">L2</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">=</span> <span class="n">L2V</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="n">L1V</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 
 
-def improve_deciphering(second_pass, reverse_cipher, percent_real_before):
-  english = set(wordlist.words())
-  c = get_letter_distribution(second_pass)
-  dists = np.ones((26,26))
-  for i in range(26):
-    for j in range(i+1,26):
-      dists[i,j] = abs(c[alphabet[i]] - c[alphabet[j]])/sum(c.values())
-  percent_real = percent_real_before
-  indeces = np.argsort(dists.flatten())
-  while percent_real &lt; 0.81:
-    for idx in indeces:
-      i,j=np.unravel_index(idx, (26,26))
-      L1, L2 = alphabet[i], alphabet[j]
-      updated = swap_keys(reverse_cipher, L1, L2)
-      unencrypted_quote = &#39;&#39;
-      for letter in encrypted_quote:
-        if letter in updated.keys():
-          unencrypted_quote+=(updated[letter])
-        else:
-          unencrypted_quote+=(letter)
-      reals = [word in english for word in re.sub(r&#39;[^a-zA-Z ]&#39;, &#39;&#39;, unencrypted_quote.lower()).split()]
-      percent_real = sum(reals)/len(reals)
-      print(percent_real)
-      if percent_real &gt; percent_real_before+(0.82-percent_real_before)/4:
-        print(percent_real, &#39;\t&#39;, L1, &#39;\t&#39;,L2,&#39;\n\n&#39;)
-        print(re.sub(r&#39;[^a-zA-Z ]&#39;, &#39;&#39;, unencrypted_quote.lower())[35:776])
-        swap_keys_inplace(reverse_cipher, L1, L2)
-        percent_real_before = percent_real
-        break
-    return reverse_cipher
+<span class="k">def</span> <span class="nf">improve_deciphering</span><span class="p">(</span><span class="n">second_pass</span><span class="p">,</span> <span class="n">reverse_cipher</span><span class="p">,</span> <span class="n">percent_real_before</span><span class="p">):</span>
+  <span class="n">english</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">wordlist</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">get_letter_distribution</span><span class="p">(</span><span class="n">second_pass</span><span class="p">)</span>
+  <span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">26</span><span class="p">,</span><span class="mi">26</span><span class="p">))</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">26</span><span class="p">):</span>
+      <span class="n">dists</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">alphabet</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[</span><span class="n">alphabet</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+  <span class="n">percent_real</span> <span class="o">=</span> <span class="n">percent_real_before</span>
+  <span class="n">indeces</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">dists</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+  <span class="k">while</span> <span class="n">percent_real</span> <span class="o">&lt;</span> <span class="mf">0.81</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">indeces</span><span class="p">:</span>
+      <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="mi">26</span><span class="p">))</span>
+      <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span> <span class="o">=</span> <span class="n">alphabet</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alphabet</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+      <span class="n">updated</span> <span class="o">=</span> <span class="n">swap_keys</span><span class="p">(</span><span class="n">reverse_cipher</span><span class="p">,</span> <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">)</span>
+      <span class="n">unencrypted_quote</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+      <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">encrypted_quote</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">updated</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+          <span class="n">unencrypted_quote</span><span class="o">+=</span><span class="p">(</span><span class="n">updated</span><span class="p">[</span><span class="n">letter</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+          <span class="n">unencrypted_quote</span><span class="o">+=</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+      <span class="n">reals</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="ow">in</span> <span class="n">english</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-zA-Z ]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">unencrypted_quote</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+      <span class="n">percent_real</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">percent_real</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">percent_real</span> <span class="o">&gt;</span> <span class="n">percent_real_before</span><span class="o">+</span><span class="p">(</span><span class="mf">0.82</span><span class="o">-</span><span class="n">percent_real_before</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">percent_real</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">L1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">L2</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-zA-Z ]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">unencrypted_quote</span><span class="o">.</span><span class="n">lower</span><span class="p">())[</span><span class="mi">35</span><span class="p">:</span><span class="mi">776</span><span class="p">])</span>
+        <span class="n">swap_keys_inplace</span><span class="p">(</span><span class="n">reverse_cipher</span><span class="p">,</span> <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">)</span>
+        <span class="n">percent_real_before</span> <span class="o">=</span> <span class="n">percent_real</span>
+        <span class="k">break</span>
+    <span class="k">return</span> <span class="n">reverse_cipher</span>
 </pre></div>
 </div>
 </div>
@@ -571,7 +571,7 @@ def improve_deciphering(second_pass, reverse_cipher, percent_real_before):
 <p>Let’s use some cryptanalysis to solve a letter subtitution cipher. The text below is a passage from a classic novel in which each letter has been replaced with another letter from the English alphabet, with unique pairings.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(encrypted_quote[35:776])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">encrypted_quote</span><span class="p">[</span><span class="mi">35</span><span class="p">:</span><span class="mi">776</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -582,22 +582,22 @@ def improve_deciphering(second_pass, reverse_cipher, percent_real_before):
       white-space: pre-wrap;
   }
 </style>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Frabdto 1
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kzjmluc 1
 
 
-Ygo Iasdto Tssgpd, px Ctssmlfr Rass, gl Ypqtoytdyrgot, iay a qal irp,
-xpo rgy pil aqkytqtld, ltvto dppc kb alm nppc nkd drt Naopltdajt;
-drtot rt xpklz pffkbadgpl xpo al gzst rpko, alz fplypsadgpl gl a
-zgydotyytz plt; drtot rgy xafksdgty itot opkytz gldp azqgoadgpl alz
-otybtfd, nm fpldtqbsadglj drt sgqgdtz otqlald px drt taosgtyd badtldy;
-drtot alm klitsfpqt ytlyadgply, aogyglj xopq zpqtydgf axxagoy
-fraljtz ladkoassm gldp bgdm alz fpldtqbd ay rt dkoltz pvto
-drt asqpyd tlzstyy fotadgply px drt sayd ftldkom; alz drtot,
-gx tvtom pdrto stax itot bpitostyy, rt fpksz otaz rgy pil rgydpom
-igdr al gldtotyd irgfr ltvto xagstz.  Drgy iay drt bajt ad irgfr
-drt xavpkogdt vpskqt asiamy pbtltz:
+Fnc Xjeluc Ueentl, td Iueewqkz Zjee, nq Ftrucfulfzncu, xjf j rjq xzt,
+dtc znf txq jrvfuruql, quguc ltti vm jqw otti ovl lzu Ojctquljhu;
+lzucu zu dtvqp tkkvmjlntq dtc jq npeu ztvc, jqp ktqftejlntq nq j
+pnflcuffup tqu; lzucu znf djkvelnuf xucu ctvfup nqlt jprncjlntq jqp
+cufmukl, ow ktqlurmejlnqh lzu enrnlup curqjql td lzu ujcenufl mjluqlf;
+lzucu jqw vqxuektru fuqfjlntqf, jcnfnqh dctr ptruflnk jddjncf
+kzjqhup qjlvcjeew nqlt mnlw jqp ktqlurml jf zu lvcqup tguc
+lzu jertfl uqpeuff kcujlntqf td lzu ejfl kuqlvcw; jqp lzucu,
+nd ugucw tlzuc eujd xucu mtxuceuff, zu ktvep cujp znf txq znfltcw
+xnlz jq nqlucufl xznkz quguc djneup.  Lznf xjf lzu mjhu jl xznkz
+lzu djgtvcnlu gtevru jexjwf tmuqup:
 
-           &quot;TSSGPD PX CTSSMLFR RASS.
+           &quot;UEENTL TD IUEEWQKZ ZJEE.
 
 &quot;
 </pre></div>
@@ -609,9 +609,9 @@ drt xavpkogdt vpskqt asiamy pbtltz:
 A more fruitful aproach might be to use the underlying statistics of the English language to help us seed this process with educated guesses. Let’s take a look at how often particular letters show up in English text (as approximated by a collection of classic novels from Project Gutenberg).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>for fileid in nltk.corpus.gutenberg.fileids()[-3:]:
-  words = re.sub(r&#39;[^a-z]&#39;, &#39;&#39;, nltk.corpus.gutenberg.raw(fileid).lower())
-  get_letter_distribution(words, plot=True, title=fileid)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">fileid</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">fileids</span><span class="p">()[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]:</span>
+  <span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-z]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="n">fileid</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+  <span class="n">get_letter_distribution</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">fileid</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -630,11 +630,11 @@ A more fruitful aproach might be to use the underlying statistics of the English
 <p>From the above distributions, you can see that some letters are used consistently more frequently than others across these texts. Let’s take a look at the distribution defined be the average of all of these texts:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>words = &#39;&#39;
-for fileid in nltk.corpus.gutenberg.fileids():
-  words += re.sub(r&#39;[^a-z]&#39;, &#39;&#39;, nltk.corpus.gutenberg.raw(fileid).lower())
-get_letter_distribution(words, plot=True, title=&#39;Averaged Distribution&#39;);
-get_letter_distribution(words, plot=True, title=&#39;Averaged Distribution; Re-Ordered&#39;, zipfian=True);
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">words</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">for</span> <span class="n">fileid</span> <span class="ow">in</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">fileids</span><span class="p">():</span>
+  <span class="n">words</span> <span class="o">+=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-z]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">nltk</span><span class="o">.</span><span class="n">corpus</span><span class="o">.</span><span class="n">gutenberg</span><span class="o">.</span><span class="n">raw</span><span class="p">(</span><span class="n">fileid</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="n">get_letter_distribution</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Averaged Distribution&#39;</span><span class="p">);</span>
+<span class="n">get_letter_distribution</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Averaged Distribution; Re-Ordered&#39;</span><span class="p">,</span> <span class="n">zipfian</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -652,8 +652,8 @@ get_letter_distribution(words, plot=True, title=&#39;Averaged Distribution; Re-O
 <p>With this knowledge about expected patterns of letter occurances, let’s see how they compare to the statistics of our encrypted text.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>get_letter_distribution(encrypted_quote, plot=True, title=&#39;Encrypted Distribution&#39;);
-get_letter_distribution(encrypted_quote, plot=True, title=&#39;Encrypted Distribution; Re-Ordered&#39;, zipfian=True);
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_letter_distribution</span><span class="p">(</span><span class="n">encrypted_quote</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Encrypted Distribution&#39;</span><span class="p">);</span>
+<span class="n">get_letter_distribution</span><span class="p">(</span><span class="n">encrypted_quote</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Encrypted Distribution; Re-Ordered&#39;</span><span class="p">,</span> <span class="n">zipfian</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -671,11 +671,11 @@ get_letter_distribution(encrypted_quote, plot=True, title=&#39;Encrypted Distrib
 <p>As the above distribution shows us, even though each individual letter in the encrypted text no longer has the same occurance probability as it does in typical English text, the general shape of the re-ordered distribution is still the same. We can use this to build a first-pass remapping to attempt deciphering the encrypted text, substituting each encrypted letter with the English letter closest in usage frequency.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>quote_dist = list(map(lambda x: x[0], Counter(re.sub(r&#39;[^a-z]&#39;, &#39;&#39;, encrypted_quote.lower())).most_common()))
-english_dist = list(map(lambda x: x[0], Counter(re.sub(r&#39;[^a-z]&#39;, &#39;&#39;, words.lower())).most_common()))
-reverse_cipher = dict(zip(quote_dist, english_dist))
-for letter in alphabet:
-  reverse_cipher[letter.upper()] = reverse_cipher[letter].upper()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quote_dist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Counter</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-z]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encrypted_quote</span><span class="o">.</span><span class="n">lower</span><span class="p">()))</span><span class="o">.</span><span class="n">most_common</span><span class="p">()))</span>
+<span class="n">english_dist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Counter</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-z]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">words</span><span class="o">.</span><span class="n">lower</span><span class="p">()))</span><span class="o">.</span><span class="n">most_common</span><span class="p">()))</span>
+<span class="n">reverse_cipher</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">quote_dist</span><span class="p">,</span> <span class="n">english_dist</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+  <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span> <span class="o">=</span> <span class="n">reverse_cipher</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -690,8 +690,8 @@ for letter in alphabet:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first_pass = decrypt(encrypted_quote, reverse_cipher)
-print(first_pass[35:776])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_pass</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_quote</span><span class="p">,</span> <span class="n">reverse_cipher</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">first_pass</span><span class="p">[</span><span class="mi">35</span><span class="p">:</span><span class="mi">776</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -729,9 +729,9 @@ tie cavournte vodume adways obehel:
 At this point, we’ll want to use some basic facts about English to help us out. For example, we want to make sure that any single-letter words are either assigned to A or I.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>reverse_cipher = fix_single_letter_words(encrypted_quote, reverse_cipher)
-second_pass = decrypt(encrypted_quote, reverse_cipher)
-print(second_pass[35:776])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reverse_cipher</span> <span class="o">=</span> <span class="n">fix_single_letter_words</span><span class="p">(</span><span class="n">encrypted_quote</span><span class="p">,</span> <span class="n">reverse_cipher</span><span class="p">)</span>
+<span class="n">second_pass</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted_quote</span><span class="p">,</span> <span class="n">reverse_cipher</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">second_pass</span><span class="p">[</span><span class="mi">35</span><span class="p">:</span><span class="mi">776</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -769,8 +769,8 @@ tne cavourite vodume adways obehel:
 As we go through the decrypted text (which is significantly larger than the single-paragraph sample displayed above), we can use a cannonical list of English words, then check what percentage of the words in our recovered text are true English words.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>percent_real_before = get_percent_real(second_pass)
-print(percent_real_before,&#39;% of recovered words were valid English&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">percent_real_before</span> <span class="o">=</span> <span class="n">get_percent_real</span><span class="p">(</span><span class="n">second_pass</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">percent_real_before</span><span class="p">,</span><span class="s1">&#39;</span><span class="si">% o</span><span class="s1">f recovered words were valid English&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -789,33 +789,33 @@ print(percent_real_before,&#39;% of recovered words were valid English&#39;)
 <p>We can definitely do better than 30% – in fact, the original text contains 81.7% accepted English words. In order to improve our decryption, we’ll try swapping out letter mappings for letters that have the most similar probabilities in English (i.e. R and S both constitute approximately 7.2% of letters used in this corpus). If the percentage of accepted English words improves by making a substitution, we keep it. Let’s watch this technique at work. <em>N.B. This make take a few minutes; feel free to make a nice cup of tea while the next cell runs!</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>c = get_letter_distribution(second_pass)
-dists = np.ones((26,26))
-for i in range(26):
-  for j in range(i+1,26):
-    dists[i,j] = abs(c[alphabet[i]] - c[alphabet[j]])/sum(c.values())
-percent_real = percent_real_before
-indeces = np.argsort(dists.flatten())
-while percent_real &lt; 0.81:
-  for idx in indeces:
-    i,j = np.unravel_index(idx, (26,26))
-    L1, L2 = alphabet[i], alphabet[j]
-    updated = swap_keys(reverse_cipher, L1, L2)
-    unencrypted_quote = &#39;&#39;
-    for letter in encrypted_quote:
-      if letter in updated.keys():
-        unencrypted_quote += (updated[letter])
-      else:
-        unencrypted_quote += (letter)
-    reals = [word in english for word in re.sub(r&#39;[^a-zA-Z ]&#39;, &#39;&#39;, unencrypted_quote.lower()).split()]
-    percent_real = sum(reals)/len(reals)
-    if percent_real &gt; percent_real_before+(0.82-percent_real_before)/4:
-      print(&#39;swap&#39;, L1.upper(), &#39;and&#39;,L2.upper(),&#39;\tpercent valid English words:&#39;, percent_real,&#39;\n\n&#39;)
-      # print(re.sub(r&#39;[^a-zA-Z ]&#39;, &#39;&#39;, unencrypted_quote.lower())[35:776])
-      print(unencrypted_quote[35:776])
-      swap_keys_inplace(reverse_cipher, L1, L2)
-      percent_real_before = percent_real
-      break
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">get_letter_distribution</span><span class="p">(</span><span class="n">second_pass</span><span class="p">)</span>
+<span class="n">dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">26</span><span class="p">,</span><span class="mi">26</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">26</span><span class="p">):</span>
+    <span class="n">dists</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">alphabet</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">-</span> <span class="n">c</span><span class="p">[</span><span class="n">alphabet</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">percent_real</span> <span class="o">=</span> <span class="n">percent_real_before</span>
+<span class="n">indeces</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">dists</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+<span class="k">while</span> <span class="n">percent_real</span> <span class="o">&lt;</span> <span class="mf">0.81</span><span class="p">:</span>
+  <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">indeces</span><span class="p">:</span>
+    <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="mi">26</span><span class="p">))</span>
+    <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span> <span class="o">=</span> <span class="n">alphabet</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alphabet</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="n">updated</span> <span class="o">=</span> <span class="n">swap_keys</span><span class="p">(</span><span class="n">reverse_cipher</span><span class="p">,</span> <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">)</span>
+    <span class="n">unencrypted_quote</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">encrypted_quote</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">updated</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">unencrypted_quote</span> <span class="o">+=</span> <span class="p">(</span><span class="n">updated</span><span class="p">[</span><span class="n">letter</span><span class="p">])</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="n">unencrypted_quote</span> <span class="o">+=</span> <span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+    <span class="n">reals</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="ow">in</span> <span class="n">english</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-zA-Z ]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">unencrypted_quote</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+    <span class="n">percent_real</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">reals</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">percent_real</span> <span class="o">&gt;</span> <span class="n">percent_real_before</span><span class="o">+</span><span class="p">(</span><span class="mf">0.82</span><span class="o">-</span><span class="n">percent_real_before</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;swap&#39;</span><span class="p">,</span> <span class="n">L1</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s1">&#39;and&#39;</span><span class="p">,</span><span class="n">L2</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">percent valid English words:&#39;</span><span class="p">,</span> <span class="n">percent_real</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+      <span class="c1"># print(re.sub(r&#39;[^a-zA-Z ]&#39;, &#39;&#39;, unencrypted_quote.lower())[35:776])</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">unencrypted_quote</span><span class="p">[</span><span class="mi">35</span><span class="p">:</span><span class="mi">776</span><span class="p">])</span>
+      <span class="n">swap_keys_inplace</span><span class="p">(</span><span class="n">reverse_cipher</span><span class="p">,</span> <span class="n">L1</span><span class="p">,</span> <span class="n">L2</span><span class="p">)</span>
+      <span class="n">percent_real_before</span> <span class="o">=</span> <span class="n">percent_real</span>
+      <span class="k">break</span>
 </pre></div>
 </div>
 </div>
@@ -826,7 +826,7 @@ while percent_real &lt; 0.81:
       white-space: pre-wrap;
   }
 </style>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap R and L 	percent valid English words: 0.5160721105097512 
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap Z and Q 	percent valid English words: 0.5160721105097512 
 
 
 Fhabter 1
@@ -849,7 +849,7 @@ the cavourite vodume adways obenel:
 &quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap Z and S 	percent valid English words: 0.6301505155453719 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap P and E 	percent valid English words: 0.6301505155453719 
 
 
 Fhabter 1
@@ -872,7 +872,7 @@ the cavourite volume always obened:
 &quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap F and X 	percent valid English words: 0.7351821857016816 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap K and D 	percent valid English words: 0.7351821857016816 
 
 
 Chabter 1
@@ -895,7 +895,7 @@ the favourite volume always obened:
 &quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap N and B 	percent valid English words: 0.8056729743610003 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap O and M 	percent valid English words: 0.8056729743610003 
 
 
 Chapter 1
@@ -918,7 +918,7 @@ the favourite volume always opened:
 &quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap W and H 	percent valid English words: 0.8100317359986304 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap B and Y 	percent valid English words: 0.8100317359986304 
 
 
 Chapter 1
