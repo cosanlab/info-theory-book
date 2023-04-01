@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Markov Chains &amp; Markov Dynamics &#8212; An Introduction to Information Theory for Social Neuroscientists</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,62 +63,94 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/markov-properties';</script>
     <link rel="shortcut icon" href="../_static/soc_net.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Network/Graph Theory" href="network-theory.html" />
     <link rel="prev" title="Welcome" href="../intro.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/soc_net.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">An Introduction to Information Theory for Social Neuroscientists</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/soc_net.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/soc_net.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -117,292 +160,221 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Markov Chains &amp; Markov Dynamics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="network-theory.html">
-   Network/Graph Theory
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="complex-systems.html">
-   Complex Systems Theory
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="networks-in-social-media.html">
-   Networks in Social Media
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="cryptography.html">
-   Cryptography
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Markov Chains &amp; Markov Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network-theory.html">Network/Graph Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complex-systems.html">Complex Systems Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networks-in-social-media.html">Networks in Social Media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cryptography.html">Cryptography</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/cosanlab/info-theory-book/main?urlpath=tree/notebooks/markov-properties.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cosanlab/info-theory-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cosanlab/info-theory-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/markov-properties.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/markov-properties.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/cosanlab/info-theory-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/cosanlab/info-theory-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/markov-properties.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/notebooks/markov-properties.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#markov-property">
-   Markov Property:
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#absorbing-markov-chains-and-absorbing-states">
-     Absorbing Markov Chains and Absorbing States:
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Markov Chains & Markov Dynamics</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#markov-property">
-   Markov Property:
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#absorbing-markov-chains-and-absorbing-states">
-     Absorbing Markov Chains and Absorbing States:
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Markov Chains & Markov Dynamics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-property">Markov Property:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#absorbing-markov-chains-and-absorbing-states">Absorbing Markov Chains and Absorbing States:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="markov-chains-markov-dynamics">
-<h1>Markov Chains &amp; Markov Dynamics<a class="headerlink" href="#markov-chains-markov-dynamics" title="Permalink to this headline">#</a></h1>
+<h1>Markov Chains &amp; Markov Dynamics<a class="headerlink" href="#markov-chains-markov-dynamics" title="Permalink to this heading">#</a></h1>
 <p>Let’s say an event can exist in two <strong>states</strong>, represented in a <strong>State Vector</strong> <span class="math notranslate nohighlight">\(S_t = \begin{bmatrix} s_{1,t} \\ s_{2,t} \end{bmatrix}\)</span> (at time <span class="math notranslate nohighlight">\(t\)</span>), and there is a probability <span class="math notranslate nohighlight">\(p_{i,j}\)</span> to transfer information from state <span class="math notranslate nohighlight">\(s_i\)</span> to state <span class="math notranslate nohighlight">\(s_j\)</span>. All such probabilities can be accounted together in a <strong>Transfer Matrix</strong>, <span class="math notranslate nohighlight">\(P = \begin{bmatrix} p_{1,1} &amp; p_{1,2} \\ p_{2,1} &amp; p_{2,2} \end{bmatrix}\)</span>. Also given that these are probabilities, we have that <span class="math notranslate nohighlight">\(\sum_{j=1}^{n} p_{i,j} = 1\)</span>. We find:<br/>
     <span class="math notranslate nohighlight">\(P_{2\times2} = \begin{bmatrix} 1-p_{1,2} &amp; p_{1,2} \\ p_{2,1} &amp; 1-p_{2,1} \end{bmatrix}\)</span>,<br/>
     <span class="math notranslate nohighlight">\(P_{3\times3} = \begin{bmatrix}
@@ -411,8 +383,8 @@ title="Print to PDF"
     p_{3,1} &amp; 1-p_{3,2} &amp; 1-(p_{3,1}+p_{3,2})
 \end{bmatrix}\)</span>, and so on…</p>
 <section id="markov-property">
-<h2>Markov Property:<a class="headerlink" href="#markov-property" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
+<h2>Markov Property:<a class="headerlink" href="#markov-property" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>Memory-lessness: the transfer matrix <span class="math notranslate nohighlight">\(P\)</span> is not dependent on time or the value of information in the states prior to the present state.</p></li>
 <li><p>Homogeneity: the function of information transfer will remain the same regardless of the information in the state. i.e. the probability of information transfer from State <span class="math notranslate nohighlight">\(s_i\)</span> to <span class="math notranslate nohighlight">\(s_j\)</span> will remain <span class="math notranslate nohighlight">\(p_{i,j}\)</span> for all time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
 </ol>
@@ -572,7 +544,7 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(S1, S1): 0.3		(S1, S2): 0.7		(S2, S1): 1.0		
 </pre></div>
 </div>
-<img alt="../_images/markov-properties_5_2.png" src="../_images/markov-properties_5_2.png" />
+<img alt="../_images/6d4b06b77ec8e511d10c6571b168bc6cc691cd2621122d5185adeb7fb8a8975f.png" src="../_images/6d4b06b77ec8e511d10c6571b168bc6cc691cd2621122d5185adeb7fb8a8975f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -629,7 +601,7 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
  [0.58823366 0.41176634]]
 </pre></div>
 </div>
-<img alt="../_images/markov-properties_6_1.png" src="../_images/markov-properties_6_1.png" />
+<img alt="../_images/f6e1fceb7497d0227ab7ed19b280a77b92628f2f2fdfdfe9d6441211120ea0c7.png" src="../_images/f6e1fceb7497d0227ab7ed19b280a77b92628f2f2fdfdfe9d6441211120ea0c7.png" />
 </div>
 </div>
 <p>In fact, we find that if <span class="math notranslate nohighlight">\(S_n = S_S\)</span>, then <span class="math notranslate nohighlight">\(S_{n+1} = S_S\)</span>.</p>
@@ -654,7 +626,7 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/markov-properties_8_0.png" src="../_images/markov-properties_8_0.png" />
+<img alt="../_images/ff7ae5a5cec88d714e9523b648f28d81483f32d77611b735f64e39acdcd38289.png" src="../_images/ff7ae5a5cec88d714e9523b648f28d81483f32d77611b735f64e39acdcd38289.png" />
 </div>
 </div>
 <p><br/><big>This holds true for most real-life markov chain models, no matter the size of the model. For example:</big></p>
@@ -686,15 +658,15 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3348 0.361  0.3042]
- [0.5095 0.2379 0.2526]
- [0.1503 0.5173 0.3324]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.4703 0.4501 0.0796]
+ [0.0815 0.3222 0.5962]
+ [0.4052 0.2974 0.2974]]
 
-(S1, S1): 0.3348		(S1, S2): 0.361		(S1, S3): 0.3042		(S2, S1): 0.5095		(S2, S2): 0.2379		(S2, S3): 0.2526		(S3, S1): 0.1503		(S3, S2): 0.5173		(S3, S3): 0.3324		
+(S1, S1): 0.4703		(S1, S2): 0.4501		(S1, S3): 0.0796		(S2, S1): 0.0815		(S2, S2): 0.3222		(S2, S3): 0.5962		(S3, S1): 0.4052		(S3, S2): 0.2974		(S3, S3): 0.2974		
 </pre></div>
 </div>
-<img alt="../_images/markov-properties_10_1.png" src="../_images/markov-properties_10_1.png" />
-<img alt="../_images/markov-properties_10_2.png" src="../_images/markov-properties_10_2.png" />
+<img alt="../_images/df3dd992aeb0998d592a0b6009918215deca46a660c50a8ef2304f8ed15e86f8.png" src="../_images/df3dd992aeb0998d592a0b6009918215deca46a660c50a8ef2304f8ed15e86f8.png" />
+<img alt="../_images/0155155ef7eb6dcebbf7f4f40a304458301c9c574eb85d37b6d3531ddce6bf58.png" src="../_images/0155155ef7eb6dcebbf7f4f40a304458301c9c574eb85d37b6d3531ddce6bf58.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -726,22 +698,22 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.1912 0.2275 0.2832 0.0368 0.2613]
- [0.0178 0.2955 0.008  0.4553 0.2234]
- [0.3588 0.0926 0.0252 0.2441 0.2793]
- [0.115  0.1593 0.3181 0.2556 0.152 ]
- [0.0581 0.2419 0.2148 0.247  0.2381]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.2407 0.2039 0.2326 0.1094 0.2134]
+ [0.0596 0.2239 0.3184 0.1454 0.2526]
+ [0.1285 0.2546 0.2529 0.1523 0.2117]
+ [0.0833 0.3281 0.1615 0.1021 0.3249]
+ [0.1469 0.1191 0.1984 0.0912 0.4444]]
 
-(S1, S1): 0.1912		(S1, S2): 0.2275		(S1, S3): 0.2832		(S1, S4): 0.0368		(S1, S5): 0.2613		(S2, S1): 0.0178		(S2, S2): 0.2955		(S2, S3): 0.008		(S2, S4): 0.4553		(S2, S5): 0.2234		(S3, S1): 0.3588		(S3, S2): 0.0926		(S3, S3): 0.0252		(S3, S4): 0.2441		(S3, S5): 0.2793		(S4, S1): 0.115		(S4, S2): 0.1593		(S4, S3): 0.3181		(S4, S4): 0.2556		(S4, S5): 0.152		(S5, S1): 0.0581		(S5, S2): 0.2419		(S5, S3): 0.2148		(S5, S4): 0.247		(S5, S5): 0.2381		
+(S1, S1): 0.2407		(S1, S2): 0.2039		(S1, S3): 0.2326		(S1, S4): 0.1094		(S1, S5): 0.2134		(S2, S1): 0.0596		(S2, S2): 0.2239		(S2, S3): 0.3184		(S2, S4): 0.1454		(S2, S5): 0.2526		(S3, S1): 0.1285		(S3, S2): 0.2546		(S3, S3): 0.2529		(S3, S4): 0.1523		(S3, S5): 0.2117		(S4, S1): 0.0833		(S4, S2): 0.3281		(S4, S3): 0.1615		(S4, S4): 0.1021		(S4, S5): 0.3249		(S5, S1): 0.1469		(S5, S2): 0.1191		(S5, S3): 0.1984		(S5, S4): 0.0912		(S5, S5): 0.4444		
 </pre></div>
 </div>
-<img alt="../_images/markov-properties_11_1.png" src="../_images/markov-properties_11_1.png" />
-<img alt="../_images/markov-properties_11_2.png" src="../_images/markov-properties_11_2.png" />
+<img alt="../_images/e0f3ab4be2d4f8819f9e3d45492d7d44d5e39497be7e9d944babefacfc9adf76.png" src="../_images/e0f3ab4be2d4f8819f9e3d45492d7d44d5e39497be7e9d944babefacfc9adf76.png" />
+<img alt="../_images/316b5f2d628c8f830f5e135de5f51a4d7e835870163196fdbb3f23524f5924a2.png" src="../_images/316b5f2d628c8f830f5e135de5f51a4d7e835870163196fdbb3f23524f5924a2.png" />
 </div>
 </div>
 <p><br/>… even size-105 markov chains, but that will require a lot of computational power. So, let’s jump to a different type of markov chains/states…</p>
 <section id="absorbing-markov-chains-and-absorbing-states">
-<h3>Absorbing Markov Chains and Absorbing States:<a class="headerlink" href="#absorbing-markov-chains-and-absorbing-states" title="Permalink to this headline">#</a></h3>
+<h3>Absorbing Markov Chains and Absorbing States:<a class="headerlink" href="#absorbing-markov-chains-and-absorbing-states" title="Permalink to this heading">#</a></h3>
 <p>Absorbing Markov Chains are such that there exists at least one such node/state that only has connections coming inwards and that all nodes/states can be linked to it. That is, if the transfer matrix, <span class="math notranslate nohighlight">\(P = P_A\)</span>, has one or more elements which is of the type <span class="math notranslate nohighlight">\([0,0,...0,1,0,...,0]\)</span>, then all transitions to the state are possible, but a transition out of this state is not possible. In this case, the transfer matrix ends in an Absorbing State (<span class="math notranslate nohighlight">\(S_A\)</span>), such that all the values of vector <span class="math notranslate nohighlight">\(S\)</span> are zero except <span class="math notranslate nohighlight">\(S[k] = 1\)</span>.</p>
 <p>Let’s take the example of Size-3 Markov chain from earlier, and make one state absorbing…</p>
 <div class="cell docutils container">
@@ -774,18 +746,18 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.769  0.0084 0.2226]
- [0.     1.     0.    ]
- [0.095  0.366  0.539 ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P = [[0.3164 0.2656 0.418 ]
+ [0.0969 0.4025 0.5006]
+ [0.     0.     1.    ]]
 
-(S1, S1): 0.769		(S1, S2): 0.0084		(S1, S3): 0.2226		(S2, S2): 1.0		(S3, S1): 0.095		(S3, S2): 0.366		(S3, S3): 0.539		
+(S1, S1): 0.3164		(S1, S2): 0.2656		(S1, S3): 0.418		(S2, S1): 0.0969		(S2, S2): 0.4025		(S2, S3): 0.5006		(S3, S3): 1.0		
 </pre></div>
 </div>
-<img alt="../_images/markov-properties_14_1.png" src="../_images/markov-properties_14_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S2 is the Absorbing State.
+<img alt="../_images/a980f453c464e0b92660647d2a478df8ea25b698d0a9368f9197f8e9f501f809.png" src="../_images/a980f453c464e0b92660647d2a478df8ea25b698d0a9368f9197f8e9f501f809.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>That is, S3 is the Absorbing State.
 </pre></div>
 </div>
-<img alt="../_images/markov-properties_14_3.png" src="../_images/markov-properties_14_3.png" />
+<img alt="../_images/139c920b6458b49b9ca04c8ec519e483a4c5a3b28bd1007468507e6f87f6139c.png" src="../_images/139c920b6458b49b9ca04c8ec519e483a4c5a3b28bd1007468507e6f87f6139c.png" />
 </div>
 </div>
 <p><br/>Such tranfer matrices have the form of: <span class="math notranslate nohighlight">\(P_{A\ ((m+n)\times(m+n))} = \begin{bmatrix}I_m&amp;O\\R&amp;Q_n\end{bmatrix}\)</span>.</p>
@@ -877,7 +849,7 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/markov-properties_18_0.png" src="../_images/markov-properties_18_0.png" />
+<img alt="../_images/842238cd0f9c8cf17acc31894445cc20b35f332574a8939137aa92f1452c4df5.png" src="../_images/842238cd0f9c8cf17acc31894445cc20b35f332574a8939137aa92f1452c4df5.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.]
  [1.]
  [1.]
@@ -904,7 +876,7 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/markov-properties_20_0.png" src="../_images/markov-properties_20_0.png" />
+<img alt="../_images/3c3ddb38d32364d4e2aee5b8923f723171fd55e8790b1625e4f82b7544c2f06b.png" src="../_images/3c3ddb38d32364d4e2aee5b8923f723171fd55e8790b1625e4f82b7544c2f06b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.60720023 0.39279977]
  [1.         0.        ]
  [0.48023909 0.51976091]
@@ -928,7 +900,7 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/markov-properties_21_0.png" src="../_images/markov-properties_21_0.png" />
+<img alt="../_images/2dc8f6237429eb75f3014940c6f0adfc2436657774b710b8651210eadc12a300.png" src="../_images/2dc8f6237429eb75f3014940c6f0adfc2436657774b710b8651210eadc12a300.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.39506911 0.30922911 0.29570178]
  [0.32454023 0.36820207 0.30725769]
  [0.41278558 0.29558675 0.29162767]
@@ -968,50 +940,108 @@ and <span class="math notranslate nohighlight">\(\ S_0 = \begin{bmatrix}0.8 &amp
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="network-theory.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="network-theory.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Network/Graph Theory</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit (in alphabetical order by first name)<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-property">Markov Property:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#absorbing-markov-chains-and-absorbing-states">Absorbing Markov Chains and Absorbing States:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit (in alphabetical order by first name)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Network/Graph Theory &#8212; An Introduction to Information Theory for Social Neuroscientists</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,62 +63,94 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/network-theory';</script>
     <link rel="shortcut icon" href="../_static/soc_net.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Complex Systems Theory" href="complex-systems.html" />
     <link rel="prev" title="Markov Chains &amp; Markov Dynamics" href="markov-properties.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/soc_net.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">An Introduction to Information Theory for Social Neuroscientists</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/soc_net.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/soc_net.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -117,371 +160,240 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="markov-properties.html">
-   Markov Chains &amp; Markov Dynamics
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Network/Graph Theory
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="complex-systems.html">
-   Complex Systems Theory
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="networks-in-social-media.html">
-   Networks in Social Media
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="cryptography.html">
-   Cryptography
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="markov-properties.html">Markov Chains &amp; Markov Dynamics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Network/Graph Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="complex-systems.html">Complex Systems Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networks-in-social-media.html">Networks in Social Media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cryptography.html">Cryptography</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/cosanlab/info-theory-book/main?urlpath=tree/notebooks/network-theory.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cosanlab/info-theory-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cosanlab/info-theory-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/network-theory.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/network-theory.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/cosanlab/info-theory-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/cosanlab/info-theory-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/network-theory.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/notebooks/network-theory.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#resources">
-   Resources:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#types-of-network-models">
-   Types of Network Models:
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#network-structures-and-small-worldness">
-     Network Structures and Small-worldness:
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#network-metrics">
-   Network Metrics:
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mesoscale-structures">
-     Mesoscale Structures:
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#community-structures-modularity-and-clustering">
-       Community Structures – Modularity and Clustering:
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-concepts">
-     Other Concepts:
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#references">
-       References:
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Network/Graph Theory</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#resources">
-   Resources:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#types-of-network-models">
-   Types of Network Models:
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#network-structures-and-small-worldness">
-     Network Structures and Small-worldness:
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#network-metrics">
-   Network Metrics:
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mesoscale-structures">
-     Mesoscale Structures:
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#community-structures-modularity-and-clustering">
-       Community Structures – Modularity and Clustering:
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-concepts">
-     Other Concepts:
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#references">
-       References:
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Network/Graph Theory</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-network-models">Types of Network Models:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-structures-and-small-worldness">Network Structures and Small-worldness:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-metrics">Network Metrics:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mesoscale-structures">Mesoscale Structures:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#community-structures-modularity-and-clustering">Community Structures – Modularity and Clustering:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-concepts">Other Concepts:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="network-graph-theory">
-<h1>Network/Graph Theory<a class="headerlink" href="#network-graph-theory" title="Permalink to this headline">#</a></h1>
+<h1>Network/Graph Theory<a class="headerlink" href="#network-graph-theory" title="Permalink to this heading">#</a></h1>
 <p>The basic unit here is called a <strong>Node</strong> (or a Vertex; ‘<span class="math notranslate nohighlight">\(V\)</span>’) and the link connecting two nodes/vertices is called an <strong>Edge</strong> (’<span class="math notranslate nohighlight">\(E\)</span>’). A map of these nodes and edges is a <strong>Network</strong> (or a Graph). To study a system or interactions therein, one may use analyses and models of <strong>Network theory</strong>, or Graph theory. This theory can act as a good tool for systems-level analyses, given that…
 <br/> … one can cleanly define basic units in the system being study, in the form of Nodes.
 <br/> … one can clearly define the nature of relations that connects these units, to delineate as Edges.
 <br/> … one can infer organisational functionality or model development/evolution of the system based on the patterns of connectivity.</p>
 <section id="resources">
-<h2>Resources:<a class="headerlink" href="#resources" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
+<h2>Resources:<a class="headerlink" href="#resources" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p><a class="reference external" href="https://sites.google.com/site/bctnet/home">BCT</a> stands for ‘Brain Connectivity Toolbox’. One can use the project <a class="reference external" href="https://pypi.org/project/bctpy/">bctpy</a> for Python.</p></li>
 <li><p><a class="reference external" href="https://networkx.org/">NetworkX</a> is another Python library.</p></li>
 <li><p><a class="reference external" href="http://braph.org/">BRAPH</a>: a brain analysis toolbox for graph theory.</p></li>
@@ -502,16 +414,16 @@ title="Print to PDF"
 </div>
 </section>
 <section id="types-of-network-models">
-<h2>Types of Network Models:<a class="headerlink" href="#types-of-network-models" title="Permalink to this headline">#</a></h2>
+<h2>Types of Network Models:<a class="headerlink" href="#types-of-network-models" title="Permalink to this heading">#</a></h2>
 <p>    Network models are generally represented in two forms. (1) edge-connectivity list, or edge-list, is generally a larger form of matrix (size <span class="math notranslate nohighlight">\(V\times E\)</span>) that defines which nodes are connected by a given edge. Whereas, (2) network-connectivity matrix may form a smaller matrix (of size <span class="math notranslate nohighlight">\(V\times V\)</span>), where each row and column represent a node and the value of the respective cell represents the presence/nature of the edge. For the rest of the notebook, one may assume that ‘connectivity matrix’, ‘adjacency matrix’, or ‘connectivity profile’ implies the network-connectivity matrix, unless otherwise specified. The networks can further be classified according to the properties of their connections:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><strong>Weighted v/s Binary edges:</strong> a network where a cell in the connectivity matrix is represented by a 0 implies absence of an edge. For binary networks like friendship/social networks or internet links, the 1’s represent the presence of an edge. For weighted networks like trust-based social networks or brain connectivity, the non-binary value represents the ‘weight’ or the strength of the connecting edge.<br/><br/></p></li>
 <li><p><strong>Directed v/s Undirected edges:</strong> while most networks we work with (concerning brain) may be undirected, there may be a directional value associated for other type of networks (for example, Markov chains). Undirected networks will always have symmetric matrices as their connectivity profile.<br/><br/></p></li>
 <li><p><strong>Signed v/s Unsigned networks:</strong> usually, a network will contain only positive values representing the strength/weight of the edges. However, in some cases (like coherence-based networks or correlation-networks), one may witness negative values and serve a functional use. As an example, one may use the signed edges to represent excitatory versus inhibitory neuronal connections.<br/><br/></p></li>
 <li><p><strong>Networks with Node Values:</strong> some networks may have nodes with values associated to them. These values may symbolise node strength, size of the region represented (for eg. ROI of the brain), or even the limit of connections that may exist (for eg. capacity of bus/train stations, airports, etc).<br/><br/></p></li>
 </ol>
 <section id="network-structures-and-small-worldness">
-<h3>Network Structures and Small-worldness:<a class="headerlink" href="#network-structures-and-small-worldness" title="Permalink to this headline">#</a></h3>
+<h3>Network Structures and Small-worldness:<a class="headerlink" href="#network-structures-and-small-worldness" title="Permalink to this heading">#</a></h3>
 <p>    Most common networks include the lattice (or regular) and random structures. A <strong>lattice/regular network</strong> has a proximity-based connectivity profile, that is, all nodes have similar or equal number of connections to the k-closest nodes. On the other hand, a <strong>random network</strong> will generally have a seemingly hap-hazard connectivity. According to <em><a class="reference external" href="https://doi.org/10.1038/30918">Watts and Strogatz, 1998</a></em>, real-world systems follow a principal of ‘Small-Worldness’, where even though the nodes have similar profiles of connectivity, occassionally one may find some random connections that account for ‘short-cuts’ across the network.</p>
 <p><a class="reference external" href="https://doi.org/10.1038/30918"><img alt="" src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2F30918/MediaObjects/41586_1998_Article_BF30918_Fig1_HTML.gif?as=webp" /></a></p>
 <p>    In the random network structure, an <a class="reference external" href="https://doi.org/10.1038/s41598-019-45576-3">Erdös-Rényi Graph</a> (<strong>ER Graph</strong>) is a special kind of graph where the random-rewiring maintains the over-all number of connections to a node. That is, if we start with a lattice structure where each node has <em>k</em> edges, then the randomized ER graph of that network will maintain that all nodes have <em>k</em> connections. This idea is very commonly used to generate null-graphs to assess the SNR of the salient connections.</p>
@@ -569,14 +481,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/network-theory_3_0.png" src="../_images/network-theory_3_0.png" />
+<img alt="../_images/23249c8f0f5724eb3ab61cd0a844790072456961b92da26833b3a552f5f4a50a.png" src="../_images/23249c8f0f5724eb3ab61cd0a844790072456961b92da26833b3a552f5f4a50a.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="network-metrics">
-<h2>Network Metrics:<a class="headerlink" href="#network-metrics" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
+<h2>Network Metrics:<a class="headerlink" href="#network-metrics" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p><strong>Node Degree</strong> or <strong>Node Strength:</strong> simply put the total amount of all connections to the node is termed as node strength. For binary networks, strength can be measured as the total number of connections to the node. For directed connections, the degree is divided into an <strong>In-Degree</strong> and an <strong>Out-Degree</strong>.<br/><br/></p></li>
 <li><p><strong>Path Length:</strong> path length is the shortest distance between two given nodes. Global and local structures may utilise the metric of ‘average path length’.<br/><br/></p></li>
 <li><p><strong>Efficiency:</strong> defined as the average of the inverse of path length, the global efficiency and local efficiency can be used to compare networks.<br/><br/></p></li>
@@ -643,13 +555,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/network-theory_6_0.png" src="../_images/network-theory_6_0.png" />
+<img alt="../_images/e12056c5dd4fe00597ef217e3208d4c7f2bed626f47fc65c69a9219391f46903.png" src="../_images/e12056c5dd4fe00597ef217e3208d4c7f2bed626f47fc65c69a9219391f46903.png" />
 </div>
 </div>
 <section id="mesoscale-structures">
-<h3>Mesoscale Structures:<a class="headerlink" href="#mesoscale-structures" title="Permalink to this headline">#</a></h3>
+<h3>Mesoscale Structures:<a class="headerlink" href="#mesoscale-structures" title="Permalink to this heading">#</a></h3>
 <section id="community-structures-modularity-and-clustering">
-<h4>Community Structures – Modularity and Clustering:<a class="headerlink" href="#community-structures-modularity-and-clustering" title="Permalink to this headline">#</a></h4>
+<h4>Community Structures – Modularity and Clustering:<a class="headerlink" href="#community-structures-modularity-and-clustering" title="Permalink to this heading">#</a></h4>
 <p>    Modularity analysis is a very common theme to establish clusters of nodes that form strong interconnected structures within the network. One starts by solving for the modular communities using the formula:</p>
 <div class="math notranslate nohighlight">
 \[Q = \frac{1}{2K}\sum_{(i,j)}(A_{ij} - \gamma P_{ij})\cdot\delta(c_i,c_j)\]</div>
@@ -659,7 +571,7 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[Q_w = \frac{1}{2W}\sum_{(i,j)}(A_{ij} - \gamma\frac{s_i\cdot s_j}{2W})\cdot\delta(c_i,c_j)\]</div>
 <p>From this optimized parameter, one can extract the matrices that may show one (or more often a combination) of the three basic structures:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><strong>Modular Community Structures</strong> form when the edges can be re-arranged to form groups that, when plotted, lie on the diagonal of the adjacency/connectivity matrix. These groups can easily be separated to form their own groups or ‘communities’.<br/><br/></p></li>
 <li><p><strong>Bipartite Structure</strong> forms when the edges can be re-arranged to diverge away from the diagonal of the matrix. When plotted, they appear as highlighted corners away from the diagonal.<center><img alt="" src="https://www.frontiersin.org/files/Articles/649440/fgene-12-649440-HTML/image_m/fgene-12-649440-g001.jpg" /></center><em>source: Calderer and Kuijjer, 2021, Frontiers. DOI: <a class="reference external" href="https://doi.org/10.3389/fgene.2021.649440">10.3389/fgene.2021.649440</a></em><br/><br/></p></li>
 <li><p><strong>Core-Periphery Structures</strong> form when the edges can be re-arranged to include some values close to the diagonal that extend all the way to the corners of the matrix. Unlike bipartite models, there is no lack of connectivity closer to the diagonal, but unlike the modular communities, connectivity doesn’t span the entire diagonal either.<center><img alt="" src="https://storage.googleapis.com/plos-corpus-prod/10.1371/journal.pone.0143133/1/pone.0143133.g001.PNG_L?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=wombat-sa%40plos-prod.iam.gserviceaccount.com%2F20220317%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20220317T172816Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;X-Goog-Signature=93c8dcf2a1e1865abd608fceb1ed3982b52f5ee174b33e6fccfa753189fb81080f740e87a2aebffcf0b52a3bf66b53d83ac38ae27142d8f2512fee612fe53806013104892fe4991113493fcd6a0bc9ffb841ba084ce8e0c4fb6fba5bf6e4a7e1421085b1808298f40efaa1f7b86f55680c0c3274e684d763a817c56db56bb2ac23f105a400dfbd5de62cc8a20b58882dc7f4451a49ee3e732ea028d21897c4e7bf200204afa70447132c459890a8d55d62b1a39c9e00257a2f3a19fe4014e9e6192bc072c026c7f1f78857a5a07126ff5d5a29a6722c2ffcdeb3096f10db2fff7a8f09d40e5a3377930de4206be11df8e2a67af82dd6026b88672d940c6da673" /></center><em>source: Tunç and Verma, 2015, PLOS ONE. DOI: <a class="reference external" href="https://doi.org/10.1371/journal.pone.0143133">10.1371/journal.pone.0143133</a></em><br/></p></li>
@@ -721,18 +633,18 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/network-theory_9_0.png" src="../_images/network-theory_9_0.png" />
+<img alt="../_images/8e6ba0645e45d9f35a7319d6de2cb4d15333ddde46f8ca88450ef3a5ab4420b8.png" src="../_images/8e6ba0645e45d9f35a7319d6de2cb4d15333ddde46f8ca88450ef3a5ab4420b8.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="other-concepts">
-<h3>Other Concepts:<a class="headerlink" href="#other-concepts" title="Permalink to this headline">#</a></h3>
+<h3>Other Concepts:<a class="headerlink" href="#other-concepts" title="Permalink to this heading">#</a></h3>
 <p>    Some graph theoretical concepts were not covered. However, they are worth looking into! These topics include (but not limited to) <a class="reference external" href="https://doi.org/10.1038/nrg2102">network motifs</a>, multilayered networks, dynamics and control of networks, generative models, and topological properties like <a class="reference external" href="https://doi.org/10.1007/s00429-021-02435-0">holes</a> and <a class="reference external" href="https://doi.org/10.1371/journal.pcbi.1000748">Rentian scaling</a>.</p>
 <p><a class="reference external" href="https://www.gmanetwork.com/news/scitech/science/583886/when-is-a-coffee-mug-a-donut-topology-explains-it/story/"><img alt="" src="https://i.pinimg.com/originals/e1/08/80/e10880ff407c40f06d1ec3e3253a99a8.gif" /></a></p>
 <section id="references">
-<h4>References:<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h4>
-<ol class="simple">
+<h4>References:<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
 <li><p>Alon, U. <strong>Network motifs: theory and experimental approaches.</strong> Nat Rev Genet 8, 450–461 (2007). DOI: <a class="reference external" href="https://doi.org/10.1038/nrg2102">10.1038/nrg2102</a></p></li>
 <li><p>Calderer Genís, Kuijjer Marieke L., <strong>Community Detection in Large-Scale Bipartite Biological Networks</strong>, Frontiers in Genetics, vol. 12, 2021. DOI: <a class="reference external" href="https://doi.org/10.3389/fgene.2021.649440">10.3389/fgene.2021.649440</a></p></li>
 <li><p>Centeno, E.G.Z., Moreni, G., Vriend, C. et al. <strong>A hands-on tutorial on network and topological neuroscience</strong>. Brain Struct Funct 227, 741–762 (2022). DOI: <a class="reference external" href="https://doi.org/10.1007/s00429-021-02435-0">10.1007/s00429-021-02435-0</a></p></li>
@@ -769,50 +681,120 @@ title="Print to PDF"
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="markov-properties.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Markov Chains &amp; Markov Dynamics</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="markov-properties.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Markov Chains &amp; Markov Dynamics</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="complex-systems.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="complex-systems.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Complex Systems Theory</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit (in alphabetical order by first name)<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-network-models">Types of Network Models:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-structures-and-small-worldness">Network Structures and Small-worldness:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-metrics">Network Metrics:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mesoscale-structures">Mesoscale Structures:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#community-structures-modularity-and-clustering">Community Structures – Modularity and Clustering:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-concepts">Other Concepts:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit (in alphabetical order by first name)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
