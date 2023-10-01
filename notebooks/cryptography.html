@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -319,10 +329,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -330,7 +340,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -546,9 +556,7 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package words to /home/runner/nltk_data...
 [nltk_data]   Unzipping corpora/words.zip.
 [nltk_data] Downloading package gutenberg to /home/runner/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Unzipping corpora/gutenberg.zip.
+[nltk_data]   Unzipping corpora/gutenberg.zip.
 </pre></div>
 </div>
 </div>
@@ -567,22 +575,22 @@ document.write(`
         white-space: pre-wrap;
     }
   </style>
-  </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cyglqmw 1
+  </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eflzjio 1
 
 
-Uow Bghqmw Mhhopq, pn Smhhvrcy Yghh, or Upfmwumquyowm, bgu g fgr byp,
-npw you pbr gfeumfmrq, rmzmw qpps el grv kpps keq qym Kgwprmqgtm;
-qymwm ym npera pccelgqopr npw gr oahm ypew, gra cpruphgqopr or g
-aouqwmuuma prm; qymwm you ngcehqomu bmwm wpeuma orqp gafowgqopr gra
-wmulmcq, kv cprqmflhgqort qym hofoqma wmfrgrq pn qym mgwhomuq lgqmrqu;
-qymwm grv erbmhcpfm umrugqopru, gwouort nwpf apfmuqoc gnngowu
-cygrtma rgqewghhv orqp loqv gra cprqmflq gu ym qewrma pzmw
-qym ghfpuq mrahmuu cwmgqopru pn qym hguq cmrqewv; gra qymwm,
-on mzmwv pqymw hmgn bmwm lpbmwhmuu, ym cpeha wmga you pbr youqpwv
-boqy gr orqmwmuq byocy rmzmw ngohma.  Qyou bgu qym lgtm gq byocy
-qym ngzpewoqm zphefm ghbgvu plmrma:
+Hyo Dlsjio Issywj, wa Xissvqef Flss, yq Hwtiohijhfyoi, dlh l tlq dfw,
+awo fyh wdq ltrhitiqj, qigio jwwx rz lqv uwwx urj jfi Ulowqijlpi;
+jfioi fi awrqb weerzljywq awo lq ybsi fwro, lqb ewqhwsljywq yq l
+byhjoihhib wqi; jfioi fyh alersjyih dioi owrhib yqjw lbtyoljywq lqb
+oihziej, uv ewqjitzsljyqp jfi sytyjib oitqlqj wa jfi ilosyihj zljiqjh;
+jfioi lqv rqdisewti hiqhljywqh, loyhyqp aowt bwtihjye laalyoh
+eflqpib qljrolssv yqjw zyjv lqb ewqjitzj lh fi jroqib wgio
+jfi lstwhj iqbsihh eoiljywqh wa jfi slhj eiqjrov; lqb jfioi,
+ya igiov wjfio sila dioi zwdiosihh, fi ewrsb oilb fyh wdq fyhjwov
+dyjf lq yqjioihj dfyef qigio alysib.  Jfyh dlh jfi zlpi lj dfyef
+jfi algwroyji gwsrti lsdlvh wziqib:
 
-           &quot;MHHOPQ PN SMHHVRCY YGHH.
+           &quot;ISSYWJ WA XISSVQEF FLSS.
 
 &quot;
 </pre></div>
@@ -607,9 +615,9 @@ A more fruitful aproach might be to use the underlying statistics of the English
         white-space: pre-wrap;
     }
   </style>
-  </div><img alt="../_images/177cbbf93557ad2f98ec75322c84612b47587b4a62f753a6cfd2ec4dfb632dd9.png" src="../_images/177cbbf93557ad2f98ec75322c84612b47587b4a62f753a6cfd2ec4dfb632dd9.png" />
-<img alt="../_images/d6fc0d37bb3d59f96fd12950832524deba33c02beb6f03a7c967ff573eff910a.png" src="../_images/d6fc0d37bb3d59f96fd12950832524deba33c02beb6f03a7c967ff573eff910a.png" />
-<img alt="../_images/ad743e301acbddf537f81a239453bdf71c6236dac1224ab00559522dc41cb521.png" src="../_images/ad743e301acbddf537f81a239453bdf71c6236dac1224ab00559522dc41cb521.png" />
+  </div><img alt="../_images/c5f53a5cef6f7202be269029e240cfdad99486c6aabcaf10f2fa3be990ce20dd.png" src="../_images/c5f53a5cef6f7202be269029e240cfdad99486c6aabcaf10f2fa3be990ce20dd.png" />
+<img alt="../_images/62ee953de4c28e59ee74b24df5795e3b0b97b03a4cb0456f842e6aff9bd55c81.png" src="../_images/62ee953de4c28e59ee74b24df5795e3b0b97b03a4cb0456f842e6aff9bd55c81.png" />
+<img alt="../_images/831afe7b2b52ee8211b6810516aa02ccdb65ea0bdfaa112e771e676d08aeeceb.png" src="../_images/831afe7b2b52ee8211b6810516aa02ccdb65ea0bdfaa112e771e676d08aeeceb.png" />
 </div>
 </div>
 <p>From the above distributions, you can see that some letters are used consistently more frequently than others across these texts. Let’s take a look at the distribution defined be the average of all of these texts:</p>
@@ -630,8 +638,8 @@ A more fruitful aproach might be to use the underlying statistics of the English
         white-space: pre-wrap;
     }
   </style>
-  </div><img alt="../_images/1a6492cf75cb172e9bb4a6d193c9a7612459b288b8fe0648f6c5f1e8c92c788d.png" src="../_images/1a6492cf75cb172e9bb4a6d193c9a7612459b288b8fe0648f6c5f1e8c92c788d.png" />
-<img alt="../_images/e51640d0cce516aec808b7f7919af920929ab3cbb44ab379ce26cbb121fe607e.png" src="../_images/e51640d0cce516aec808b7f7919af920929ab3cbb44ab379ce26cbb121fe607e.png" />
+  </div><img alt="../_images/77d59544e506938cf4423da803828c84ec084d1a48cb3effa8642c7225bb9ce2.png" src="../_images/77d59544e506938cf4423da803828c84ec084d1a48cb3effa8642c7225bb9ce2.png" />
+<img alt="../_images/c082abc8a47c73cff4626057c7adf4f4e58b3ba0fcd1f43e75d103f9bd49e816.png" src="../_images/c082abc8a47c73cff4626057c7adf4f4e58b3ba0fcd1f43e75d103f9bd49e816.png" />
 </div>
 </div>
 <p>With this knowledge about expected patterns of letter occurances, let’s see how they compare to the statistics of our encrypted text.</p>
@@ -649,8 +657,8 @@ A more fruitful aproach might be to use the underlying statistics of the English
         white-space: pre-wrap;
     }
   </style>
-  </div><img alt="../_images/8235e4df55a53fe868dba4993f281de8b4df85fe25bbf6203e7d5a5b86cc53e5.png" src="../_images/8235e4df55a53fe868dba4993f281de8b4df85fe25bbf6203e7d5a5b86cc53e5.png" />
-<img alt="../_images/3c3e9bc1d3a3b2b305089e41f5ef9523febec382a20a82a4f9e1e64c3e3850f5.png" src="../_images/3c3e9bc1d3a3b2b305089e41f5ef9523febec382a20a82a4f9e1e64c3e3850f5.png" />
+  </div><img alt="../_images/64f7660232c1045c7283962e2eca22b7330bcc621cc2a1cabda87b9f8bed07e5.png" src="../_images/64f7660232c1045c7283962e2eca22b7330bcc621cc2a1cabda87b9f8bed07e5.png" />
+<img alt="../_images/10fb92e92d7d467a3f90f20f38267c9e6e54ef9cd308ed68bdb6bb4bf514fb3c.png" src="../_images/10fb92e92d7d467a3f90f20f38267c9e6e54ef9cd308ed68bdb6bb4bf514fb3c.png" />
 </div>
 </div>
 <p>As the above distribution shows us, even though each individual letter in the encrypted text no longer has the same occurance probability as it does in typical English text, the general shape of the re-ordered distribution is still the same. We can use this to build a first-pass remapping to attempt deciphering the encrypted text, substituting each encrypted letter with the English letter closest in usage frequency.</p>
@@ -811,7 +819,7 @@ As we go through the decrypted text (which is significantly larger than the sing
         white-space: pre-wrap;
     }
   </style>
-  </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap Y and R 	percent valid English words: 0.5160721105097512 
+  </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap F and Q 	percent valid English words: 0.5160721105097512 
 
 
 Fhabter 1
@@ -834,7 +842,7 @@ the cavourite vodume adways obenel:
 &quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap A and H 	percent valid English words: 0.6301505155453719 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap B and S 	percent valid English words: 0.6301505155453719 
 
 
 Fhabter 1
@@ -857,7 +865,7 @@ the cavourite volume always obened:
 &quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap K and L 	percent valid English words: 0.6855502442750102 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap U and Z 	percent valid English words: 0.6855502442750102 
 
 
 Fhapter 1
@@ -880,7 +888,7 @@ the cavourite volume always opened:
 &quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap C and N 	percent valid English words: 0.8056729743610003 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap E and A 	percent valid English words: 0.8056729743610003 
 
 
 Chapter 1
@@ -903,7 +911,7 @@ the favourite volume always opened:
 &quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap I and D 	percent valid English words: 0.8100317359986304 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>swap N and M 	percent valid English words: 0.8100317359986304 
 
 
 Chapter 1
@@ -959,11 +967,10 @@ Now that you (hopefully!) have a stronger intuition for frequency-based decrypti
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="networks-in-social-media.html"
@@ -974,10 +981,7 @@ Now that you (hopefully!) have a stronger intuition for frequency-based decrypti
         <p class="prev-next-title">Networks in Social Media</p>
       </div>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1040,8 +1044,8 @@ By Dhaval Bhatt, Katie O'Nell, Sushmita Sadhukha, Wasita Mahaphanit (in alphabet
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>
